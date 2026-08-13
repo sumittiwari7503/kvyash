@@ -1,0 +1,16 @@
+{
+  "name": "KVYASH Technologies",
+  "description": "KVYASH Technologies builds practical digital solutions for businesses, combining modern software engineering, web development, automation, and AI capabilities.",
+  "mission": "To engineer reliable, performant, and scale-ready software solutions without the bloat.",
+  "vision": "To establish long-term technology partnerships through transparent execution and technical clarity.",
+  "email": "kvyashtechnologies@gmail.com",
+  "location": "Greater Noida West, Uttar Pradesh, India",
+  "logo": "/logo.png",
+  "favicon": "/favicon.ico",
+  "social_links": [
+    { "platform": "LinkedIn", "url": "https://www.linkedin.com/company/kvyash-technologies/?viewAsMember=true" },
+    { "platform": "Instagram", "url": "https://www.instagram.com/kvyashtechnologies/" },
+    { "platform": "Facebook", "url": "https://www.facebook.com/profile.php?id=61593152129252&mibextid=wwXIfr&rdid=J5OmuVjX2vhYEwrr&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BYthtVV3P%2F%3Fmibextid%3DwwXIfr#" },
+    { "platform": "X", "url": "https://x.com/kvyashtechnolog" }
+  ]
+}
