@@ -19,7 +19,7 @@ export async function GET() {
     const key = (process.env.GEMINI_API_KEY || "").trim();
     results.gemini.keyPrefix = key ? key.slice(0, 6) + '...' : 'none';
     if (key) {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${key}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${key}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -41,24 +41,28 @@ export async function GET() {
     results.groq.keyPrefix = key ? key.slice(0, 6) + '...' : 'none';
     if (key) {
       const isXaiGrok = key.startsWith('xai-');
-      const url = isXaiGrok 
-        ? 'https://api.x.ai/v1/chat/completions' 
-        : 'https://api.groq.com/openai/v1/chat/completions';
-      const model = isXaiGrok ? 'grok-beta' : 'llama3-8b-8192';
-      
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${key}`
-        },
-        body: JSON.stringify({
-          model,
-          messages: [{ role: "user", content: "Hello" }]
-        })
-      });
-      results.groq.statusCode = res.status;
-      results.groq.body = await res.text();
+      if (isXaiGrok) {
+        const res = await fetch('https://api.x.ai/v1/models', {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${key}` }
+        });
+        results.groq.statusCode = res.status;
+        results.groq.body = "xAI Models available: " + await res.text();
+      } else {
+        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model: 'llama3-8b-8192',
+            messages: [{ role: "user", content: "Hello" }]
+          })
+        });
+        results.groq.statusCode = res.status;
+        results.groq.body = await res.text();
+      }
     } else {
       results.groq.error = "Not configured";
     }
