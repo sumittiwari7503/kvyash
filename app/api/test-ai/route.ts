@@ -19,7 +19,7 @@ export async function GET() {
     const key = (process.env.GEMINI_API_KEY || "").trim();
     results.gemini.keyPrefix = key ? key.slice(0, 6) + '...' : 'none';
     if (key) {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${key}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash:generateContent?key=${key}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
