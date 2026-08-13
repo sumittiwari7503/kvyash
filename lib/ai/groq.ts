@@ -6,14 +6,20 @@ export async function callGroq(message: string, context?: string): Promise<strin
 
   const prompt = context ? `[Context: ${context}]\n\nUser: ${message}` : message;
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  const isXaiGrok = apiKey.startsWith('xai-');
+  const url = isXaiGrok 
+    ? 'https://api.x.ai/v1/chat/completions' 
+    : 'https://api.groq.com/openai/v1/chat/completions';
+  const model = isXaiGrok ? 'grok-2' : 'llama3-8b-8192';
+
+  const response = await fetch(url, {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`
     },
     body: JSON.stringify({
-      model: "llama3-8b-8192", // Fast model for fallback
+      model,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: prompt }
