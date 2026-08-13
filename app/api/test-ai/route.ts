@@ -19,7 +19,7 @@ export async function GET() {
     const key = (process.env.GEMINI_API_KEY || "").trim();
     results.gemini.keyPrefix = key ? key.slice(0, 6) + '...' : 'none';
     if (key) {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${key}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${key}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -44,7 +44,7 @@ export async function GET() {
       const url = isXaiGrok 
         ? 'https://api.x.ai/v1/chat/completions' 
         : 'https://api.groq.com/openai/v1/chat/completions';
-      const model = isXaiGrok ? 'grok-2' : 'llama3-8b-8192';
+      const model = isXaiGrok ? 'grok-beta' : 'llama3-8b-8192';
       
       const res = await fetch(url, {
         method: 'POST',
@@ -78,7 +78,7 @@ export async function GET() {
           'Authorization': `Bearer ${key}`
         },
         body: JSON.stringify({
-          model: "google/gemma-2-9b-it:free",
+          model: "openrouter/free",
           messages: [{ role: "user", content: "Hello" }]
         })
       });

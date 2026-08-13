@@ -15,7 +15,7 @@ export async function callOpenRouter(message: string, context?: string): Promise
       'X-Title': 'KVYASH Assistant' // Optional but recommended
     },
     body: JSON.stringify({
-      model: "google/gemma-2-9b-it:free", // Stable free fallback model
+      model: "openrouter/free", // Dynamic free fallback router
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: prompt }

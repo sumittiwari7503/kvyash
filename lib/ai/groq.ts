@@ -10,7 +10,7 @@ export async function callGroq(message: string, context?: string): Promise<strin
   const url = isXaiGrok 
     ? 'https://api.x.ai/v1/chat/completions' 
     : 'https://api.groq.com/openai/v1/chat/completions';
-  const model = isXaiGrok ? 'grok-2' : 'llama3-8b-8192';
+  const model = isXaiGrok ? 'grok-beta' : 'llama3-8b-8192';
 
   const response = await fetch(url, {
     method: 'POST',
