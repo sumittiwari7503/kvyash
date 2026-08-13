@@ -21,7 +21,7 @@ import StartProjectButton from "@/components/common/StartProjectButton";
 
 // Metadata for SEO
 export const metadata = {
-  title: "KVYASH Technologies | Software, AI & Automation",
+  title: "KVYASH Technologies",
   description: "KVYASH Technologies builds practical web applications, custom software, AI solutions, automation systems, and SaaS products for businesses.",
 };
 
