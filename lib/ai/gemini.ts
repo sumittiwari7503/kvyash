@@ -1,7 +1,7 @@
 import { SYSTEM_PROMPT } from './prompts';
 
 export async function callGemini(message: string, context?: string): Promise<string> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY?.trim();
   if (!apiKey) throw new Error("GEMINI_API_KEY is not set");
 
   const prompt = context ? `[Context Context: ${context}]\n\nUser: ${message}` : message;

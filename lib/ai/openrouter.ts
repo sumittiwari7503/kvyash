@@ -1,7 +1,7 @@
 import { SYSTEM_PROMPT } from './prompts';
 
 export async function callOpenRouter(message: string, context?: string): Promise<string> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY?.trim();
   if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set");
 
   const prompt = context ? `[Context: ${context}]\n\nUser: ${message}` : message;
