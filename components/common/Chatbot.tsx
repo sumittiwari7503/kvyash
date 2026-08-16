@@ -113,8 +113,59 @@ export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTypingState, setIsTypingState] = useState(false);
   const [currentQuickActions, setCurrentQuickActions] = useState(INITIAL_QUICK_ACTIONS);
+
+  const isProcessingRef = useRef(false);
+
+  const isTyping = isTypingState;
+  const setIsTyping = (val: boolean) => {
+    setIsTypingState(val);
+    isProcessingRef.current = val;
+  };
+
+  const startTyping = () => {
+    setIsTyping(true);
+  };
+
+  const stopTyping = () => {
+    setIsTyping(false);
+  };
+
+  const isSecurityAttack = (val: string): boolean => {
+    const normalized = val.toLowerCase().trim();
+    return (
+      normalized.includes("ignore previous instructions") ||
+      normalized.includes("ignore instructions") ||
+      normalized.includes("your system prompt") ||
+      normalized.includes("your api key") ||
+      normalized.includes("your credentials") ||
+      normalized.includes("your secret key") ||
+      normalized.includes("show me your api key") ||
+      normalized.includes("show me the api key") ||
+      normalized.includes("give me api key") ||
+      normalized.includes("reveal api key") ||
+      normalized.includes("what is your api key") ||
+      normalized.includes("what is your prompt") ||
+      normalized.includes("system prompt leak") ||
+      normalized.includes("leak prompt") ||
+      normalized.includes("env var leak") ||
+      normalized.includes("leak env") ||
+      normalized.includes("show credentials") ||
+      normalized.includes("reveal credentials") ||
+      normalized.includes("give me your credentials")
+    );
+  };
+
+  const isGibberish = (text: string): boolean => {
+    const norm = text.toLowerCase().trim();
+    if (norm.length < 3) return false;
+    if (/^[bcdfghjklmnpqrstvwxyz]+$/.test(norm)) return true;
+    if (/^(asdf|qwer|zxcv|dfgh|ghjk|hjkl|jklm)/.test(norm)) return true;
+    if (/(.)\1\1\1/.test(norm)) return true;
+    if (norm.split(/\s+/).length === 1 && norm.length >= 6 && !/[aeiouy]/i.test(norm)) return true;
+    return false;
+  };
   
   // Scoping Lead Capturing & State persistence
   const [chatState, setChatState] = useState<ChatState>("IDLE");
@@ -531,16 +582,7 @@ export default function Chatbot() {
     const normalized = text.toLowerCase().trim();
     const lang = overrideLang || detectLanguage(normalized);
 
-    // Security & Prompt Injection checks
-    if (
-      normalized.includes("api key") ||
-      normalized.includes("env var") ||
-      normalized.includes("secret key") ||
-      normalized.includes("credentials") ||
-      normalized.includes("system prompt") ||
-      normalized.includes("internal configuration") ||
-      normalized.includes("ignore previous instructions")
-    ) {
+    if (isSecurityAttack(normalized)) {
       return lang === "hi"
         ? "मैं सिस्टम कॉन्फ़िगरेशन, प्रॉम्प्ट या API कीज़ शेयर नहीं कर सकता। मैं KVYASH Technologies से जुड़े प्रश्न हल कर सकता हूँ।"
         : lang === "hinglish"
@@ -1052,10 +1094,15 @@ export default function Chatbot() {
     if (genericPhrases.some(phrase => normalized === phrase || normalized === `an ${phrase}` || normalized === `a ${phrase}`)) {
       return false;
     }
+    // If the user has already provided some features or details (denoted by a comma or multiple words)
+    if (normalized.includes(",") || normalized.split(/\s+/).length >= 3) {
+      return true;
+    }
     if (normalized.length < 25) {
       const features = [
         "razorpay", "payment", "inventory", "admin", "login", "auth", "database", "dashboard",
-        "gpt", "pdf", "ocr", "stripe", "booking", "ecom", "store", "sell", "billing"
+        "gpt", "pdf", "ocr", "stripe", "booking", "ecom", "store", "sell", "billing",
+        "real estate", "portfolio", "listing", "contact", "form"
       ];
       if (!features.some(f => normalized.includes(f))) {
         return false;
@@ -1669,9 +1716,196 @@ export default function Chatbot() {
     return "REVIEW";
   };
 
-  const getRequirementsPrompt = (service: string, lang: LangType, projectTypes?: string[]): string => {
+  const getScopingPromptTextOnly = (
+    stage: typeof scopingStage,
+    lang: LangType,
+    scopedData: typeof scopingData,
+    currentIntake: IntakeData
+  ): string => {
+    switch (stage) {
+      // E-commerce
+      case "ECOMM_PRODUCTS":
+        return lang === "en" ? "What will you be selling?" : "Aap kya sell karenge?";
+      case "ECOMM_PAYMENTS":
+        return lang === "en" ? "Will you need online payments?" : "Kya online payments integrate karwani hain?";
+      case "ECOMM_INVENTORY":
+        return lang === "en" ? "Will you need inventory management?" : "Kya inventory management features chahiye?";
+      case "ECOMM_ADMIN":
+        return lang === "en" ? "Will you need an admin panel?" : "Kya admin panel ki zaroorat hai?";
+      // SaaS
+      case "SAAS_USERS":
+        return lang === "en" ? "Who are the target users for your SaaS?" : "Aapke SaaS ke target users kaun hain?";
+      case "SAAS_WORKFLOW":
+        return lang === "en" ? "What is the main workflow or problem this SaaS solves?" : "SaaS ka main workflow ya user path kya hoga?";
+      case "SAAS_AUTH":
+        return lang === "en" ? "Will you need user authentication (signup/login)?" : "Kya authentication setup chahiye (signup/login)?";
+      case "SAAS_DASHBOARD":
+        return lang === "en" ? "Will your SaaS require a custom dashboard interface?" : "Kya user/admin custom dashboard dashboard interface chahiye?";
+      case "SAAS_BILLING":
+        return lang === "en" ? "Will you need subscription billing or payment gates?" : "Kya subscription billing setup (Stripe integrations) chahiye?";
+      case "SAAS_INTEGRATIONS":
+        return lang === "en" ? "Will you need to connect third-party APIs or integrations?" : "Kya external API integrations add karne hain?";
+      // AI Chatbot
+      case "BOT_PURPOSE":
+        return lang === "hi" ? "Chatbot ka main purpose kya hai?" : "What is the primary purpose of this AI chatbot?";
+      case "BOT_USERS":
+        return lang === "hi" ? "Users kaun honge (customers ya support staff)?" : "Who will be interacting with the chatbot (customers, staff, etc.)?";
+      case "BOT_KNOWLEDGE":
+        return lang === "hi" ? "Bot ko train karne ke liye knowledge source kya hai?" : "What is the knowledge source (documents, database, FAQs) for training the bot?";
+      case "BOT_CHANNELS":
+        return lang === "hi" ? "Chatbot kahan deploy hoga (website, WhatsApp, Slack)?" : "What channels should the bot support (website, WhatsApp, Slack)?";
+      case "BOT_LEAD_CAPTURE":
+        return lang === "hi" ? "Kya chatbot contact leads capture karega?" : "Should the chatbot capture leads and contact details?";
+      case "BOT_HANDOFF":
+        return lang === "hi" ? "Kya human agent handoff fallback system chahiye?" : "Will you need a human handoff fallback or live chat trigger?";
+      // Mobile App
+      case "APP_PLATFORM":
+        return lang === "en" ? "Which platforms are we targeting: iOS, Android, or both?" : "Konsi platform target karni hai: iOS, Android, ya dono?";
+      case "APP_TARGET_USER":
+        return lang === "en" ? "Who is the target user for the app?" : "App ke target users kaun hain?";
+      case "APP_FEATURES":
+        return lang === "en"
+          ? `Got it — a mobile app for ${scopedData.appTargetUser || 'local users'}, targeting ${scopedData.appPlatform === 'both' ? 'both iOS and Android' : scopedData.appPlatform}. What would you like the app to include?`
+          : lang === "hi"
+          ? `समझ गया — ${scopedData.appTargetUser || 'लोकल यूज़र्स'} के लिए मोबाइल ऐप, जो ${scopedData.appPlatform === 'both' ? 'iOS और Android दोनों' : scopedData.appPlatform} को टार्गेट कर रहा है। आप ऐप में क्या शामिल करना चाहेंगे?`
+          : `Got it — ${scopedData.appTargetUser || 'local users'} ke liye mobile app, targeting ${scopedData.appPlatform === 'both' ? 'both iOS and Android' : scopedData.appPlatform}. Aap app me kya requirements include karna chahenge?`;
+      case "APP_AUTH":
+        return lang === "en" ? "Will the mobile app require user authentication?" : "Kya app me signup/login setup chahiye?";
+      case "APP_BACKEND":
+        return lang === "en" ? "Will you need a custom backend database or admin API to manage app data?" : "Kya content control ke liye admin database panel chahiye?";
+      case "APP_NOTIFICATIONS":
+        return lang === "en" ? "Do you need push notifications integrated?" : "Kya push notifications integration chahiye?";
+      // Automation
+      case "AUTO_WORKFLOW":
+        return lang === "en" ? "What is the current manual process or workflow you want to automate?" : "Abhi aap manual workflow kaiser run karte hain?";
+      case "AUTO_TRIGGER":
+        return lang === "en" ? "What trigger event should start the automation sequence?" : "Automation shuru karne ka trigger event kya hai?";
+      case "AUTO_ACTION":
+        return lang === "en" ? "What specific actions should occur once the automation starts?" : "Trigger ke baad automation kya actions run karegi?";
+      case "AUTO_TOOLS":
+        return lang === "en" ? "What tools or software systems are you currently using that need to be connected?" : "Konse external tools use hotey hain jo connect karne hain?";
+      case "AUTO_RESULT":
+        return lang === "en" ? "What is the desired final result or outcome of this automation flow?" : "Automation flow ka ultimate final result kya hoga?";
+      // Consultancy Flow
+      case "CONSULT_GOAL":
+        return lang === "hi" ? "Aap business me kya improve ya achieve karna chahte hain?" : "What are you trying to improve or achieve?";
+      case "CONSULT_PROBLEM":
+        return lang === "hi"
+          ? "Inme se aapka challenge kya hai?\n• New business idea\n• Existing business digitization\n• Product/MVP planning\n• Technology decision\n• Process improvement\n• Existing website/software problem\n• Growth/marketing"
+          : "Which of these best describes your business stage or challenge?\n\n• New business idea\n• Existing business digitization\n• Product/MVP planning\n• Technology decision\n• Process improvement\n• Existing website/software problem\n• Growth/marketing";
+      case "CONSULT_CUST_ACTION":
+        return lang === "hi" ? "Aapke customers online kya features use kar paayein?" : "What should your customers be able to do online?";
+      // Offline to Online Flow
+      case "OFFLINE_BIZ":
+        return lang === "hi" ? "Aapka offline business kis type ka hai (jaise clothing store, restaurant, manufacturer)?" : "What type of offline business do you run (e.g. clothing store, restaurant, manufacturer)?";
+      case "OFFLINE_ACTION":
+        return lang === "hi" ? "Aap kya chahte hain - browse products, order and pay online, WhatsApp par connect, ya ye sabhi?" : "Do you want customers mainly to browse products, order and pay online, contact you on WhatsApp, or all of these?";
+      case "OFFLINE_PAYMENTS":
+        return lang === "hi" ? "Kya online payments integration chahiye?" : "Will you need online payments integrated?";
+      case "OFFLINE_DELIVERY":
+        return lang === "hi" ? "Delivery ke liye koi location limit ya constraints hain?" : "Do you have specific delivery or service area constraints?";
+      case "OFFLINE_MARKETING":
+        return lang === "hi" ? "Kya launch ke baad marketing support chahiye?" : "Will you need digital marketing support to launch online?";
+      // Marketplace Flow
+      case "MARKET_TARGET":
+        return lang === "hi" ? "Kya ye B2B marketplace hai ya B2C?" : "Is this marketplace B2B (business-to-business) or B2C (business-to-consumer)?";
+      case "MARKET_MODEL":
+        return lang === "hi" ? "Kya ye products ke liye hai (jaise Amazon) ya service booking ke liye?" : "Is it a product marketplace (like Amazon), service booking marketplace (like Urban Company), or local delivery?";
+      case "MARKET_ONBOARDING":
+        return lang === "hi" ? "Vendors onboarding process kya hoga (self-signup ya admin check)?" : "How should vendors onboard and list products/services (self-signup, manual approval, or direct upload)?";
+      case "MARKET_COMMISSION":
+        return lang === "hi" ? "Commission model kya hoga (commission per order ya flat subscription fee)?" : "Will you use a commission-based model per order, or flat subscription fees for vendors?";
+      case "MARKET_DASHBOARDS":
+        return lang === "hi" ? "Kya vendors aur customers dono ke liye separate dashboard portals chahiye?" : "Will you need dedicated dashboards for both vendors and customers?";
+      // Marketing Flow
+      case "MARKETING_BIZ":
+        return lang === "hi" ? "Aap kis business ya product ko promote karna chahte hain?" : "What is the business or product we are promoting?";
+      case "MARKETING_LIVE":
+        return lang === "hi" ? "Kya aapki website ya application already live hai?" : "Is the website or app already live?";
+      case "MARKETING_GOAL":
+        return lang === "hi" ? "Primary goal kya hai - website traffic, organic leads, paid meta/google sales, ya brand awareness?" : "Is your main goal more website traffic, organic leads, paid meta/google sales, or overall brand awareness?";
+      case "MARKETING_SEO":
+        return lang === "hi" ? "Kya SEO optimization setups chahiye?" : "Will you need search engine optimization (SEO) setups?";
+      // CRM
+      case "CRM_TYPE":
+        return lang === "hi" ? "Kya aap existing CRM (HubSpot/Salesforce) integrate karna chahte hain ya new custom CRM build karna hai?" : "Will this be integrated with an existing CRM (like HubSpot or Salesforce), or do we need to build a new custom CRM?";
+      case "CRM_USERS":
+        return lang === "hi" ? "Kitne users/team members CRM access karenge aur unke roles kya honge?" : "How many users or team members will need access, and what are their primary roles?";
+      case "CRM_FEATURES":
+        return lang === "hi" ? "Aapki core customer management requirements kya hain?" : "What are your core lead and customer management needs (e.g. tracking contact history, notes)?";
+      case "CRM_PIPELINE":
+        return lang === "hi" ? "Do you need custom sales pipeline stages and deal tracking?" : "Do you need custom sales pipeline stages and deal tracking?";
+      case "CRM_INTEGRATIONS":
+        return lang === "hi" ? "Kya WhatsApp ya Email integration is CRM ke sath chahiye?" : "Should we integrate WhatsApp or Email with this CRM?";
+      case "CRM_AUTOMATION":
+        return lang === "hi" ? "Kya CRM automation features (auto-lead assignment, notifications) chahiye?" : "What automated actions do you need within the CRM (e.g. auto-assigning leads, notifications)?";
+      case "CRM_DASHBOARDS":
+        return lang === "hi" ? "Kya custom reporting/analytics dashboard chahiye?" : "Will you need custom analytics dashboards and reporting features?";
+      // WhatsApp CRM
+      case "WA_SETUP":
+        return lang === "hi" ? "Kya aapke paas already WhatsApp Business API setup hai?" : "Do you have an existing WhatsApp Business API setup, or do we need to set it up from scratch?";
+      case "WA_VOLUME":
+        return lang === "hi" ? "Aapka daily/monthly messages volume kitna hai?" : "What is your approximate daily or monthly customer messaging volume?";
+      case "WA_FEATURES":
+        return lang === "hi" ? "WhatsApp CRM ke core features kya hone chahiye (jaise broadcast, shared inbox)?" : "What are your core messaging requirements (e.g. broadcasts, team inbox, agent routing)?";
+      case "WA_REPLIES":
+        return lang === "hi" ? "Kya query aane par automated replies set karne hain?" : "Do you need automated instant replies for incoming messages?";
+      case "WA_FOLLOWUPS":
+        return lang === "hi" ? "Kya customer follow-up sequences automatically run karne hain?" : "Do you need automated follow-up messaging sequences for inactive leads?";
+      case "WA_TEAM":
+        return lang === "hi" ? "Kitne team members chat manage karenge?" : "How many team members need access to manage the WhatsApp conversations?";
+      case "WA_CRM":
+        return lang === "hi" ? "Kya is WhatsApp setup ko kisi internal database/CRM se link karna hai?" : "Do we need to integrate this WhatsApp queue directly with an external CRM?";
+      // Email Automation
+      case "EMAIL_PLATFORM":
+        return lang === "hi" ? "Aap konsa email platform use karte hain (Gmail, Outlook, custom SMTP)?" : "What email platform do you currently use (e.g. Gmail, Outlook, custom SMTP)?";
+      case "EMAIL_TYPES":
+        return lang === "hi" ? "Kis type ke incoming/outgoing emails automate karne hain?" : "What types of incoming or outgoing emails do you want to automate?";
+      case "EMAIL_CLASSIFY":
+        return lang === "hi" ? "Kya incoming emails ko classify/categorize (leads, support, billing) karna hai?" : "Do you need AI to classify/categorize incoming emails (e.g. support, billing, spam)?";
+      case "EMAIL_REPLIES":
+        return lang === "hi" ? "Kya replies automatically draft/send hone chahiye?" : "Do you need automated reply drafts or instant auto-replies generated?";
+      case "EMAIL_FOLLOWUPS":
+        return lang === "hi" ? "Kya automatic follow-up sequences execute karne hain?" : "Do you need automated email follow-up sequences based on customer actions?";
+      case "EMAIL_APPROVAL":
+        return lang === "hi" ? "Kya email send hone se pehle human approval/review process chahiye?" : "Should emails be sent automatically, or do they require human approval first?";
+      // AI Calling Agent
+      case "CALL_PURPOSE":
+        return lang === "hi" ? "Automated calls ka main purpose kya hoga?" : "What is the primary purpose of the automated calls (e.g. lead qualification, reminders, appointments)?";
+      case "CALL_DIRECTION":
+        return lang === "hi" ? "Ye calling agent incoming calls handle karega, outgoing calls, ya dono?" : "Will the calling agent handle incoming calls, outgoing calls, or both?";
+      case "CALL_FEATURES":
+        return lang === "hi" ? "Call ke dauran kya actions trigger hone chahiye (jaise slot booking, logging)?" : "What are the core capabilities needed during the call (e.g. booking calendar slots, logging answers)?";
+      case "CALL_LANGUAGES":
+        return lang === "hi" ? "Calling agent ko konse languages bolne aane chahiye?" : "Which languages does the calling agent need to speak fluently?";
+      case "CALL_CRM":
+        return lang === "hi" ? "Kya calls details aur logs CRM me save karne hain?" : "Do we need to sync calling logs and customer answers directly with your CRM?";
+      case "CALL_HANDOFF":
+        return lang === "hi" ? "Kya call ke dauran live human agent handoff support chahiye?" : "Will you need human agent transfer fallback during the call?";
+      case "CALL_LOGGING":
+        return lang === "hi" ? "Kya call recordings aur transcripts save karne hain?" : "Do you need call recording and speech-to-text transcript logging?";
+      // AI Select Subtype
+      case "AI_SELECT_SUBTYPE":
+        return lang === "hi" ? "Aap kya build ya automate karna chahte hain?" : "What would you like to build or automate?";
+      default:
+        return "";
+    }
+  };
+
+  const getRequirementsPrompt = (service: string, lang: LangType, projectTypes?: string[], currentReqs?: string): string => {
     const type = (projectTypes && projectTypes[0]) || service;
     const normalizedType = type.toLowerCase();
+
+    if (currentReqs && currentReqs.trim().length > 0) {
+      const req = currentReqs.trim();
+      if (lang === "hi") {
+        return `समझ गया — ${req}। आप इसमें क्या फीचर्स या क्षमताएं शामिल करना चाहेंगे?`;
+      } else if (lang === "hinglish") {
+        return `Got it — ${req} website. Aap isme kya features include karna chahenge?`;
+      } else {
+        return `Got it — a ${req} website. What features or capabilities would you like it to include?`;
+      }
+    }
 
     const isNonsense = (t: string) => {
       if (t.length < 3) return true;
@@ -1800,7 +2034,7 @@ export default function Chatbot() {
           return "Zaroor. Main ise scope karne me madad karunga. Aap kya banwana chahte hain — website, ecommerce store, SaaS, marketplace, mobile app, AI system, automation, ya kuch aur?";
         }
       case "ASK_REQUIREMENTS":
-        return getRequirementsPrompt(serviceSlug || "custom-software", lang, projectTypes);
+        return getRequirementsPrompt(serviceSlug || "custom-software", lang, projectTypes, intakeData.requirements);
       case "ASK_OPTIONAL_COMPANY":
         if (lang === "en") {
           return "What is your company or organization name? (Optional)";
@@ -1921,9 +2155,10 @@ export default function Chatbot() {
            lower.includes("founder kaun hai") ||
            lower.includes("kahan hai");
   };
-
   const handleSend = (text: string, typeKey?: string) => {
     if (!text.trim() && !typeKey) return;
+    if (isProcessingRef.current) return;
+    startTyping();
 
     const userText = text.trim();
     let detectedLang: LangType = "en";
@@ -1939,11 +2174,15 @@ export default function Chatbot() {
     } else {
       // Priority B: Latest meaningful user message language
       const msgLang = detectLanguage(userText);
-      const simpleAnswers = ["yes", "no", "yeah", "yup", "nope", "skip", "none", "na", "haan", "ji", "ok", "great", "thanks"];
-      const isSimple = simpleAnswers.includes(userText.toLowerCase().trim());
+      const simpleAnswers = [
+        "yes", "no", "yeah", "yup", "nope", "skip", "none", "na", "haan", "ji", "ok", "great", "thanks",
+        "both", "dono", "both platforms", "dono platforms", "local users", "vendor portals",
+        "skip optional step", "flexible", "not sure", "asap"
+      ];
+      const isSimple = simpleAnswers.some(ans => userText.toLowerCase().trim().includes(ans)) || userText.length < 20;
       
-      if (isSimple) {
-        // Priority C: Existing conversation language
+      if (isSimple && language !== "en") {
+        // Priority C: Existing conversation language (Hinglish/Hindi retention)
         detectedLang = language;
       } else {
         detectedLang = msgLang;
@@ -1969,13 +2208,9 @@ export default function Chatbot() {
         }
       ]);
       setInputText("");
-    }
-
-    setIsTyping(true);
-
-    // Intercept Continue/Reset consultancy actions immediately before timeout scheduling
+    }    // Intercept Continue/Reset consultancy actions immediately before timeout scheduling
     if (typeKey === "CONTINUE_CONSULTANCY") {
-      setIsTyping(true);
+      startTyping();
       setTimeout(() => {
         if (chatState !== "IDLE") {
           runScoping("", activeIntents[currentIntentIndex], currentIntentIndex, activeIntents, intakeData, detectedLang, scopingData);
@@ -2021,7 +2256,7 @@ export default function Chatbot() {
           if (lastQuestion) {
             addBotMessage(lastQuestion);
           }
-          setIsTyping(false);
+          stopTyping();
         }
       }, 300);
       return;
@@ -2298,9 +2533,9 @@ export default function Chatbot() {
       }
 
       // Security check: API key / Secrets request
-      if (lowerVal.includes("show me your api key") || lowerVal.includes("api key") || lowerVal.includes("env var") || lowerVal.includes("credentials") || lowerVal.includes("smtp")) {
+      if (isSecurityAttack(lowerVal)) {
         addBotMessage("I cannot disclose internal API keys or configurations. I am here to help you scope, plan, and build digital solutions with KVYASH Technologies. Let me know what you would like to build!");
-        setIsTyping(false);
+        stopTyping();
         return;
       }
 
@@ -2311,36 +2546,36 @@ export default function Chatbot() {
         const faqReply = getFaqResponse(processedUserText, typeKey, detectedLang);
         const lang = detectedLang;
         
-        if (faqReply !== null) {
-          addBotMessage(faqReply);
-        } else {
-          addBotMessage(lang === "hi" 
-            ? "Mujhe ye theek se samajh nahi aaya. Main aapke project requirements gather karne me madad kar raha hoon." 
-            : "I'm not exactly sure about that. I'm currently helping you scope your project.");
+        let baseAnswer = faqReply;
+        if (baseAnswer === null) {
+          baseAnswer = lang === "hi" 
+            ? "Mujhe ye theek se samajh nahi aaya." 
+            : "I'm not exactly sure about that.";
         }
-        
+
+        let scopingPromptText = "";
         if (chatState === "SCOPING_PROJECT" && scopingStage !== "NONE") {
-          const returnTransition = lang === "hi"
-            ? "\n\nAapke project scoping par wapas aate hain..."
-            : "\n\nComing back to your project scoping...";
-          
-          addBotMessage(returnTransition);
-          
-          // Re-trigger the active scoping step prompt
-          setTimeout(() => {
-            runScoping("", activeIntents[currentIntentIndex], currentIntentIndex, activeIntents, intakeData, lang, scopingData);
-          }, 600);
+          const nextPrompt = getScopingPromptTextOnly(scopingStage, lang, scopingData, intakeData);
+          if (nextPrompt) {
+            scopingPromptText = lang === "hi"
+              ? `\n\nप्रोजेक्ट स्कोपिंग पर वापस आते हैं — ${nextPrompt}`
+              : lang === "hinglish"
+              ? `\n\nProject scoping par wapas aate hain — ${nextPrompt}`
+              : `\n\nComing back to your project scoping — ${nextPrompt}`;
+          }
         } else {
           const stepPrompt = getStepPromptMessage(chatState, lang, intakeData.service, intakeData.projectTypes);
-          const returnTransition = lang === "hi"
-            ? "\n\nChaliye aapke details check karne par wapas aate hain..."
-            : "\n\nReturning to our previous step...";
-          
-          addBotMessage(returnTransition);
-          addBotMessage(stepPrompt);
+          if (stepPrompt) {
+            scopingPromptText = lang === "hi"
+              ? `\n\nआपके डिटेल्स चेक करने पर वापस आते हैं — ${stepPrompt}`
+              : lang === "hinglish"
+              ? `\n\nDetails check karne par wapas aate hain — ${stepPrompt}`
+              : `\n\nReturning to our previous step — ${stepPrompt}`;
+          }
         }
         
-        setIsTyping(false);
+        addBotMessage(baseAnswer + scopingPromptText);
+        stopTyping();
         return;
       }
 
@@ -2769,25 +3004,26 @@ export default function Chatbot() {
           addBotMessage(detectedLang === "en" 
             ? "Sure — are you looking to start a new project, learn about our services, or get help with something else?"
             : "Ji — kya aap naya project start karna chahte hain, services ke baare me janna chahte hain, ya kisi aur cheez me help chahiye?");
-          setIsTyping(false);
+          stopTyping();
           return;
         }
 
         // Greeting QA check
         if (lowerVal === "hi" || lowerVal === "hello") {
           addBotMessage("Hi! I'm the KVYASH Assistant. I can help with services, projects, or starting a new project enquiry. What are you looking to build?");
-          setIsTyping(false);
+          stopTyping();
           return;
         }
 
-        // Random/Unclear inputs check
-        if (userText.length > 5 && !isProjectIntent(userText) && !(getFaqResponse(userText, typeKey, detectedLang) || "").includes("founded") && !(getFaqResponse(userText, typeKey) || "").includes("services") && !(getFaqResponse(userText, typeKey) || "").includes("located")) {
-          const gibberishMatch = userText.match(/^[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ\s]{6,}$/);
-          if (gibberishMatch) {
-            addBotMessage("I didn't quite catch that. Are you looking for information about KVYASH or would you like to discuss a project?");
-            setIsTyping(false);
-            return;
-          }
+        // Random/Unclear inputs check / Gibberish check
+        if (isGibberish(userText)) {
+          addBotMessage(detectedLang === "hi"
+            ? "मुझे यह समझ नहीं आया। क्या आप KVYASH के बारे में जानकारी चाहते हैं या किसी प्रोजेक्ट पर चर्चा करना चाहते हैं?"
+            : detectedLang === "hinglish"
+            ? "Mujhe ye samajh nahi aaya. Kya aap KVYASH ke baare me information chahte hain ya kisi project par discuss karna chahte hain?"
+            : "I didn't quite catch that. Are you looking for information about KVYASH or would you like to discuss a project?");
+          stopTyping();
+          return;
         }
 
         if (
@@ -2918,7 +3154,7 @@ export default function Chatbot() {
 
           const hasScopingRemaining = runScoping(userText, detectedIntents[0], 0, detectedIntents, freshIntake, detectedLang, mergedScopingData);
           if (hasScopingRemaining) {
-            setIsTyping(false);
+            stopTyping();
             return;
           }
 
@@ -2931,7 +3167,7 @@ export default function Chatbot() {
           const botResponse = getFaqResponse(processedUserText, typeKey, detectedLang);
           if (botResponse !== null) {
             addBotMessage(botResponse);
-            setIsTyping(false);
+            stopTyping();
           } else {
             // No local answer found, trigger AI Fallback
             fetch('/api/assistant', {
@@ -2942,15 +3178,16 @@ export default function Chatbot() {
             .then(res => res.json())
             .then(data => {
               addBotMessage(data.reply || (detectedLang === "hi" ? "कुछ गड़बड़ हुई, कृपया दोबारा कोशिश करें।" : detectedLang === "hinglish" ? "Kuch error aaya, kripya dubara try karein." : "I'm not sure I understand that right now."));
-              setIsTyping(false);
+              stopTyping();
             })
             .catch(() => {
               addBotMessage(detectedLang === "hi" ? "कुछ गड़बड़ हुई, कृपया दोबारा कोशिश करें।" : detectedLang === "hinglish" ? "Kuch error aaya, kripya dubara try karein." : "I'm not sure I understand that right now.");
-              setIsTyping(false);
+              stopTyping();
             });
             return;
           }
         }
+
         return;
       }
 
@@ -4122,6 +4359,7 @@ export default function Chatbot() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             disabled={
+              isTyping ||
               (chatState as string) === "ASK_PROJECT_TYPE" ||
               (chatState as string) === "ASK_OPTIONAL_TIMELINE" ||
               (chatState as string) === "ASK_OPTIONAL_BUDGET" ||
@@ -4155,6 +4393,7 @@ export default function Chatbot() {
           <button
             type="submit"
             disabled={
+              isTyping ||
               !inputText.trim() ||
               (chatState as string) === "ASK_PROJECT_TYPE" ||
               (chatState as string) === "ASK_OPTIONAL_TIMELINE" ||
