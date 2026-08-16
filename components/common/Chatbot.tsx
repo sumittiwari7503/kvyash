@@ -117,6 +117,7 @@ export default function Chatbot() {
   const [currentQuickActions, setCurrentQuickActions] = useState(INITIAL_QUICK_ACTIONS);
 
   const isProcessingRef = useRef(false);
+  const isSubmittingRef = useRef(false);
 
   const isTyping = isTypingState;
   const setIsTyping = (val: boolean) => {
@@ -3748,6 +3749,8 @@ export default function Chatbot() {
   };
 
   const handleConfirmSubmit = async () => {
+    if (isSubmittingRef.current || chatState === "SUBMITTING") return;
+    isSubmittingRef.current = true;
     setChatState("SUBMITTING");
     setIsTyping(true);
 
@@ -3798,10 +3801,12 @@ export default function Chatbot() {
           ? `आपकी इन्क्वायरी सफलतापूर्वक तैयार कर ली गई है, लेकिन लाइव ईमेल डिलीवरी अभी कॉन्फ़िगर नहीं की गई है।`
           : `Aapki enquiry successfully prepare ho gayi hai par live email delivery configure nahi hai.`);
       } else {
+        isSubmittingRef.current = false;
         setChatState("REVIEW");
         addBotMessage(data.message || "Unable to send your scoping enquiry right now. Please verify details and try again.");
       }
     } catch {
+      isSubmittingRef.current = false;
       setIsTyping(false);
       setChatState("REVIEW");
       addBotMessage("Something went wrong while sending your enquiry. Your details are still here. Please try again.");
@@ -4237,7 +4242,7 @@ export default function Chatbot() {
           )}
 
           {/* Review actions confirm/edit/cancel panel */}
-          {(chatState as string) === "REVIEW" && (
+          {((chatState as string) === "REVIEW" || (chatState as string) === "SUBMITTING") && (
             <div className="flex flex-col gap-2 animate-premium">
               <span className="text-[10px] text-slate-500 font-medium text-center mb-1 leading-normal">
                 Please review your information before submitting. Your information is used to review and respond to your enquiry.
@@ -4245,20 +4250,25 @@ export default function Chatbot() {
               <div className="flex gap-1.5">
                 <button
                   onClick={handleConfirmSubmit}
-                  className="flex-[2] inline-flex items-center justify-center text-center py-2 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded transition-premium cursor-pointer"
+                  disabled={(chatState as string) === "SUBMITTING" || isTyping}
+                  className="flex-[2] inline-flex items-center justify-center text-center py-2 bg-brand-500 hover:bg-brand-600 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed text-white text-xs font-bold rounded transition-premium cursor-pointer"
                 >
-                  {language === "en" ? "Submit Enquiry" : "Enquiry Submit Karein"}
-                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  {(chatState as string) === "SUBMITTING"
+                    ? (language === "en" ? "Submitting..." : "Submit ho raha hai...")
+                    : (language === "en" ? "Submit Enquiry" : "Enquiry Submit Karein")}
+                  {(chatState as string) !== "SUBMITTING" && <ArrowRight className="ml-1.5 h-3.5 w-3.5" />}
                 </button>
                 <button
                   onClick={() => setChatState("PROJECT_EDIT")}
-                  className="flex-1 text-center py-2 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-bold transition-premium cursor-pointer"
+                  disabled={(chatState as string) === "SUBMITTING" || isTyping}
+                  className="flex-1 text-center py-2 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {language === "en" ? "Edit" : "Edit"}
                 </button>
                 <button
                   onClick={handleCancelEnquiry}
-                  className="flex-1 text-center py-2 border border-slate-200 rounded text-red-500 hover:bg-red-50 text-xs font-bold transition-premium cursor-pointer"
+                  disabled={(chatState as string) === "SUBMITTING" || isTyping}
+                  className="flex-1 text-center py-2 border border-slate-200 rounded text-red-500 hover:bg-red-50 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {language === "en" ? "Cancel" : "Cancel"}
                 </button>
