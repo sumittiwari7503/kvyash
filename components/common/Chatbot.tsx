@@ -105,7 +105,9 @@ const checkIsScopingLabel = (label: string): boolean => {
     l.includes("application development") ||
     l.includes("mobile app") ||
     l.includes("marketplace") ||
-    l.includes("marketing")
+    l.includes("marketing") ||
+    l.includes("chatbot") ||
+    l.includes("automation")
   );
 };
 
@@ -383,9 +385,61 @@ export default function Chatbot() {
     return "en";
   };
 
+  const cleanProjectTypeName = (text: string): string => {
+    const prefixes = [
+      "i want to build a", "i want to build an", "i want to build",
+      "i want a", "i want an", "i need a", "i need an",
+      "i have a project idea for a", "i have a project idea for an", "i have a project idea for",
+      "need a", "need an", "want to launch a", "want to launch an", "want to launch",
+      "build a", "build an", "create a", "create an", "develop a", "develop an", "make a", "make an",
+      "mujhe ek", "ek", "banwana hai", "banwani hai", "banana hai", "banani hai"
+    ];
+    let cleaned = text.trim();
+    let lowerCleaned = cleaned.toLowerCase();
+    for (const prefix of prefixes) {
+      if (lowerCleaned.startsWith(prefix + " ")) {
+        cleaned = cleaned.substring(prefix.length + 1).trim();
+        lowerCleaned = cleaned.toLowerCase();
+      }
+    }
+    const suffixes = [
+      "banwana hai", "banwani hai", "banana hai", "banani hai", "chahiye", "chahye", "chaheye", "karwana hai", "karwani hai"
+    ];
+    for (const suffix of suffixes) {
+      if (lowerCleaned.endsWith(" " + suffix)) {
+        cleaned = cleaned.substring(0, cleaned.length - (suffix.length + 1)).trim();
+        lowerCleaned = cleaned.toLowerCase();
+      }
+    }
+    return cleaned;
+  };
+
+  const isValidProjectType = (text: string): boolean => {
+    const norm = text.toLowerCase().trim();
+    const invalidInputs = [
+      "hy", "hi", "hello", "hey", "hii", "hyy", "heyya", "yo",
+      "reset", "reset chat", "start over", "restart", "clear chat", "new conversation",
+      "that's it", "that its", "thats it", "done", "that's all", "nothing else", "no more",
+      "ok", "okay", "hmm", "yes", "no", "haan", "nahi", "skip", "none", "yup", "nope"
+    ];
+    if (invalidInputs.includes(norm)) {
+      return false;
+    }
+    if (norm === "ai") {
+      return false;
+    }
+    if (norm.length < 3) {
+      return false;
+    }
+    if (isGibberish(text)) {
+      return false;
+    }
+    return true;
+  };
+
   const isProjectIntent = (text: string): boolean => {
     const normalized = text.toLowerCase().trim();
-    
+
     if (
       normalized.includes("don't know") ||
       normalized.includes("dont know") ||
@@ -403,7 +457,11 @@ export default function Chatbot() {
     ) {
       return false;
     }
-    
+
+    const cleaned = cleanProjectTypeName(text);
+    if (isValidProjectType(cleaned)) {
+      return true;
+    }
     // English actionable phrases/intent indicators
     const hasEnglishIntent =
       normalized.includes("i want to build") ||
@@ -524,11 +582,16 @@ export default function Chatbot() {
     const parsedData: Partial<IntakeData> = {};
 
     // 1. Detect category type
-    const detected = detectProjectType(text);
+    const cleaned = cleanProjectTypeName(text);
+    const detected = detectProjectType(cleaned);
     if (detected.slug) {
       parsedData.service = detected.slug;
-      parsedData.serviceLabel = detected.label;
-      parsedData.projectTypes = detected.list;
+      parsedData.serviceLabel = cleaned;
+      parsedData.projectTypes = [cleaned];
+    } else if (isValidProjectType(cleaned)) {
+      parsedData.service = "custom-software";
+      parsedData.serviceLabel = cleaned;
+      parsedData.projectTypes = [cleaned];
     }
 
     // 2. Extract company/business name (e.g. clothing business)
@@ -1902,9 +1965,9 @@ export default function Chatbot() {
       if (lang === "hi") {
         return `समझ गया — ${req}। आप इसमें क्या फीचर्स या क्षमताएं शामिल करना चाहेंगे?`;
       } else if (lang === "hinglish") {
-        return `Got it — ${req} website. Aap isme kya features include karna chahenge?`;
+        return `Got it — ${req}. Aap isme kya features include karna chahenge?`;
       } else {
-        return `Got it — a ${req} website. What features or capabilities would you like it to include?`;
+        return `Got it — ${req}. What features or capabilities would you like it to include?`;
       }
     }
 
@@ -2209,7 +2272,134 @@ export default function Chatbot() {
         }
       ]);
       setInputText("");
-    }    // Intercept Continue/Reset consultancy actions immediately before timeout scheduling
+    }
+
+    // Intercept Reset chat, Greetings, and "that's it" Completion Phrases
+    const cleanLowerIntercept = userText.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "");
+    
+    // 1. Reset chat
+    const resetKeywords = ["reset chat", "reset", "start over", "restart", "clear chat", "new conversation"];
+    if (resetKeywords.includes(cleanLowerIntercept)) {
+      setIntakeData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        serviceLabel: "",
+        requirements: "",
+        timeline: "",
+        budget: "",
+        projectTypes: []
+      });
+      setScopingData({
+        ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
+        saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
+        botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
+        appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
+        autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
+        consultGoal: "", consultProblem: "", consultCustomerAction: "",
+        offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
+        marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
+        marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
+        crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
+        waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
+        emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
+        callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
+        aiSubtype: ""
+      });
+      setScopingStage("NONE");
+      setChatState("IDLE");
+      setConsultancyState("NONE");
+      setReturnToReview(false);
+      setIsLocalMode(false);
+      setActiveIntents([]);
+      setCurrentIntentIndex(0);
+      setAwaitingSomethingElse(false);
+      setLastEntityContext("NONE");
+      setCurrentQuickActions(INITIAL_QUICK_ACTIONS);
+      
+      setTimeout(() => {
+        addBotMessage(detectedLang === "hi"
+          ? "बिल्कुल — मैंने बातचीत रीसेट कर दी है। आप क्या बनाना चाहते हैं?"
+          : detectedLang === "hinglish"
+          ? "Sure — maine conversation reset kar di hai. Aap kya banana chahte hain?"
+          : "Sure — I've reset the conversation. What are you looking to build?");
+        stopTyping();
+      }, 300);
+      return;
+    }
+
+    // 2. Greetings
+    const greetings = ["hi", "hy", "hello", "hey", "hii", "hyy", "heyya", "yo", "hello assistant", "hello bot"];
+    if (greetings.includes(cleanLowerIntercept)) {
+      let greetingResponse = "";
+      if (chatState === "IDLE") {
+        greetingResponse = detectedLang === "hi"
+          ? "नमस्ते! मैं KVYASH असिस्टेंट हूँ। मैं प्रोजेक्ट प्लानिंग या टेक्नोलॉजी कंसल्टिंग में मदद कर सकता हूँ। आप क्या बनाना चाहते हैं?"
+          : detectedLang === "hinglish"
+          ? "Hi! Main KVYASH Assistant hoon. Main project planning ya technology consulting me help kar sakta hoon. Aap kya banana chahte hain?"
+          : "Hi! I'm the KVYASH Assistant. I can help with services, projects, or starting a new project enquiry. What are you looking to build?";
+      } else if (chatState === "ASK_PROJECT_TYPE") {
+        greetingResponse = detectedLang === "hi"
+          ? "नमस्ते! आप क्या बनाना चाहते हैं — वेबसाइट, ई-कॉमर्स स्टोर, SaaS, मार्केटप्लेस, मोबाइल ऐप, AI सिस्टम, ऑटोमेशन या कुछ और?"
+          : detectedLang === "hinglish"
+          ? "Hi! Aap kya banana chahte hain — website, ecommerce store, SaaS, marketplace, mobile app, AI system, automation, ya kuch aur?"
+          : "Hi! What are you looking to build — a website, ecommerce store, SaaS product, marketplace, mobile app, AI system, automation, or something else?";
+      } else {
+        const stepPrompt = getStepPromptMessage(chatState, detectedLang, intakeData.service, intakeData.projectTypes);
+        greetingResponse = detectedLang === "hi"
+          ? `नमस्ते! चलिए हमारे पिछले चरण पर वापस आते हैं — ${stepPrompt}`
+          : detectedLang === "hinglish"
+          ? `Hi! Chaliye humare previous step par wapas aate hain — ${stepPrompt}`
+          : `Hi! Let's return to our previous step — ${stepPrompt}`;
+      }
+      setTimeout(() => {
+        addBotMessage(greetingResponse);
+        stopTyping();
+      }, 300);
+      return;
+    }
+
+    // 3. Completion Phrases
+    const completionPhrases = ["that's it", "that its", "thats it", "done", "that's all", "nothing else", "no more"];
+    if (completionPhrases.includes(cleanLowerIntercept)) {
+      if (chatState === "ASK_REQUIREMENTS") {
+        if (intakeData.requirements && intakeData.requirements.trim().length > 0) {
+          const next = getNextStepState(chatState, intakeData);
+          setChatState(next);
+          setTimeout(() => {
+            addBotMessage(detectedLang === "en"
+              ? `Got it. I'll use the requirements you've provided. Let's proceed — ${getStepPromptMessage(next, detectedLang, intakeData.service, intakeData.projectTypes)}`
+              : detectedLang === "hi"
+              ? `समझ गया। मैं आपके द्वारा दिए गए विवरण का उपयोग करूँगा। चलिए आगे बढ़ते हैं — ${getStepPromptMessage(next, detectedLang, intakeData.service, intakeData.projectTypes)}`
+              : `Got it. Main aapke requirements use karunga. Chaliye aage badhte hain — ${getStepPromptMessage(next, detectedLang, intakeData.service, intakeData.projectTypes)}`);
+            stopTyping();
+          }, 300);
+        } else {
+          setTimeout(() => {
+            addBotMessage(detectedLang === "en"
+              ? "Please tell me briefly what features or capabilities you need before we proceed."
+              : "Kripya aage badhne se pehle batayein ki aapko kya features chahiye.");
+            stopTyping();
+          }, 300);
+        }
+        return;
+      } else if (chatState === "SCOPING_PROJECT") {
+        runScoping("Skip", activeIntents[currentIntentIndex], currentIntentIndex, activeIntents, intakeData, detectedLang, scopingData);
+        return;
+      } else if (chatState === "ASK_PROJECT_TYPE") {
+        setTimeout(() => {
+          addBotMessage(detectedLang === "en"
+            ? "What are you looking to build? Please select or specify a project type first."
+            : "Aap kya banana chahte hain? Kripya pehle project type batayein.");
+          stopTyping();
+        }, 300);
+        return;
+      }
+    }
+
+    // Intercept Continue/Reset consultancy actions immediately before timeout scheduling
     if (typeKey === "CONTINUE_CONSULTANCY") {
       startTyping();
       setTimeout(() => {
@@ -3070,40 +3260,40 @@ export default function Chatbot() {
 
           // Pre-populate service labels
           let matchedService = "";
-          let matchedLabel = "";
+          let matchedLabel = freshIntake.serviceLabel || "";
           if (currentConsultancyState === "MOBILE" || currentConsultancyState === "MOBILE_USER" || currentConsultancyState === "MOBILE_DONE" || scopingData.appPlatform) {
             matchedService = "application-development";
-            matchedLabel = "Mobile App";
+            if (!matchedLabel) matchedLabel = "Mobile App";
           } else if (currentConsultancyState === "WEB" || currentConsultancyState === "WEB_FEATURES" || currentConsultancyState === "WEB_DONE") {
             matchedService = "web-development";
-            matchedLabel = "Web Development";
+            if (!matchedLabel) matchedLabel = "Web Development";
           } else if (currentConsultancyState === "SAAS" || currentConsultancyState === "SAAS_DONE") {
             matchedService = "saas-development";
-            matchedLabel = "SaaS";
+            if (!matchedLabel) matchedLabel = "SaaS";
           } else if (currentConsultancyState === "MARKET" || currentConsultancyState === "MARKET_FEATURES" || currentConsultancyState === "MARKET_DONE") {
             matchedService = "marketplace-development";
-            matchedLabel = "Marketplace";
+            if (!matchedLabel) matchedLabel = "Marketplace";
           } else if (currentConsultancyState === "AI" || currentConsultancyState === "AI_DONE") {
             matchedService = "ai-solutions";
-            matchedLabel = "AI & Automation";
+            if (!matchedLabel) matchedLabel = "AI & Automation";
           } else if (detectedIntents.includes("OFFLINE_TO_ONLINE")) {
             matchedService = "digital-transformation";
-            matchedLabel = "Offline to Online";
+            if (!matchedLabel) matchedLabel = "Offline to Online";
           } else if (detectedIntents.includes("MARKETPLACE")) {
             matchedService = "marketplace-development";
-            matchedLabel = "Marketplace";
+            if (!matchedLabel) matchedLabel = "Marketplace";
           } else if (detectedIntents.includes("CONSULTANCY") || detectedIntents.includes("NOT_SURE")) {
             matchedService = "technology-consulting";
-            matchedLabel = "Technology Consulting";
+            if (!matchedLabel) matchedLabel = "Technology Consulting";
           } else if (detectedIntents.includes("MARKETING_GROWTH")) {
             matchedService = "marketing-growth";
-            matchedLabel = "Marketing & Growth";
+            if (!matchedLabel) matchedLabel = "Marketing & Growth";
           } else if (detectedIntents.includes("AI_AUTOMATION")) {
             matchedService = "ai-solutions";
-            matchedLabel = "AI & Automation";
+            if (!matchedLabel) matchedLabel = "AI & Automation";
           } else {
             matchedService = freshIntake.service || "custom-software";
-            matchedLabel = freshIntake.serviceLabel || "Custom Software";
+            if (!matchedLabel) matchedLabel = "Custom Software";
           }
 
           freshIntake.service = matchedService;
@@ -3412,27 +3602,39 @@ export default function Chatbot() {
           break;
 
         case "ASK_PROJECT_TYPE":
-          const typeSlug = SERVICE_SLUG_MAP[userText] || "custom-software";
-          updatedIntake.service = typeSlug;
-          updatedIntake.serviceLabel = userText;
-          updatedIntake.projectTypes = [userText];
-          setIntakeData(updatedIntake);
-          
-          const isScopingLabel = checkIsScopingLabel(userText);
-            
-          if (isScopingLabel) {
-            initScoping(userText, userText, updatedIntake, language);
-            setIsTyping(false);
-            return;
+          const cleanedText = cleanProjectTypeName(userText);
+          const isValid = isValidProjectType(cleanedText);
+          if (!isValid) {
+            botResponseText = language === "en"
+              ? "I didn't quite catch that. What are you looking to build — a website, ecommerce store, SaaS product, marketplace, mobile app, AI system, automation, or something else?"
+              : language === "hi"
+              ? "मुझे यह प्रोजेक्ट टाइप समझ नहीं आया। आप क्या बनाना चाहते हैं — वेबसाइट, ई-कॉमर्स स्टोर, SaaS, मार्केटप्लेस, मोबाइल ऐप, AI सिस्टम, ऑटोमेशन या कुछ और?"
+              : "Mujhe ye project type samajh nahi aaya. Aap kya banana chahte hain — website, ecommerce store, SaaS, marketplace, mobile app, AI system, automation, ya kuch aur?";
+            nextState = "ASK_PROJECT_TYPE";
           } else {
-            setScopingStage("NONE");
-            if (returnToReview) {
-              nextState = "REVIEW";
-              setReturnToReview(false);
-              botResponseText = language === "en" ? "Updated. Review your details below." : "Project type update ho gaya hai. Review kar lein.";
+            const detected = detectProjectType(cleanedText);
+            const typeSlug = detected.slug || "custom-software";
+            updatedIntake.service = typeSlug;
+            updatedIntake.serviceLabel = cleanedText;
+            updatedIntake.projectTypes = [cleanedText];
+            setIntakeData(updatedIntake);
+            
+            const isScopingLabel = checkIsScopingLabel(cleanedText);
+              
+            if (isScopingLabel) {
+              initScoping(cleanedText, cleanedText, updatedIntake, language);
+              setIsTyping(false);
+              return;
             } else {
-              nextState = getNextStepState(chatState, updatedIntake);
-              botResponseText = getStepPromptMessage(nextState, language, updatedIntake.service, updatedIntake.projectTypes);
+              setScopingStage("NONE");
+              if (returnToReview) {
+                nextState = "REVIEW";
+                setReturnToReview(false);
+                botResponseText = language === "en" ? "Updated. Review your details below." : "Project type update ho gaya hai. Review kar lein.";
+              } else {
+                nextState = getNextStepState(chatState, updatedIntake);
+                botResponseText = getStepPromptMessage(nextState, language, updatedIntake.service, updatedIntake.projectTypes);
+              }
             }
           }
           break;
