@@ -1783,8 +1783,7 @@ export default function Chatbot() {
   const getScopingPromptTextOnly = (
     stage: typeof scopingStage,
     lang: LangType,
-    scopedData: typeof scopingData,
-    currentIntake: IntakeData
+    scopedData: typeof scopingData
   ): string => {
     switch (stage) {
       // E-commerce
@@ -2747,7 +2746,7 @@ export default function Chatbot() {
 
         let scopingPromptText = "";
         if (chatState === "SCOPING_PROJECT" && scopingStage !== "NONE") {
-          const nextPrompt = getScopingPromptTextOnly(scopingStage, lang, scopingData, intakeData);
+          const nextPrompt = getScopingPromptTextOnly(scopingStage, lang, scopingData);
           if (nextPrompt) {
             scopingPromptText = lang === "hi"
               ? `\n\nप्रोजेक्ट स्कोपिंग पर वापस आते हैं — ${nextPrompt}`
