@@ -2518,10 +2518,11 @@ export default function Chatbot() {
     }
 
     setTimeout(() => {
-      const language = detectedLang; // Shadow state variable
-      const currentConsultancyState = consultancyState;
-      let processedUserText = userText;
-      let processedLowerVal = userText.toLowerCase();
+      try {
+        const language = detectedLang; // Shadow state variable
+        const currentConsultancyState = consultancyState;
+        let processedUserText = userText;
+        let processedLowerVal = userText.toLowerCase();
 
       // Intercept awaitingSomethingElse
       if (awaitingSomethingElse) {
@@ -3343,16 +3344,9 @@ export default function Chatbot() {
           setActiveIntents(detectedIntents);
           setCurrentIntentIndex(0);
 
-          const hasScopingRemaining = runScoping(userText, detectedIntents[0], 0, detectedIntents, freshIntake, detectedLang, mergedScopingData);
-          if (hasScopingRemaining) {
-            stopTyping();
-            return;
-          }
-
-          // If scoping completes immediately (e.g. everything extracted)
-          const firstStep = getNextStepState("PROJECT_DETECTED", freshIntake);
-          setChatState(firstStep);
-          addBotMessage(getStepPromptMessage(firstStep, detectedLang, freshIntake.service, freshIntake.projectTypes));
+          runScoping(userText, detectedIntents[0], 0, detectedIntents, freshIntake, detectedLang, mergedScopingData);
+          stopTyping();
+          return;
         } else {
           // Standard QA FAQ response
           const botResponse = getFaqResponse(processedUserText, typeKey, detectedLang);
@@ -3550,14 +3544,8 @@ export default function Chatbot() {
             setScopingData(newScopingData);
 
             const activeIntent = activeIntents[currentIntentIndex] || "BUILD_SOMETHING";
-            const hasScopingRemaining = runScoping(userText, activeIntent, currentIntentIndex, activeIntents, updatedIntake, language, newScopingData);
-            if (hasScopingRemaining) {
-              setIsTyping(false);
-              return;
-            }
-
-            nextState = getNextStepState(chatState, updatedIntake);
-            botResponseText = getStepPromptMessage(nextState, language, updatedIntake.service, updatedIntake.projectTypes);
+            runScoping(userText, activeIntent, currentIntentIndex, activeIntents, updatedIntake, language, newScopingData);
+            return;
           }
         }
         break;
@@ -3824,7 +3812,14 @@ export default function Chatbot() {
 
       setChatState(nextState);
       addBotMessage(botResponseText);
-      setIsTyping(false);
+      } catch (err) {
+        console.error("Error in handleSend timeout callback:", err);
+        addBotMessage(detectedLang === "en"
+          ? "Something went wrong. Let's continue. What are you looking to build?"
+          : "Kuch error hua hai. Chaliye continue karte hain. Aap kya banana chahte hain?");
+      } finally {
+        setIsTyping(false);
+      }
     }, 600);
   };
 
