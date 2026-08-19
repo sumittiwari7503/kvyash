@@ -38,6 +38,46 @@ const handoffStandards = [
 export default function AboutPage() {
   return (
     <div className="font-sans text-navy-900 bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Person",
+                "@id": "https://kvyash.com/about/#founder",
+                "name": "Sumit Tiwari",
+                "jobTitle": "Founder & Engineering Lead",
+                "worksFor": {
+                  "@type": "Organization",
+                  "name": "KVYASH Technologies",
+                  "url": "https://kvyash.com"
+                },
+                "url": "https://kvyash.com/about"
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://kvyash.com/about/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://kvyash.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "About Us",
+                    "item": "https://kvyash.com/about"
+                  }
+                ]
+              }
+            ]
+          })
+        }}
+      />
       
       {/* 1. Header Hero */}
       <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-20 md:pt-40 md:pb-24">

@@ -180,6 +180,67 @@ const deliverablesList = [
 export default function ServicesPage() {
   return (
     <div className="font-sans text-navy-900 bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Service",
+                "@id": "https://kvyash.com/services/#technology-development",
+                "name": "Technology & Development",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "KVYASH Technologies",
+                  "url": "https://kvyash.com"
+                },
+                "description": "Design and development of custom websites, SaaS platforms, databases, and custom software systems."
+              },
+              {
+                "@type": "Service",
+                "@id": "https://kvyash.com/services/#technology-consulting",
+                "name": "Technology Consulting",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "KVYASH Technologies",
+                  "url": "https://kvyash.com"
+                },
+                "description": "Expert tech stack decisions, software design architecture, and digital roadmaps."
+              },
+              {
+                "@type": "Service",
+                "@id": "https://kvyash.com/services/#ai-automation",
+                "name": "AI & Automation Solutions",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "KVYASH Technologies",
+                  "url": "https://kvyash.com"
+                },
+                "description": "Integration of intelligent chatbots, automated back-office workflows, and custom AI agents."
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://kvyash.com/services/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://kvyash.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Services",
+                    "item": "https://kvyash.com/services"
+                  }
+                ]
+              }
+            ]
+          })
+        }}
+      />
       
       {/* 1. Header Hero */}
       <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-20 md:pt-40 md:pb-24">
@@ -302,6 +363,63 @@ export default function ServicesPage() {
             })}
           </div>
 
+        </div>
+      </section>
+
+      {/* 3b. Frequently Asked Questions (GEO layer) */}
+      <section className="py-24 bg-slate-50 border-b border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-500">FAQ</span>
+            <h3 className="text-3xl font-extrabold text-navy-900 tracking-tight">
+              Frequently Asked Questions
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Find direct answers to common questions about KVYASH Technologies, our capabilities, and services.
+            </p>
+          </div>
+
+          <div className="space-y-8 bg-white border border-slate-200 rounded-2xl p-8 md:p-10 shadow-sm">
+            {[
+              {
+                q: "What does KVYASH Technologies do?",
+                a: "KVYASH Technologies is a premium software engineering company that builds custom web applications, SaaS platforms, digital marketplaces, and AI-powered business systems. We operate as an engineering partner, focusing on code craftsmanship, architectural rigor, and full execution transparency."
+              },
+              {
+                q: "What services does KVYASH provide?",
+                a: "We provide six core engineering and consulting services: Custom Software & Web Development, Technology Consulting (architecture and blueprints), Offline to Online transformation (digital transformation), AI & Automation (LLM integrations, chatbots, back-office automations), Marketplace & SaaS engineering, and conversion-focused Marketing & Growth setups."
+              },
+              {
+                q: "Does KVYASH build websites?",
+                a: "Yes. We design and build secure, fast, and SEO-optimized custom web systems using modern frameworks like React, Next.js, and Node.js. We focus on building clean code bases with proper database integration rather than using fragile pre-built website templates."
+              },
+              {
+                q: "Does KVYASH build AI automation systems?",
+                a: "Yes. We engineer intelligent back-office automations, automated email/invoice ingestion pipelines, LLM-powered custom chatbots, and secure WhatsApp CRM messaging connectors to automate manual tasks and reduce data entry errors."
+              },
+              {
+                q: "Does KVYASH provide technology consulting?",
+                a: "Yes. We offer advisory consulting to help businesses scope digital projects, design system architectures, choose the correct technology stack, plan MVPs (Minimum Viable Products), and map database schemas."
+              },
+              {
+                q: "Does KVYASH build SaaS products and marketplaces?",
+                a: "Yes. We design and build robust multi-tenant SaaS architectures, secure vendor onboarding portals, split-payment systems (such as Stripe routing), and transactional marketplace platforms built for speed and long-term maintainability."
+              },
+              {
+                q: "Who is the founder of KVYASH Technologies?",
+                a: "KVYASH Technologies was founded and is led by Sumit Tiwari, who serves as the Founder & Engineering Lead. He leads technical discovery, planning, software architecture, development, AI integrations, and system delivery."
+              }
+            ].map((faq, idx) => (
+              <div key={idx} className="border-b border-slate-100 last:border-0 pb-6 last:pb-0 text-left">
+                <h4 className="font-extrabold text-navy-900 text-base mb-2">
+                  {faq.q}
+                </h4>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
