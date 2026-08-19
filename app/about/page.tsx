@@ -184,7 +184,7 @@ export default function AboutPage() {
                   desc: "Understanding the business problem first, then selecting an appropriate technical approach."
                 }
               ].map((item) => (
-                <div key={item.title} className="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col gap-3 group">
+                <div key={item.title} className="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transform transition-all duration-300 flex flex-col gap-3 group">
                   <h4 className="font-bold text-navy-900 text-base group-hover:text-brand-500 transition-colors duration-300">{item.title}</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
                 </div>

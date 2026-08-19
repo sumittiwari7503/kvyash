@@ -411,7 +411,7 @@ export default function ServicesPage() {
               return (
                 <div
                   key={dl.item}
-                  className="bg-white border border-slate-100 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-premium flex flex-col justify-between"
+                  className="bg-white border border-slate-100 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-premium flex flex-col justify-between"
                 >
                   <div className="flex flex-col gap-4">
                     <div className="inline-flex self-start items-center justify-center p-2 rounded bg-brand-50 text-brand-500">

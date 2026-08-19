@@ -187,7 +187,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Card 1 */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <Code className="h-5 w-5" />
@@ -206,7 +206,7 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <HelpCircle className="h-5 w-5" />
@@ -225,7 +225,7 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <Globe className="h-5 w-5" />
@@ -244,7 +244,7 @@ export default function Home() {
             </div>
 
             {/* Card 4 */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <Layers className="h-5 w-5" />
@@ -263,7 +263,7 @@ export default function Home() {
             </div>
 
             {/* Card 5 */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <Cpu className="h-5 w-5" />
@@ -282,7 +282,7 @@ export default function Home() {
             </div>
 
             {/* Card 6 */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <TrendingUp className="h-5 w-5" />
@@ -301,7 +301,7 @@ export default function Home() {
             </div>
 
             {/* Card 7 (Centered in bottom row on large displays) */}
-            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group md:col-span-2 lg:col-span-1 lg:col-start-2">
+            <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-all duration-300 flex flex-col justify-between group md:col-span-2 lg:col-span-1 lg:col-start-2">
               <div className="flex flex-col gap-4">
                 <div className="inline-flex self-start items-center justify-center p-3 rounded bg-brand-50 text-brand-500">
                   <Activity className="h-5 w-5" />

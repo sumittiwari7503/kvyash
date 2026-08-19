@@ -237,7 +237,7 @@ function ContactForm() {
                       required
                       aria-invalid={!!errors.name}
                       aria-describedby={errors.name ? "name-error" : undefined}
-                      className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium ${
+                      className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
                         errors.name ? "border-red-500 bg-red-50/20" : "border-slate-200"
                       }`}
                     />
@@ -248,7 +248,7 @@ function ContactForm() {
                       </span>
                     )}
                   </div>
-
+ 
                   {/* Email & Phone Row */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
@@ -265,7 +265,7 @@ function ContactForm() {
                         required
                         aria-invalid={!!errors.email}
                         aria-describedby={errors.email ? "email-error" : undefined}
-                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium ${
+                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
                           errors.email ? "border-red-500 bg-red-50/20" : "border-slate-200"
                         }`}
                       />
@@ -276,7 +276,7 @@ function ContactForm() {
                         </span>
                       )}
                     </div>
-
+ 
                     <div className="flex flex-col gap-2">
                       <label htmlFor="phone" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
                         Phone Number *
@@ -291,7 +291,7 @@ function ContactForm() {
                         required
                         aria-invalid={!!errors.phone}
                         aria-describedby={errors.phone ? "phone-error" : undefined}
-                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium ${
+                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
                           errors.phone ? "border-red-500 bg-red-50/20" : "border-slate-200"
                         }`}
                       />
@@ -303,7 +303,7 @@ function ContactForm() {
                       )}
                     </div>
                   </div>
-
+ 
                   {/* Organization & Service Row */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
@@ -317,10 +317,10 @@ function ContactForm() {
                         value={form.company}
                         onChange={handleChange}
                         placeholder="Enter your organization"
-                        className="text-sm bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium"
+                        className="text-sm bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium"
                       />
                     </div>
-
+ 
                     <div className="flex flex-col gap-2">
                       <label htmlFor="service" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
                         Service Category *
@@ -333,7 +333,7 @@ function ContactForm() {
                         required
                         aria-invalid={!!errors.service}
                         aria-describedby={errors.service ? "service-error" : undefined}
-                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium ${
+                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
                           errors.service ? "border-red-500 bg-red-50/20" : "border-slate-200"
                         }`}
                       >
@@ -352,7 +352,7 @@ function ContactForm() {
                       )}
                     </div>
                   </div>
-
+ 
                   {/* Message textarea */}
                   <div className="flex flex-col gap-2">
                     <label htmlFor="message" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
@@ -368,7 +368,7 @@ function ContactForm() {
                       required
                       aria-invalid={!!errors.message}
                       aria-describedby={errors.message ? "message-error" : undefined}
-                      className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium resize-none ${
+                      className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium resize-none ${
                         errors.message ? "border-red-500 bg-red-50/20" : "border-slate-200"
                       }`}
                     />
