@@ -385,6 +385,24 @@ export default function Chatbot() {
     return "en";
   };
 
+  const isGeneralConversation = (text: string): boolean => {
+    const norm = text.toLowerCase().trim().replace(/[?,.!\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+    const conversationalPhrases = [
+      "how are you", "how's it going", "hows it going", "what's up", "what up", "whats up",
+      "how is your day", "how is it going", "how are you doing", "how do you do",
+      "thanks", "thank you", "great", "okay", "ok", "nice", "cool", "hello", "hi", "hey", "yo", "hii", "hyy", "heyya",
+      "good morning", "good evening", "good afternoon", "bye", "goodbye", "dhanyawad", "shukriya",
+      "something else", "other", "kuch aur", "nothing", "asdfgh"
+    ];
+    return conversationalPhrases.includes(norm) ||
+           norm.startsWith("hi ") ||
+           norm.startsWith("hello ") ||
+           norm.startsWith("hey ") ||
+           norm.includes("how are you") ||
+           norm.includes("how is your day") ||
+           norm.includes("how do you do");
+  };
+
   const cleanProjectTypeName = (text: string): string => {
     const prefixes = [
       "i want to build a", "i want to build an", "i want to build",
@@ -416,6 +434,9 @@ export default function Chatbot() {
 
   const isValidProjectType = (text: string): boolean => {
     const norm = text.toLowerCase().trim();
+    if (isGeneralConversation(text)) {
+      return false;
+    }
     const invalidInputs = [
       "hy", "hi", "hello", "hey", "hii", "hyy", "heyya", "yo",
       "reset", "reset chat", "start over", "restart", "clear chat", "new conversation",
@@ -2360,6 +2381,36 @@ export default function Chatbot() {
       return;
     }
 
+    // 2b. General Conversation Intercept (retains IDLE state)
+    if (chatState === "IDLE" && isGeneralConversation(userText)) {
+      let botText = "";
+      const lower = userText.toLowerCase().trim();
+      if (lower.includes("how are you") || lower.includes("how's it going") || lower.includes("hows it going") || lower.includes("what's up")) {
+        botText = detectedLang === "hi"
+          ? "मैं ठीक हूँ, धन्यवाद! मैं यहाँ आपके प्रोजेक्ट, तकनीक से जुड़े प्रश्नों या KVYASH की सेवाओं में मदद करने के लिए हूँ। मैं आपके लिए क्या कर सकता हूँ?"
+          : detectedLang === "hinglish"
+          ? "Main badhiya hoon, thank you! Main yahan aapke project, tech questions, ya KVYASH services me help karne ke liye hoon. Main aapki kya help kar sakta hoon?"
+          : "I'm doing well, thanks! I'm here to help with your project, technology questions, or KVYASH services. What can I help you with?";
+      } else if (lower.includes("thanks") || lower.includes("thank you") || lower.includes("shukriya")) {
+        botText = detectedLang === "hi"
+          ? "आपका स्वागत है! यदि आप किसी प्रोजेक्ट पर काम करना चाहते हैं, तो कृपया मुझे बताएं।"
+          : detectedLang === "hinglish"
+          ? "Aapka swagat hai! Agar aap kisi project par kaam karna chahte hain, toh kripya mujhe batayein."
+          : "You're welcome! If you're looking to discuss a project or start scoping, just let me know.";
+      } else {
+        botText = detectedLang === "hi"
+          ? "नमस्ते! मैं आपके प्रोजेक्ट, तकनीक से जुड़े प्रश्नों या KVYASH की सेवाओं में मदद करने के लिए यहाँ हूँ। आप क्या बनाना चाहते हैं?"
+          : detectedLang === "hinglish"
+          ? "Hi! Main aapke project, tech queries, ya KVYASH services me help karne ke liye yahan hoon. Aap kya banana chahte hain?"
+          : "Hello! I'm here to help with your project, technology questions, or KVYASH services. What are you looking to build?";
+      }
+      setTimeout(() => {
+        addBotMessage(botText);
+        stopTyping();
+      }, 300);
+      return;
+    }
+
     // 3. Completion Phrases
     const completionPhrases = ["that's it", "that its", "thats it", "done", "that's all", "nothing else", "no more"];
     if (completionPhrases.includes(cleanLowerIntercept)) {
@@ -3946,6 +3997,19 @@ export default function Chatbot() {
 
   const handleConfirmSubmit = async () => {
     if (isSubmittingRef.current || chatState === "SUBMITTING") return;
+
+    // Validate projectType before allowing submission
+    const currentServiceLabel = intakeData.serviceLabel || "";
+    if (isGeneralConversation(currentServiceLabel) || !isValidProjectType(cleanProjectTypeName(currentServiceLabel))) {
+      isSubmittingRef.current = false;
+      setChatState("ASK_PROJECT_TYPE");
+      addBotMessage(language === "en"
+        ? "Please specify a valid project type before submitting your enquiry (e.g. website, app, SaaS, marketplace, etc.)."
+        : "Kripya enquiry submit karne se pehle ek valid project type batayein (jaise website, app, SaaS, ya marketplace).");
+      setIsTyping(false);
+      return;
+    }
+
     isSubmittingRef.current = true;
     setChatState("SUBMITTING");
     setIsTyping(true);
