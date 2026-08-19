@@ -236,6 +236,68 @@ export default function ServicesPage() {
                     "item": "https://kvyash.com/services"
                   }
                 ]
+              },
+              {
+                "@type": "FAQPage",
+                "@id": "https://kvyash.com/services/#faq",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What does KVYASH Technologies do?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "KVYASH Technologies is a premium software engineering company that builds custom web applications, SaaS platforms, digital marketplaces, and AI-powered business systems. We operate as an engineering partner, focusing on code craftsmanship, architectural rigor, and full execution transparency."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What services does KVYASH provide?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "We provide six core engineering and consulting services: Custom Software & Web Development, Technology Consulting (architecture and blueprints), Offline to Online transformation (digital transformation), AI & Automation (LLM integrations, chatbots, back-office automations), Marketplace & SaaS engineering, and conversion-focused Marketing & Growth setups."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Does KVYASH build websites?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes. We design and build secure, fast, and SEO-optimized custom web systems using modern frameworks like React, Next.js, and Node.js. We focus on building clean code bases with proper database integration rather than using fragile pre-built website templates."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Does KVYASH build AI automation systems?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes. We engineer intelligent back-office automations, automated email/invoice ingestion pipelines, LLM-powered custom chatbots, and secure WhatsApp CRM messaging connectors to automate manual tasks and reduce data entry errors."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Does KVYASH provide technology consulting?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes. We offer advisory consulting to help businesses scope digital projects, design system architectures, choose the correct technology stack, plan MVPs (Minimum Viable Products), and map database schemas."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Does KVYASH build SaaS products and marketplaces?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes. We design and build robust multi-tenant SaaS architectures, secure vendor onboarding portals, split-payment systems (such as Stripe routing), and transactional marketplace platforms built for speed and long-term maintainability."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Who is the founder of KVYASH Technologies?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "KVYASH Technologies was founded and is led by Sumit Tiwari, who serves as the Founder & Engineering Lead. He leads technical discovery, planning, software architecture, development, AI integrations, and system delivery."
+                    }
+                  }
+                ]
               }
             ]
           })
