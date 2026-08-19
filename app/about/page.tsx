@@ -3,8 +3,13 @@ import Link from "next/link";
 import { CheckCircle, Shield, Code, Hammer, ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "About Us",
-  description: "Learn about KVYASH Technologies - our founding values, engineering principles, and standards of software craftsmanship.",
+  title: {
+    absolute: "KVYASH Technologies | About Our Software Engineering Team"
+  },
+  description: "Meet KVYASH Technologies, founded by Sumit Tiwari. We are a software engineering team focused on building reliable, scale-ready web applications and AI solutions with full scoping transparency.",
+  alternates: {
+    canonical: "https://kvyash.com/about",
+  },
 };
 
 const values = [

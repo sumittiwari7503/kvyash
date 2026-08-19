@@ -21,8 +21,13 @@ import StartProjectButton from "@/components/common/StartProjectButton";
 
 // Metadata for SEO
 export const metadata = {
-  title: "KVYASH Technologies",
-  description: "KVYASH Technologies builds practical web applications, custom software, AI solutions, automation systems, and SaaS products for businesses.",
+  title: {
+    absolute: "KVYASH Technologies | Web Development & AI Automation"
+  },
+  description: "KVYASH Technologies is a premium B2B software company. We design and build custom web applications, SaaS platforms, AI integrations, workflow automation, and offer technology consulting.",
+  alternates: {
+    canonical: "https://kvyash.com",
+  },
 };
 
 
@@ -70,11 +75,11 @@ export default function Home() {
               <span className="inline-flex self-center lg:self-start items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-widest">
                 TECHNOLOGY • AI • DIGITAL GROWTH
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 leading-tight">
-                From business idea to digital system.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 leading-tight font-sans">
+                From business idea to web development and AI automation.
               </h1>
               <p className="text-slate-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-                KVYASH Technologies helps businesses plan, build, automate, launch, and grow practical digital products — from websites and marketplaces to AI-powered business systems.
+                KVYASH Technologies is a premium software engineering company. We help businesses plan, build, launch, and grow practical digital systems—from custom web development, SaaS platforms, and marketplaces to AI integrations, workflow automation, and technology consulting.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2">

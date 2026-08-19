@@ -47,6 +47,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: companyData.name,
+    description: companyData.description,
+  },
 };
 
 export default function RootLayout({
@@ -59,6 +64,50 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://kvyash.com/#organization",
+                  "name": "KVYASH Technologies",
+                  "url": "https://kvyash.com",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "@id": "https://kvyash.com/#logo",
+                    "url": "https://kvyash.com/logo.png",
+                    "caption": "KVYASH Technologies Logo"
+                  },
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "kvyashtechnologies@gmail.com",
+                    "contactType": "customer service"
+                  },
+                  "sameAs": [
+                    "https://www.linkedin.com/company/kvyash-technologies/?viewAsMember=true",
+                    "https://www.instagram.com/kvyashtechnologies/",
+                    "https://www.facebook.com/profile.php?id=61593152129252&mibextid=wwXIfr&rdid=J5OmuVjX2vhYEwrr&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BYthtVV3P%2F%3Fmibextid%3DwwXIfr#",
+                    "https://x.com/kvyashtechnolog"
+                  ]
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://kvyash.com/#website",
+                  "url": "https://kvyash.com",
+                  "name": "KVYASH Technologies",
+                  "publisher": {
+                    "@id": "https://kvyash.com/#organization"
+                  }
+                }
+              ]
+            })
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-white text-navy-900">
         <Navbar />
         <main className="flex-1">{children}</main>

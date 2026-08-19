@@ -16,8 +16,13 @@ import {
 import StartProjectButton from "@/components/common/StartProjectButton";
 
 export const metadata = {
-  title: "Our Services | KVYASH Technologies",
-  description: "Explore KVYASH Technologies services, including AI & Automation, technology consulting, offline to online transformation, web and SaaS development, marketplaces, and growth marketing.",
+  title: {
+    absolute: "KVYASH Technologies | Web Development & AI Services"
+  },
+  description: "Explore services at KVYASH Technologies, including Web Development, AI Automation, SaaS Development, Marketplace Development, and Technology Consulting.",
+  alternates: {
+    canonical: "https://kvyash.com/services",
+  },
 };
 
 const serviceCategories = [

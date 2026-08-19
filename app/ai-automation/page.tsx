@@ -3,8 +3,13 @@ import Link from "next/link";
 import { Cpu, Workflow, Database, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "AI & Automation",
-  description: "Pragmatic AI integrations and workflow automation solutions by KVYASH Technologies. We build automated data pipelines and LLM systems that solve business friction.",
+  title: {
+    absolute: "KVYASH Technologies | AI Automation & Business Solutions"
+  },
+  description: "Get custom AI solutions and workflow automation with KVYASH Technologies. We build custom LLM-powered chatbots, WhatsApp CRM setups, automated email pipelines, and intelligent back-office automations.",
+  alternates: {
+    canonical: "https://kvyash.com/ai-automation",
+  },
 };
 
 const aiServices = [

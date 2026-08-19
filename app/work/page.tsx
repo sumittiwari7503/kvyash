@@ -4,8 +4,13 @@ import StartProjectButton from "@/components/common/StartProjectButton";
 import WorkClient from "@/components/common/WorkClient";
 
 export const metadata = {
-  title: "What We Build | KVYASH Technologies",
-  description: "Explore KVYASH Technologies' portfolio, containing static-generation infrastructures, multi-tenant databases, automation configurations, and custom software systems.",
+  title: {
+    absolute: "KVYASH Technologies | Our Work"
+  },
+  description: "Browse KVYASH Technologies portfolio and case studies. See our custom web systems, SaaS platforms, AI integrations, and automation engineering projects.",
+  alternates: {
+    canonical: "https://kvyash.com/work",
+  },
 };
 
 export default function WorkPage() {

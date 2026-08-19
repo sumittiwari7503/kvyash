@@ -3,8 +3,13 @@ import Link from "next/link";
 import { ArrowRight, Server, ShieldAlert, GitBranch } from "lucide-react";
 
 export const metadata = {
-  title: "Solutions Capabilities",
-  description: "Explore the technical solutions and system integrations engineered by KVYASH Technologies to address real business problems.",
+  title: {
+    absolute: "KVYASH Technologies | Technology Consulting"
+  },
+  description: "Explore technical solutions and system integrations engineered by KVYASH Technologies. We provide technology consulting, software architecture, and system integration services.",
+  alternates: {
+    canonical: "https://kvyash.com/solutions",
+  },
 };
 
 const solutionsData = [
