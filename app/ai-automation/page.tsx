@@ -39,8 +39,77 @@ const capabilities = [
 ];
 
 export default function AiAutomationPage() {
+  const faqs = [
+    {
+      q: "What AI automation services does KVYASH Technologies offer?",
+      a: "We develop custom LLM API integrations, Retrieval-Augmented Generation (RAG) vector search applications, intelligent business webhooks, and automated document data extraction pipelines."
+    },
+    {
+      q: "How does KVYASH keep business data secure when integrating AI?",
+      a: "We prioritize security by utilizing private hosting layers, proxy authorization filters, and secure database parameters to ensure sensitive company files are never leaked or used to train public LLM models."
+    },
+    {
+      q: "Do you integrate custom CRMs and databases?",
+      a: "Yes. We build custom API connectors and webhook listeners connecting databases (such as PostgreSQL) with HubSpot, Stripe, Salesforce, and custom ERP software."
+    }
+  ];
+
   return (
     <div className="font-sans text-navy-900 bg-white">
+      {/* JSON-LD Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Service",
+                "@id": "https://kvyash.com/ai-automation/#service",
+                "name": "AI & Workflow Automation Development Services",
+                "provider": {
+                  "@id": "https://kvyash.com/#organization"
+                },
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "India"
+                },
+                "description": "Custom Large Language Model (LLM) integrations, RAG applications, vector search configurations, and database automated pipelines."
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://kvyash.com/ai-automation/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://kvyash.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "AI & Automation",
+                    "item": "https://kvyash.com/ai-automation"
+                  }
+                ]
+              },
+              {
+                "@type": "FAQPage",
+                "@id": "https://kvyash.com/ai-automation/#faq",
+                "mainEntity": faqs.map(faq => ({
+                  "@type": "Question",
+                  "name": faq.q,
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.a
+                  }
+                }))
+              }
+            ]
+          })
+        }}
+      />
       
       {/* 1. Header Hero */}
       <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-20 md:pt-40 md:pb-24">
@@ -141,7 +210,32 @@ export default function AiAutomationPage() {
         </div>
       </section>
 
-      {/* 4. CTA */}
+      {/* 4. FAQs Section */}
+      <section className="py-24 bg-slate-50 border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">FAQ</h2>
+            <h3 className="text-3xl font-extrabold text-navy-900 tracking-tight">
+              AI & Automation FAQs
+            </h3>
+          </div>
+          <div className="space-y-8">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="space-y-2">
+                <h4 className="text-base font-extrabold text-navy-900 flex items-start gap-2">
+                  <span className="text-brand-500 font-mono font-bold">Q:</span>
+                  {faq.q}
+                </h4>
+                <p className="text-slate-600 text-sm pl-6 leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CTA */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
