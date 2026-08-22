@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# GSC MCP Setup and Credentials
+_gsc_mcp/
+*gsc_service_account*.json
+gsc_*.json
