@@ -4,9 +4,9 @@ import { ArrowRight, Server, ShieldAlert, GitBranch } from "lucide-react";
 
 export const metadata = {
   title: {
-    absolute: "KVYASH Technologies | Technology Consulting"
+    absolute: "KVYASH Technologies | B2B Technology Consulting & Software Architecture"
   },
-  description: "Explore technical solutions and system integrations engineered by KVYASH Technologies. We provide technology consulting, software architecture, and system integration services.",
+  description: "KVYASH Technologies provides custom technology consulting, software architecture, and API systems integration. Optimize and scale your business operations with our engineering services.",
   alternates: {
     canonical: "https://kvyash.com/solutions",
   },

@@ -24,9 +24,6 @@ export const footerSections: FooterSection[] = [
       { label: "Services", href: "/services" },
       { label: "Work", href: "/work" },
       { label: "Contact", href: "/contact" },
-      { label: "Antigravity Guide", href: "/google-antigravity" },
-      { label: "Antigravity IDE", href: "/google-antigravity-ide" },
-      { label: "Antigravity Tutorial", href: "/google-antigravity-tutorial" },
     ],
   },
   {

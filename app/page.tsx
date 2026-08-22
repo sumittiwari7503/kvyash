@@ -22,9 +22,9 @@ import StartProjectButton from "@/components/common/StartProjectButton";
 // Metadata for SEO
 export const metadata = {
   title: {
-    absolute: "KVYASH Technologies | Web Development & AI Automation"
+    absolute: "KVYASH Technologies | Custom Software Development & AI Automation Agency India"
   },
-  description: "KVYASH Technologies is a premium B2B software company. We design and build custom web applications, SaaS platforms, AI integrations, workflow automation, and offer technology consulting.",
+  description: "KVYASH Technologies is a premium custom software development company and AI automation agency in India. We build scalable SaaS platforms, custom web applications, and technology consulting solutions.",
   alternates: {
     canonical: "https://kvyash.com",
   },

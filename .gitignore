@@ -40,7 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# GSC MCP Setup and Credentials
-_gsc_mcp/
+# GSC MCP Credentials
 *gsc_service_account*.json
 gsc_*.json

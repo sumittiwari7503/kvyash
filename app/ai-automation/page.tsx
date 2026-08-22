@@ -4,9 +4,9 @@ import { Cpu, Workflow, Database, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: {
-    absolute: "KVYASH Technologies | AI Automation & Business Solutions"
+    absolute: "KVYASH Technologies | AI Automation Agency Delhi NCR & India"
   },
-  description: "Get custom AI solutions and workflow automation with KVYASH Technologies. We build custom LLM-powered chatbots, WhatsApp CRM setups, automated email pipelines, and intelligent back-office automations.",
+  description: "KVYASH Technologies is a premium AI automation agency in Delhi NCR and India. We design AI chatbot solutions, WhatsApp CRM integrations, automated email pipelines, and intelligent business workflows.",
   alternates: {
     canonical: "https://kvyash.com/ai-automation",
   },
