@@ -26,6 +26,87 @@ interface IntakeData {
   projectTypes: string[]; // multi-intent support
 }
 
+interface ScopingDataState {
+  ecommProducts: string;
+  ecommPayments: string;
+  ecommInventory: string;
+  ecommAdmin: string;
+  saasUsers: string;
+  saasWorkflow: string;
+  saasAuth: string;
+  saasDashboard: string;
+  saasBilling: string;
+  saasIntegrations: string;
+  botPurpose: string;
+  botUsers: string;
+  botKnowledge: string;
+  botChannels: string;
+  botLeadCapture: string;
+  botHandoff: string;
+  appPlatform: string;
+  appTargetUser: string;
+  appFeatures: string;
+  appAuth: string;
+  appBackend: string;
+  appNotifications: string;
+  autoWorkflow: string;
+  autoTrigger: string;
+  autoAction: string;
+  autoTools: string;
+  autoResult: string;
+  consultGoal: string;
+  consultProblem: string;
+  consultCustomerAction: string;
+  offlineBizType: string;
+  offlineProcess: string;
+  offlineDesiredAction: string;
+  offlinePayments: string;
+  offlineDelivery: string;
+  offlineMarketing: string;
+  marketType: string;
+  marketProductOrService: string;
+  marketMultiVendor: string;
+  marketVendorOnboarding: string;
+  marketCommission: string;
+  marketDashboards: string;
+  marketingBusiness: string;
+  marketingIsLive: string;
+  marketingObjective: string;
+  marketingChannels: string;
+  marketingSEO: string;
+  crmType: string;
+  crmUsers: string;
+  crmFeatures: string;
+  crmPipeline: string;
+  crmIntegrations: string;
+  crmAutomation: string;
+  crmDashboards: string;
+  waSetup: string;
+  waVolume: string;
+  waFeatures: string;
+  waReplies: string;
+  waFollowups: string;
+  waTeam: string;
+  waCrm: string;
+  emailPlatform: string;
+  emailTypes: string;
+  emailClassify: string;
+  emailReplies: string;
+  emailFollowups: string;
+  emailApproval: string;
+  callPurpose: string;
+  callDirection: string;
+  callFeatures: string;
+  callLanguages: string;
+  callCrm: string;
+  callHandoff: string;
+  callLogging: string;
+  aiSubtype: string;
+  webType: string;
+  webFeatures: string;
+  webCms: string;
+}
+
 type ChatState =
   | "IDLE"
   | "PROJECT_DETECTED"
@@ -107,13 +188,71 @@ const checkIsScopingLabel = (label: string): boolean => {
     l.includes("marketplace") ||
     l.includes("marketing") ||
     l.includes("chatbot") ||
-    l.includes("automation")
+    l.includes("automation") ||
+    l.includes("website") ||
+    l.includes("web development") ||
+    l.includes("web app")
   );
 };
 
+const DEFAULT_SCOPING_DATA: ScopingDataState = {
+  ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
+  saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
+  botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
+  appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
+  autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
+  consultGoal: "", consultProblem: "", consultCustomerAction: "",
+  offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
+  marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
+  marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
+  crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
+  waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
+  emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
+  callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
+  aiSubtype: "",
+  webType: "", webFeatures: "", webCms: ""
+};
+
 export default function Chatbot() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.isOpen !== undefined) return parsed.isOpen;
+        }
+      } catch {}
+    }
+    return false;
+  });
+
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.messages && parsed.messages.length > 0) {
+            return parsed.messages.map((m: { id: string; sender: "user" | "bot"; text: string; timestamp: string }) => ({
+              ...m,
+              timestamp: new Date(m.timestamp)
+            }));
+          }
+        }
+      } catch (err) {
+        console.error("Error loading saved chatbot messages:", err);
+      }
+    }
+    return [
+      {
+        id: "welcome",
+        sender: "bot",
+        text: "Hi, I'm the KVYASH Assistant. I can help you plan, build, launch, automate, or grow your digital business. What are you looking to achieve?",
+        timestamp: new Date(),
+      }
+    ];
+  });
   const [inputText, setInputText] = useState("");
   const [isTypingState, setIsTypingState] = useState(false);
   const [currentQuickActions, setCurrentQuickActions] = useState(INITIAL_QUICK_ACTIONS);
@@ -170,28 +309,146 @@ export default function Chatbot() {
     return false;
   };
   
-  // Scoping Lead Capturing & State persistence
-  const [chatState, setChatState] = useState<ChatState>("IDLE");
-  const [language, setLanguage] = useState<LangType>("en");
-  const [returnToReview, setReturnToReview] = useState(false);
-  const [isLocalMode, setIsLocalMode] = useState(false);
-  const [lastEntityContext, setLastEntityContext] = useState<"NONE" | "FOUNDER" | "SERVICES" | "COMPANY">("NONE");
+  const isValidName = (text: string): boolean => {
+    const clean = text.trim();
+    if (clean.length < 2 || clean.length > 50) return false;
+    if (clean.includes("@") || /\d{5,}/.test(clean)) return false;
+    const lower = clean.toLowerCase();
+    const projectWords = [
+      "website", "development", "build", "saas", "chatbot", "automation", "app", "create", 
+      "enquiry", "project", "details", "payments", "requirements", "pricing", "cost", "quote"
+    ];
+    if (projectWords.some(w => lower.includes(w))) return false;
+    return true;
+  };
+
+  const isValidEmail = (text: string): boolean => {
+    const clean = text.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(clean);
+  };
+
+  const isValidPhone = (text: string): boolean => {
+    const clean = text.toLowerCase().trim();
+    if (clean === "skip" || clean === "skip step" || clean.includes("nahi dena")) return true;
+    const phoneRegex = /^\+?[0-9\s\-()]{8,20}$/;
+    return phoneRegex.test(clean);
+  };
   
-  const [intakeData, setIntakeData] = useState<IntakeData>({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    service: "",
-    serviceLabel: "",
-    requirements: "",
-    timeline: "",
-    budget: "",
-    projectTypes: []
+  // Scoping Lead Capturing & State persistence
+  // Scoping Lead Capturing & State persistence
+  const [chatState, setChatState] = useState<ChatState>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.chatState) return parsed.chatState;
+        }
+      } catch {}
+    }
+    return "IDLE";
   });
 
-  const [activeIntents, setActiveIntents] = useState<BotIntent[]>([]);
-  const [currentIntentIndex, setCurrentIntentIndex] = useState(0);
+  const [language, setLanguage] = useState<LangType>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.language) return parsed.language;
+        }
+      } catch {}
+    }
+    return "en";
+  });
+
+  const [returnToReview, setReturnToReview] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.returnToReview !== undefined) return parsed.returnToReview;
+        }
+      } catch {}
+    }
+    return false;
+  });
+
+  const [isLocalMode, setIsLocalMode] = useState(false);
+
+  const [lastEntityContext, setLastEntityContext] = useState<
+    | "NONE"
+    | "FOUNDER"
+    | "SERVICES"
+    | "COMPANY"
+    | "ECOMM_PRODUCTS"
+    | "SAAS_USERS"
+    | "APP_PLATFORM"
+  >(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.lastEntityContext) return parsed.lastEntityContext;
+        }
+      } catch {}
+    }
+    return "NONE";
+  });
+  
+  const [intakeData, setIntakeData] = useState<IntakeData>(() => {
+    const defaultIntake = {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      service: "",
+      serviceLabel: "",
+      requirements: "",
+      timeline: "",
+      budget: "",
+      projectTypes: []
+    };
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.intakeData) return parsed.intakeData;
+        }
+      } catch {}
+    }
+    return defaultIntake;
+  });
+
+  const [activeIntents, setActiveIntents] = useState<BotIntent[]>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.activeIntents) return parsed.activeIntents;
+        }
+      } catch {}
+    }
+    return [];
+  });
+
+  const [currentIntentIndex, setCurrentIntentIndex] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.currentIntentIndex !== undefined) return parsed.currentIntentIndex;
+        }
+      } catch {}
+    }
+    return 0;
+  });
 
   const [scopingStage, setScopingStage] = useState<
     | "NONE"
@@ -223,39 +480,32 @@ export default function Chatbot() {
     | "CALL_PURPOSE" | "CALL_DIRECTION" | "CALL_FEATURES" | "CALL_LANGUAGES" | "CALL_CRM" | "CALL_HANDOFF" | "CALL_LOGGING"
     // AI Top-level selector
     | "AI_SELECT_SUBTYPE"
-  >("NONE");
+    // Website Flow
+    | "WEB_TYPE" | "WEB_FEATURES" | "WEB_CMS"
+  >(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.scopingStage) return parsed.scopingStage;
+        }
+      } catch {}
+    }
+    return "NONE";
+  });
 
-  const [scopingData, setScopingData] = useState({
-    // Ecomm
-    ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
-    // SaaS
-    saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
-    // Bot
-    botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
-    // App
-    appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
-    // Automation
-    autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
-    // Consultancy
-    consultGoal: "", consultProblem: "", consultCustomerAction: "",
-    // Offline to Online
-    offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
-    // Marketplace
-    marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
-    // Marketing
-    marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
-    
-    // CRM
-    crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
-    // WhatsApp CRM
-    waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
-    // Email Automation
-    emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
-    // AI Calling Agent
-    callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
-    
-    // AI Selector
-    aiSubtype: ""
+  const [scopingData, setScopingData] = useState<ScopingDataState>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.scopingData) return { ...DEFAULT_SCOPING_DATA, ...parsed.scopingData };
+        }
+      } catch {}
+    }
+    return DEFAULT_SCOPING_DATA;
   });
   
   const [consultancyState, setConsultancyState] = useState<
@@ -275,9 +525,31 @@ export default function Chatbot() {
     | "MARKET_DONE"
     | "AI_DONE"
     | "NOT_SURE_DONE"
-  >("NONE");
+  >(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.consultancyState) return parsed.consultancyState;
+        }
+      } catch {}
+    }
+    return "NONE";
+  });
 
-  const [awaitingSomethingElse, setAwaitingSomethingElse] = useState(false);
+  const [awaitingSomethingElse, setAwaitingSomethingElse] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("kvyash_chatbot_state_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.awaitingSomethingElse !== undefined) return parsed.awaitingSomethingElse;
+        }
+      } catch {}
+    }
+    return false;
+  });
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const messageIdCounterRef = useRef(0);
@@ -297,20 +569,31 @@ export default function Chatbot() {
     setMessages((prev) => [...prev, botMsg]);
   };
 
-  // Initialize welcome message
+  // Save state to localStorage whenever state variables change
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setMessages([
-        {
-          id: "welcome",
-          sender: "bot",
-          text: "Hi, I'm the KVYASH Assistant. I can help you plan, build, launch, automate, or grow your digital business. What are you looking to achieve?",
-          timestamp: new Date(),
-        }
-      ]);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, []);
+    if (typeof window !== "undefined" && chatState !== "SUCCESS") {
+      const stateObj = {
+        messages,
+        chatState,
+        language,
+        intakeData,
+        scopingStage,
+        scopingData,
+        activeIntents,
+        currentIntentIndex,
+        returnToReview,
+        consultancyState,
+        awaitingSomethingElse,
+        lastEntityContext,
+        isOpen
+      };
+      localStorage.setItem("kvyash_chatbot_state_v1", JSON.stringify(stateObj));
+    }
+  }, [
+    messages, chatState, language, intakeData, scopingStage, scopingData,
+    activeIntents, currentIntentIndex, returnToReview, consultancyState,
+    awaitingSomethingElse, lastEntityContext, isOpen
+  ]);
 
   // Scroll to bottom when messages update
   useEffect(() => {
@@ -1170,20 +1453,25 @@ export default function Chatbot() {
 
   const isDetailed = (req: string): boolean => {
     if (!req) return false;
-    const normalized = req.toLowerCase().trim();
+    const normalized = req.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "");
     const genericPhrases = [
       "a website", "an app", "a saas", "an ecommerce website", "ecommerce website",
       "a chatbot", "automation", "custom software", "software", "web app", "web application",
-      "website", "app", "saas", "chatbot", "ai chatbot"
+      "website", "app", "saas", "chatbot", "ai chatbot",
+      "can you build website", "can you build a website", "can you build app", "can you build saas",
+      "i want to build a website", "i want to build website", "i want a website", "i need a website",
+      "i need an app", "i want an app", "i want to build an app", "i want to build a saas",
+      "i want to build a chatbot", "i need a chatbot", "need custom software", "can you build a saas"
     ];
     if (genericPhrases.some(phrase => normalized === phrase || normalized === `an ${phrase}` || normalized === `a ${phrase}`)) {
       return false;
     }
-    // If the user has already provided some features or details (denoted by a comma or multiple words)
-    if (normalized.includes(",") || normalized.split(/\s+/).length >= 3) {
-      return true;
-    }
-    if (normalized.length < 25) {
+    const greetings = ["hi", "hello", "hey", "hii", "hello bot", "hello assistant"];
+    if (greetings.includes(normalized)) return false;
+
+    if (normalized.length < 15) return false;
+
+    if (normalized.split(/\s+/).length < 4) {
       const features = [
         "razorpay", "payment", "inventory", "admin", "login", "auth", "database", "dashboard",
         "gpt", "pdf", "ocr", "stripe", "booking", "ecom", "store", "sell", "billing",
@@ -1313,7 +1601,12 @@ export default function Chatbot() {
     // AI Top-level Select Subtype
     else if (activeStage === "AI_SELECT_SUBTYPE") updates.aiSubtype = text;
 
-    // General intent-based entity extraction as cross-intent support
+    // Website Flow
+    else if (activeStage === "WEB_TYPE" && aff === null) updates.webType = text;
+    else if (activeStage === "WEB_FEATURES" && aff === null) updates.webFeatures = text;
+    else if (activeStage === "WEB_CMS" && aff !== null) updates.webCms = aff ? "Yes" : "No";
+
+    // Advanced Entity Extractions (e.g. "clothing business", "about 50 products", "Razorpay")
     if (normalized.includes("payment") || normalized.includes("razorpay") || normalized.includes("stripe")) {
       const isNo = normalized.includes("no") || normalized.includes("nahi") || normalized.includes("without");
       updates.ecommPayments = isNo ? "No" : "Yes";
@@ -1340,6 +1633,26 @@ export default function Chatbot() {
     }
     if (normalized.includes("marketing") || normalized.includes("ads") || normalized.includes("meta ads")) {
       updates.offlineMarketing = (normalized.includes("no") || normalized.includes("nahi") || normalized.includes("without")) ? "No" : "Yes";
+    }
+
+    // Product Count Extractor
+    const countMatch = normalized.match(/(\d+)\s*(?:products|items|goods|articles|listings)/);
+    if (countMatch) {
+      updates.ecommProducts = updates.ecommProducts 
+        ? `${updates.ecommProducts} (approx ${countMatch[1]} items)`
+        : `${countMatch[1]} products`;
+    }
+
+    // Business Niche Extractor
+    const nicheMatch = normalized.match(/(?:for my|for a|sell|selling|retail)\s+([a-z0-9\s]+?)(?:\s+business|\s+shop|\s+store|\s+brand|\s+company|\s+with|\s+and|\.|\?|$)/);
+    if (nicheMatch && !["website", "app", "saas", "software"].includes(nicheMatch[1].trim())) {
+      const niche = nicheMatch[1].trim();
+      if (!updates.ecommProducts || updates.ecommProducts.includes("products")) {
+        updates.ecommProducts = updates.ecommProducts
+          ? `${niche} (${updates.ecommProducts})`
+          : niche;
+      }
+      updates.offlineBizType = niche;
     }
 
     return updates;
@@ -1676,6 +1989,26 @@ export default function Chatbot() {
         else if (!scopedData.autoAction) { nextStage = "AUTO_ACTION"; botPrompt = lang === "en" ? "What specific actions should occur once the automation starts?" : "Trigger ke baad automation kya actions run karegi?"; }
         else if (!scopedData.autoTools) { nextStage = "AUTO_TOOLS"; botPrompt = lang === "en" ? "What tools or software systems are you currently using that need to be connected?" : "Konse external tools use hotey hain jo connect karne hain?"; }
         else if (!scopedData.autoResult) { nextStage = "AUTO_RESULT"; botPrompt = lang === "en" ? "What is the desired final result or outcome of this automation flow?" : "Automation flow ka ultimate final result kya hoga?"; }
+      } else {
+        const isWeb = currentIntake.serviceLabel.includes("Website") || currentIntake.projectTypes.includes("Website") || currentIntake.serviceLabel.includes("Web Development") || currentIntake.projectTypes.includes("Web Development");
+        if (isWeb) {
+          if (!scopedData.webType) {
+            nextStage = "WEB_TYPE";
+            botPrompt = lang === "en"
+              ? "Absolutely. We can help build websites and web applications. What type of website are you looking to build (e.g. corporate website, e-commerce, custom portal, landing page)?"
+              : "Absolutely. Hum websites aur web applications build karne me help kar sakte hain. Aap kis type ki website build karna chahte hain (jaise corporate site, ecommerce, custom portal, landing page)?";
+          } else if (!scopedData.webFeatures) {
+            nextStage = "WEB_FEATURES";
+            botPrompt = lang === "en"
+              ? "What features or pages are most important to you (e.g. contact forms, blog, search/filters, user login)?"
+              : "Konse features ya pages aapke liye sabse important hain (jaise contact forms, blog, search/filters, user login)?";
+          } else if (!scopedData.webCms) {
+            nextStage = "WEB_CMS";
+            botPrompt = lang === "en"
+              ? "Will you need a Content Management System (CMS) like WordPress or Sanity to update content yourself?"
+              : "Kya aapko content self-manage karne ke liye CMS (jaise WordPress ya Sanity) ki zaroorat hai?";
+          }
+        }
       }
     }
 
@@ -1730,6 +2063,9 @@ export default function Chatbot() {
 
         if (scopedData.consultGoal) {
           parts.push(`Consult Goal: ${scopedData.consultGoal}. Priority: ${scopedData.consultProblem}. Cust action: ${scopedData.consultCustomerAction}.`);
+        }
+        if (scopedData.webType) {
+          parts.push(`Website Type: ${scopedData.webType}. Features: ${scopedData.webFeatures}. CMS Required: ${scopedData.webCms}.`);
         }
         if (scopedData.offlineBizType) {
           parts.push(`Offline ${scopedData.offlineBizType} to online. Action: ${scopedData.offlineDesiredAction}. Payments: ${scopedData.offlinePayments}. Delivery: ${scopedData.offlineDelivery}. Marketing: ${scopedData.offlineMarketing}.`);
@@ -1971,6 +2307,19 @@ export default function Chatbot() {
       // AI Select Subtype
       case "AI_SELECT_SUBTYPE":
         return lang === "hi" ? "Aap kya build ya automate karna chahte hain?" : "What would you like to build or automate?";
+      // Website Flow
+      case "WEB_TYPE":
+        return lang === "en"
+          ? "What type of website are you looking to build (e.g. corporate website, e-commerce, custom portal, landing page)?"
+          : "Aap kis type ki website build karna chahte hain (jaise corporate site, ecommerce, custom portal, landing page)?";
+      case "WEB_FEATURES":
+        return lang === "en"
+          ? "What features or pages are most important to you (e.g. contact forms, blog, search/filters, user login)?"
+          : "Konse features ya pages aapke liye sabse important hain (jaise contact forms, blog, search/filters, user login)?";
+      case "WEB_CMS":
+        return lang === "en"
+          ? "Will you need a Content Management System (CMS) like WordPress or Sanity to update content yourself?"
+          : "Kya aapko content self-manage karne ke liye CMS (jaise WordPress ya Sanity) ki zaroorat hai?";
       default:
         return "";
     }
@@ -2166,14 +2515,14 @@ export default function Chatbot() {
 
   const getStepNumber = (state: ChatState): number => {
     switch (state) {
-      case "SCOPING_PROJECT": return 1;
-      case "ASK_PROJECT_TYPE": return 2;
-      case "ASK_REQUIREMENTS": return 3;
-      case "ASK_CONTACT_NAME": return 4;
-      case "ASK_CONTACT_EMAIL": return 5;
-      case "ASK_OPTIONAL_COMPANY": return 6;
-      case "ASK_OPTIONAL_PHONE": return 7;
-      case "ASK_OPTIONAL_TIMELINE": return 8;
+      case "ASK_PROJECT_TYPE": return 1;
+      case "SCOPING_PROJECT":
+      case "ASK_REQUIREMENTS": return 2;
+      case "ASK_CONTACT_NAME": return 3;
+      case "ASK_CONTACT_EMAIL": return 4;
+      case "ASK_OPTIONAL_COMPANY": return 5;
+      case "ASK_OPTIONAL_PHONE": return 6;
+      case "ASK_OPTIONAL_TIMELINE": return 7;
       case "ASK_OPTIONAL_BUDGET": return 8;
       case "REVIEW": return 8;
       default: return 0;
@@ -2300,6 +2649,9 @@ export default function Chatbot() {
     // 1. Reset chat
     const resetKeywords = ["reset chat", "reset", "start over", "restart", "clear chat", "new conversation"];
     if (resetKeywords.includes(cleanLowerIntercept)) {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("kvyash_chatbot_state_v1");
+      }
       setIntakeData({
         name: "",
         email: "",
@@ -2312,22 +2664,7 @@ export default function Chatbot() {
         budget: "",
         projectTypes: []
       });
-      setScopingData({
-        ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
-        saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
-        botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
-        appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
-        autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
-        consultGoal: "", consultProblem: "", consultCustomerAction: "",
-        offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
-        marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
-        marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
-        crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
-        waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
-        emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
-        callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
-        aiSubtype: ""
-      });
+      setScopingData(DEFAULT_SCOPING_DATA);
       setScopingStage("NONE");
       setChatState("IDLE");
       setConsultancyState("NONE");
@@ -2505,22 +2842,7 @@ export default function Chatbot() {
 
     if (typeKey === "RESET_CONSULTANCY") {
       setIsTyping(true);
-      setScopingData({
-        ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
-        saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
-        botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
-        appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
-        autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
-        consultGoal: "", consultProblem: "", consultCustomerAction: "",
-        offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
-        marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
-        marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
-        crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
-        waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
-        emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
-        callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
-        aiSubtype: ""
-      });
+      setScopingData(DEFAULT_SCOPING_DATA);
       setScopingStage("NONE");
       setChatState("IDLE");
       setConsultancyState("NONE");
@@ -2573,6 +2895,68 @@ export default function Chatbot() {
         const currentConsultancyState = consultancyState;
         let processedUserText = userText;
         let processedLowerVal = userText.toLowerCase();
+
+        // Centralized Project Reclassification & Correction interceptor
+        if (chatState !== "IDLE" && chatState !== "SUCCESS") {
+          const lowerVal = processedLowerVal.trim();
+          const changeKeywords = [
+            "actually", "instead", "change to", "want to build a", "need a", "want a", "change project",
+            "change type", "build a website", "build a saas", "build a mobile app", "build an ecommerce",
+            "build a chatbot", "build automation", "build a marketplace", "switch to"
+          ];
+          const hasChangeKeyword = changeKeywords.some(kw => lowerVal.includes(kw)) ||
+                                   (lowerVal.includes("website") && chatState === "ASK_CONTACT_NAME") ||
+                                   (lowerVal.includes("saas") && chatState === "ASK_CONTACT_NAME") ||
+                                   (lowerVal.includes("app") && chatState === "ASK_CONTACT_NAME") ||
+                                   (lowerVal.includes("automation") && chatState === "ASK_CONTACT_NAME") ||
+                                   (lowerVal.includes("ecommerce") && chatState === "ASK_CONTACT_NAME");
+
+          if (hasChangeKeyword) {
+            const detected = detectProjectType(userText);
+            if (detected.slug) {
+              const updatedIntake = { ...intakeData };
+              updatedIntake.service = detected.slug;
+              updatedIntake.serviceLabel = detected.label;
+              updatedIntake.projectTypes = detected.list;
+              updatedIntake.requirements = ""; // Reset requirements for new scoping
+              setIntakeData(updatedIntake);
+
+              setScopingData({
+                ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
+                saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
+                botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
+                appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
+                autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
+                consultGoal: "", consultProblem: "", consultCustomerAction: "",
+                offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
+                marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
+                marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
+                crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
+                waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
+                emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
+                callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
+                aiSubtype: "",
+                webType: "", webFeatures: "", webCms: ""
+              });
+              setScopingStage("NONE");
+              setReturnToReview(false);
+
+              addBotMessage(language === "en"
+                ? `Got it — I'll update the project to ${detected.label}. Let's scope the details.`
+                : `Got it — maine project type ko update karke ${detected.label} kar diya hai. Chaliye iski details scope karte hain.`);
+
+              const isScopingLabel = checkIsScopingLabel(detected.label);
+              if (isScopingLabel) {
+                initScoping(userText, detected.label, updatedIntake, language);
+              } else {
+                setChatState("ASK_REQUIREMENTS");
+                addBotMessage(getStepPromptMessage("ASK_REQUIREMENTS", language, detected.slug, detected.list));
+              }
+              setIsTyping(false);
+              return;
+            }
+          }
+        }
 
       // Intercept awaitingSomethingElse
       if (awaitingSomethingElse) {
@@ -3601,10 +3985,10 @@ export default function Chatbot() {
         break;
 
         case "ASK_CONTACT_NAME":
-          if (!userText || userText.length < 2) {
+          if (!isValidName(userText)) {
             botResponseText = language === "en"
-              ? "Please enter a valid name (minimum 2 characters)."
-              : "Kripya ek valid naam likhein (kam se kam 2 characters).";
+              ? "Please enter a valid name (letters only, minimum 2 characters, no project keywords or email addresses)."
+              : "Kripya ek valid naam likhein (kam se kam 2 characters, aur project related words na hon).";
           } else {
             updatedIntake.name = userText;
             setIntakeData(updatedIntake);
@@ -3620,10 +4004,9 @@ export default function Chatbot() {
           break;
 
         case "ASK_CONTACT_EMAIL":
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!userText || !emailRegex.test(userText)) {
+          if (!isValidEmail(userText)) {
             botResponseText = language === "en"
-              ? "Please enter a valid email address."
+              ? "Please enter a valid business email address."
               : "Kripya ek valid email address enter karein.";
           } else {
             updatedIntake.email = userText;
@@ -3821,16 +4204,22 @@ export default function Chatbot() {
           break;
 
         case "ASK_OPTIONAL_PHONE":
-          const phoneVal = (userText.toLowerCase() === "skip" || userText.toLowerCase().includes("nahi dena")) ? "Skipped" : userText;
-          updatedIntake.phone = phoneVal;
-          setIntakeData(updatedIntake);
-          if (returnToReview) {
-            nextState = "REVIEW";
-            setReturnToReview(false);
-            botResponseText = language === "en" ? "Updated. Review your details below." : "Phone number update ho gaya hai. Review kar lein.";
+          if (!isValidPhone(userText)) {
+            botResponseText = language === "en"
+              ? "Please enter a valid phone number, or type 'skip'."
+              : "Kripya ek valid phone number likhein, ya 'skip' karein.";
           } else {
-            nextState = getNextStepState(chatState, updatedIntake);
-            botResponseText = getStepPromptMessage(nextState, language, updatedIntake.service, updatedIntake.projectTypes);
+            const phoneVal = (userText.toLowerCase() === "skip" || userText.toLowerCase().includes("nahi dena")) ? "Skipped" : userText;
+            updatedIntake.phone = phoneVal;
+            setIntakeData(updatedIntake);
+            if (returnToReview) {
+              nextState = "REVIEW";
+              setReturnToReview(false);
+              botResponseText = language === "en" ? "Updated. Review your details below." : "Phone number update ho gaya hai. Review kar lein.";
+            } else {
+              nextState = getNextStepState(chatState, updatedIntake);
+              botResponseText = getStepPromptMessage(nextState, language, updatedIntake.service, updatedIntake.projectTypes);
+            }
           }
           break;
 
@@ -3902,26 +4291,13 @@ export default function Chatbot() {
 
   const resetScoping = () => {
     setScopingStage("NONE");
-    setScopingData({
-      ecommProducts: "", ecommPayments: "", ecommInventory: "", ecommAdmin: "",
-      saasUsers: "", saasWorkflow: "", saasAuth: "", saasDashboard: "", saasBilling: "", saasIntegrations: "",
-      botPurpose: "", botUsers: "", botKnowledge: "", botChannels: "", botLeadCapture: "", botHandoff: "",
-      appPlatform: "", appTargetUser: "", appFeatures: "", appAuth: "", appBackend: "", appNotifications: "",
-      autoWorkflow: "", autoTrigger: "", autoAction: "", autoTools: "", autoResult: "",
-      consultGoal: "", consultProblem: "", consultCustomerAction: "",
-      offlineBizType: "", offlineProcess: "", offlineDesiredAction: "", offlinePayments: "", offlineDelivery: "", offlineMarketing: "",
-      marketType: "", marketProductOrService: "", marketMultiVendor: "", marketVendorOnboarding: "", marketCommission: "", marketDashboards: "",
-      marketingBusiness: "", marketingIsLive: "", marketingObjective: "", marketingChannels: "", marketingSEO: "",
-      
-      crmType: "", crmUsers: "", crmFeatures: "", crmPipeline: "", crmIntegrations: "", crmAutomation: "", crmDashboards: "",
-      waSetup: "", waVolume: "", waFeatures: "", waReplies: "", waFollowups: "", waTeam: "", waCrm: "",
-      emailPlatform: "", emailTypes: "", emailClassify: "", emailReplies: "", emailFollowups: "", emailApproval: "",
-      callPurpose: "", callDirection: "", callFeatures: "", callLanguages: "", callCrm: "", callHandoff: "", callLogging: "",
-      aiSubtype: ""
-    });
+    setScopingData(DEFAULT_SCOPING_DATA);
   };
 
   const resetChatbotToIdle = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("kvyash_chatbot_state_v1");
+    }
     setChatState("IDLE");
     setScopingStage("NONE");
     resetScoping();
@@ -3954,9 +4330,8 @@ export default function Chatbot() {
   useEffect(() => {
     if (pathname !== prevPathnameRef.current) {
       const wasSuccess = chatState === "SUCCESS";
-      const isClosed = !isOpen;
 
-      if (pathname === "/contact" || wasSuccess || isClosed) {
+      if (pathname === "/contact" || wasSuccess) {
         setTimeout(() => {
           resetChatbotToIdle();
           if (pathname === "/contact") {
@@ -4077,7 +4452,7 @@ export default function Chatbot() {
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 font-sans flex flex-col items-end gap-3 pointer-events-none">
       {/* Chat Panel Box */}
       <div
-        className={`flex flex-col bg-white border border-slate-200 shadow-2xl rounded-2xl w-[calc(100vw-32px)] sm:w-[380px] h-[500px] max-h-[80vh] overflow-hidden transform transition-all duration-300 origin-bottom-right ${
+        className={`flex flex-col bg-white border border-slate-200 shadow-2xl rounded-2xl w-[calc(100vw-32px)] h-[80vh] max-h-[460px] sm:w-[380px] sm:h-[500px] sm:max-h-[80vh] overflow-hidden transform transition-all duration-300 origin-bottom-right ${
           isOpen
             ? "scale-100 opacity-100 translate-y-0 pointer-events-auto"
             : "scale-95 opacity-0 translate-y-4 pointer-events-none"
@@ -4320,6 +4695,22 @@ export default function Chatbot() {
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">CRM Sync & Handoff:</span>
                       <span className="text-navy-900 text-right">CRM: {scopingData.callCrm} / Handoff: {scopingData.callHandoff}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.webType && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Website Type:</span>
+                      <span className="text-navy-900 text-right">{scopingData.webType}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Core Features:</span>
+                      <span className="text-navy-900 text-right">{scopingData.webFeatures}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">CMS Required:</span>
+                      <span className="text-navy-900 text-right">{scopingData.webCms}</span>
                     </div>
                   </>
                 )}
