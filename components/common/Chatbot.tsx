@@ -890,8 +890,8 @@ export default function Chatbot() {
     const detected = detectProjectType(cleaned);
     if (detected.slug) {
       parsedData.service = detected.slug;
-      parsedData.serviceLabel = cleaned;
-      parsedData.projectTypes = [cleaned];
+      parsedData.serviceLabel = detected.label;
+      parsedData.projectTypes = detected.list;
     } else if (isValidProjectType(cleaned)) {
       parsedData.service = "custom-software";
       parsedData.serviceLabel = cleaned;
@@ -1952,10 +1952,18 @@ export default function Chatbot() {
       else if (!scopedData.autoResult) { nextStage = "AUTO_RESULT"; botPrompt = lang === "hi" ? "Automation flow ka ultimate final result kya hoga?" : "What is the desired final result or outcome of this automation flow?"; }
     } else if (intent === "BUILD_SOMETHING") {
       // Find category subtype
-      const isEcomm = currentIntake.serviceLabel.includes("E-commerce") || currentIntake.projectTypes.includes("E-commerce");
-      const isSaaS = currentIntake.serviceLabel.includes("SaaS") || currentIntake.projectTypes.includes("SaaS");
-      const isApp = currentIntake.serviceLabel.includes("Application Development") || currentIntake.projectTypes.includes("Application Development") || currentIntake.serviceLabel.includes("Mobile App");
-      const isAuto = currentIntake.serviceLabel.includes("AI-Automation") || currentIntake.projectTypes.includes("AI-Automation") || currentIntake.serviceLabel.includes("Business Automation") || currentIntake.serviceLabel.includes("Process Automation") || currentIntake.serviceLabel.toLowerCase().includes("automation");
+      const checkMatch = (term: string) => {
+        const t = term.toLowerCase();
+        return (
+          currentIntake.serviceLabel.toLowerCase().includes(t) ||
+          currentIntake.projectTypes.some(pt => pt.toLowerCase().includes(t))
+        );
+      };
+      
+      const isEcomm = checkMatch("e-commerce") || checkMatch("ecommerce") || checkMatch("online store");
+      const isSaaS = checkMatch("saas") || checkMatch("subscription platform");
+      const isApp = checkMatch("application development") || checkMatch("mobile app") || checkMatch("app dev") || checkMatch("ios") || checkMatch("android");
+      const isAuto = checkMatch("ai-automation") || checkMatch("business automation") || checkMatch("process automation") || checkMatch("automation") || checkMatch("automate");
 
       if (isEcomm) {
         if (!scopedData.ecommProducts) { nextStage = "ECOMM_PRODUCTS"; botPrompt = lang === "en" ? "What will you be selling?" : "Aap kya sell karenge?"; }
@@ -1988,9 +1996,9 @@ export default function Chatbot() {
         else if (!scopedData.autoTrigger) { nextStage = "AUTO_TRIGGER"; botPrompt = lang === "en" ? "What trigger event should start the automation sequence?" : "Automation shuru karne ka trigger event kya hai?"; }
         else if (!scopedData.autoAction) { nextStage = "AUTO_ACTION"; botPrompt = lang === "en" ? "What specific actions should occur once the automation starts?" : "Trigger ke baad automation kya actions run karegi?"; }
         else if (!scopedData.autoTools) { nextStage = "AUTO_TOOLS"; botPrompt = lang === "en" ? "What tools or software systems are you currently using that need to be connected?" : "Konse external tools use hotey hain jo connect karne hain?"; }
-        else if (!scopedData.autoResult) { nextStage = "AUTO_RESULT"; botPrompt = lang === "en" ? "What is the desired final result or outcome of this automation flow?" : "Automation flow ka ultimate final result kya hoga?"; }
+        else if (!scopedData.autoResult) { nextStage = "AUTO_RESULT"; botPrompt = lang === "en" ? "What is the desired final result or outcome of this automation flow?" : "Automation flow ka ultimate final result hoga?"; }
       } else {
-        const isWeb = currentIntake.serviceLabel.includes("Website") || currentIntake.projectTypes.includes("Website") || currentIntake.serviceLabel.includes("Web Development") || currentIntake.projectTypes.includes("Web Development");
+        const isWeb = checkMatch("website") || checkMatch("web development") || checkMatch("web app");
         if (isWeb) {
           if (!scopedData.webType) {
             nextStage = "WEB_TYPE";
@@ -4036,8 +4044,8 @@ export default function Chatbot() {
             const detected = detectProjectType(cleanedText);
             const typeSlug = detected.slug || "custom-software";
             updatedIntake.service = typeSlug;
-            updatedIntake.serviceLabel = cleanedText;
-            updatedIntake.projectTypes = [cleanedText];
+            updatedIntake.serviceLabel = detected.label || cleanedText;
+            updatedIntake.projectTypes = detected.list.length > 0 ? detected.list : [cleanedText];
             setIntakeData(updatedIntake);
             
             const isScopingLabel = checkIsScopingLabel(cleanedText);
