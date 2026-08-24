@@ -82,11 +82,12 @@ export default function WorkClient() {
  </div>
  ) : (
  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
- {filteredProjects.map((bp) => {
+ {filteredProjects.map((bp, idx) => {
  return (
  <div
  key={bp.title}
- className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-premium transition-all duration-300 flex flex-col justify-between group"
+ className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-premium transition-all duration-300 flex flex-col justify-between group reveal-on-scroll hover:-translate-y-[5px] hover:border-slate-300"
+ style={{ transitionDelay: `${idx * 100}ms` }}
  >
  <div>
  <div className="flex items-center justify-between gap-2 mb-3">
@@ -121,9 +122,9 @@ export default function WorkClient() {
 
  <StartProjectButton
  intent="BUILD_SOMETHING"
- className="inline-flex items-center text-xs font-bold text-navy-900 hover:text-brand-500 mt-2 cursor-pointer self-start group-hover:translate-x-0.5 transition-transform"
+ className="inline-flex items-center text-xs font-bold text-navy-900 hover:text-brand-500 mt-2 cursor-pointer self-start transition-colors duration-200"
  >
- Explore Architecture <ChevronRight className="ml-1 h-3.5 w-3.5" />
+ <span>Explore Architecture</span> <ChevronRight className="ml-1 h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1" />
  </StartProjectButton>
  </div>
  );

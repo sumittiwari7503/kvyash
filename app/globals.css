@@ -152,22 +152,62 @@ body {
 
 /* Horizontal track container for scroll animation */
 .horizontal-scroll-mask {
- mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+/* Founder Card reveals */
+.founder-image-reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.founder-image-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.founder-text-reveal {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 150ms, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 150ms;
+  will-change: opacity, transform;
+}
+.founder-text-reveal.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* API/workflow highlights */
+@keyframes pipelinePulse {
+  0%, 100% {
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+  50% {
+    border-color: rgba(37, 99, 235, 0.6);
+    box-shadow: 0 0 12px 1px rgba(37, 99, 235, 0.15);
+  }
+}
+.animate-pipeline-pulse {
+  animation: pipelinePulse 3s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
- .reveal-on-scroll {
- opacity: 1 !important;
- transform: none !important;
- transition: none !important;
- }
- .animate-grid-flow,
- .animate-dash-move,
- .animate-pulse-glow,
- .animate-float-slow,
- .animate-gradient-shift {
- animation: none !important;
- transform: none !important;
- }
+  .reveal-on-scroll,
+  .founder-image-reveal,
+  .founder-text-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-grid-flow,
+  .animate-dash-move,
+  .animate-pulse-glow,
+  .animate-float-slow,
+  .animate-gradient-shift,
+  .animate-pipeline-pulse {
+    animation: none !important;
+    transform: none !important;
+  }
 }
-

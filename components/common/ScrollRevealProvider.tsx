@@ -31,7 +31,7 @@ export default function ScrollRevealProvider() {
  });
  }, observerOptions);
 
- const elements = document.querySelectorAll(".reveal-on-scroll");
+ const elements = document.querySelectorAll(".reveal-on-scroll, .founder-image-reveal, .founder-text-reveal");
  elements.forEach((el) => observer.observe(el));
 
  return () => {

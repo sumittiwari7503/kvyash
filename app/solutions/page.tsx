@@ -110,19 +110,19 @@ export default function SolutionsPage() {
  <div
  key={sol.title}
  id={sol.id}
- className="bg-white border border-slate-100 rounded-xl p-8 shadow-premium hover:border-brand-500/20 hover:shadow-premium-hover transition-premium duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start reveal-on-scroll hover:-translate-y-0.5"
+ className="bg-white border border-slate-100 rounded-xl p-8 shadow-premium hover:border-brand-500/20 hover:shadow-premium-hover transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start reveal-on-scroll hover:-translate-y-1.5 group cursor-pointer"
  style={{ transitionDelay: `${idx * 100}ms` }}
  >
  {/* Column 1: Icon and Title */}
  <div className="lg:col-span-4 flex flex-col gap-4">
- <div className="inline-flex self-start items-center justify-center p-3 rounded-lg bg-brand-50 text-brand-500 border border-brand-100 ">
+ <div className="inline-flex self-start items-center justify-center p-3 rounded-lg bg-brand-50 text-brand-500 border border-brand-100 transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white group-hover:scale-105">
  <Icon className="h-6 w-6" aria-hidden="true" />
  </div>
- <h3 className="text-xl font-bold text-navy-900 leading-tight">{sol.title}</h3>
+ <h3 className="text-xl font-bold text-navy-900 leading-tight transition-colors duration-300 group-hover:text-brand-650">{sol.title}</h3>
  </div>
 
  {/* Column 2: Challenge-Solution details */}
- <div className="lg:col-span-5 flex flex-col gap-4 text-sm text-slate-600 ">
+ <div className="lg:col-span-5 flex flex-col gap-4 text-sm text-slate-655">
  <div>
  <strong className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Business Bottleneck</strong>
  <p className="leading-relaxed">{sol.problem}</p>
@@ -134,7 +134,7 @@ export default function SolutionsPage() {
  </div>
 
  {/* Column 3: Impact block */}
- <div className="lg:col-span-3 bg-brand-50 border border-brand-100 rounded-lg p-5 text-xs h-full flex flex-col justify-center">
+ <div className="lg:col-span-3 bg-brand-50/50 border border-brand-100/60 rounded-lg p-5 text-xs h-full flex flex-col justify-center transition-all duration-300 group-hover:bg-brand-50 group-hover:border-brand-200">
  <strong className="text-brand-600 font-bold uppercase tracking-wider block mb-1">Capability Outcome</strong>
  <p className="text-slate-700 leading-relaxed">{sol.impact}</p>
  </div>

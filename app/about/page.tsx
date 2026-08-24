@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "next/link";
 import { CheckCircle, Shield, Code, Hammer, ArrowRight } from "lucide-react";
@@ -114,55 +115,64 @@ export default function AboutPage() {
  <section id="founder" className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-24">
  
- {/* SECTION 1 & 2: Founder Hero & Card */}
- <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
- <div className="lg:col-span-7 flex flex-col gap-6">
- <span className="inline-flex self-start items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-slate-50 text-slate-600 border border-slate-200 uppercase tracking-widest shadow-sm">
- FOUNDER & ENGINEERING LEADERSHIP
- </span>
- <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight leading-[1.15]">
- Founder-led engineering.<br />
- <span className="text-brand-500 ">Built for real business problems.</span>
- </h2>
- <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-medium">
- KVYASH Technologies is founded and led by Sumit Tiwari, with a focus on practical software engineering, AI systems, automation, digital transformation, and scalable digital products for businesses.
- </p>
- <p className="text-slate-600 text-base leading-relaxed max-w-2xl">
- Sumit works across product discovery, technical planning, software architecture, development, AI integration, automation workflows, and delivery — keeping business requirements closely connected to engineering decisions.
- </p>
- </div>
- 
- <div className="lg:col-span-5 w-full">
- <Link 
- href="#founder"
- className="block focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-2xl group cursor-pointer"
- >
- <div className="bg-white border border-slate-200/80 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group-hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] group-hover:border-slate-300 transform group-hover:-translate-y-0.5 transition-all duration-500 flex flex-col h-full">
- <div className="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-full blur-3xl -mr-16 -mt-16 opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
- <div className="relative z-10 p-8 sm:p-10 flex flex-col items-start gap-8 flex-1">
- <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-800 flex items-center justify-center text-white text-2xl font-extrabold shadow-md transform group-hover:scale-105 transition-transform duration-500">
- ST
- </div>
- <div className="space-y-2">
- <h4 className="font-extrabold text-navy-900 text-2xl tracking-tight">Sumit Tiwari</h4>
- <p className="text-brand-600 font-semibold text-sm tracking-wide uppercase">Founder & Engineering Lead</p>
- <p className="text-slate-500 font-medium text-sm">KVYASH Technologies</p>
- </div>
- <div className="w-full h-px bg-slate-100 my-2"></div>
- <p className="text-slate-700 text-sm font-semibold tracking-wide">
- Software &bull; AI &bull; Automation &bull; Digital Products
- </p>
- </div>
- <div className="relative z-10 bg-slate-50/50 border-t border-slate-100 px-8 py-4 sm:px-10 flex items-center justify-between mt-auto">
- <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Founder Profile</span>
- <span className="text-sm font-bold text-brand-600 flex items-center gap-1.5 transition-colors group-hover:text-brand-500 ">
- View profile <ArrowRight className="h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" />
- </span>
- </div>
- </div>
- </Link>
- </div>
- </div>
+        {/* SECTION 1 & 2: Founder Hero & Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* LEFT Column: Professional portrait */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start w-full founder-image-reveal">
+            <div className="relative group w-full max-w-[340px]">
+              
+              {/* Blue Ambient Glow Behind */}
+              <div className="absolute -inset-4 bg-brand-500/8 rounded-[28px] blur-xl opacity-60 group-hover:bg-brand-500/15 group-hover:opacity-90 transition-all duration-500 pointer-events-none" />
+
+              {/* Portrait Wrapper */}
+              <div className="relative overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-lg transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.015] group-hover:shadow-2xl group-hover:border-slate-300">
+                <img
+                  src="/sumit.jpg"
+                  alt="Sumit Tiwari"
+                  className="w-full h-auto aspect-square object-cover object-center filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT Column: Text Presentation */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-left founder-text-reveal">
+            <div className="space-y-3">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-brand-500">
+                FOUNDER • KVYASH TECHNOLOGIES
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight leading-tight">
+                Built with engineering ownership.
+              </h2>
+            </div>
+            
+            <p className="text-slate-655 text-sm sm:text-base leading-relaxed max-w-xl">
+              KVYASH Technologies is built around a simple idea: technology should solve real business problems, not add unnecessary complexity.
+            </p>
+
+            <div className="space-y-1 pt-2 border-t border-slate-100 max-w-xl">
+              <h4 className="font-extrabold text-navy-900 text-base">Sumit Tiwari</h4>
+              <p className="text-slate-500 text-xs font-semibold">Founder & Technology Lead</p>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://www.linkedin.com/company/kvyash-technologies/?viewAsMember=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold text-brand-600 hover:text-brand-500 transition-colors group/link cursor-pointer"
+              >
+                <svg className="h-4 w-4 text-brand-600 group-hover/link:scale-110 transition-transform fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>Connect on LinkedIn</span>
+                <ArrowRight className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover/link:translate-x-1" />
+              </a>
+            </div>
+          </div>
+
+        </div>
 
  {/* SECTION 3: What the Founder Works Across */}
  <div className="flex flex-col gap-8">

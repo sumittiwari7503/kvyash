@@ -192,15 +192,24 @@ export default function AiAutomationPage() {
  <div className="lg:col-span-5 bg-white border border-slate-100 rounded-xl p-8 shadow-premium flex flex-col gap-6">
  <h4 className="text-base font-bold text-navy-900 border-b border-slate-200 pb-3 uppercase tracking-wider">Example: PDF Parser Pipeline</h4>
  <div className="flex flex-col gap-4 relative">
- <div className="bg-slate-50 border border-slate-200 rounded p-4 text-xs text-slate-500 ">
+ <div 
+   className="bg-slate-50 border border-slate-200 rounded p-4 text-xs text-slate-500 animate-pipeline-pulse"
+   style={{ animationDelay: "0s" }}
+ >
  <span className="font-semibold text-navy-900 block mb-1">Step 1: Document Ingestion</span>
  User uploads PDF invoice to secure portal bucket.
  </div>
- <div className="bg-slate-50 border border-slate-200 rounded p-4 text-xs text-slate-500 ml-4 border-l-brand-500 border-l-4">
+ <div 
+   className="bg-slate-50 border border-slate-200 rounded p-4 text-xs text-slate-500 ml-4 border-l-brand-500 border-l-4 animate-pipeline-pulse"
+   style={{ animationDelay: "1s" }}
+ >
  <span className="font-semibold text-navy-900 block mb-1">Step 2: LLM Token Mapping</span>
  Intelligent API parses formatting schema to find sub-totals, items, and tax dates.
  </div>
- <div className="bg-slate-50 border border-slate-200 rounded p-4 text-xs text-slate-500 ">
+ <div 
+   className="bg-slate-50 border border-slate-200 rounded p-4 text-xs text-slate-500 animate-pipeline-pulse"
+   style={{ animationDelay: "2s" }}
+ >
  <span className="font-semibold text-navy-900 block mb-1">Step 3: Database Ingestion</span>
  Clean, structured payload is written to PostgreSQL, updating CRM analytics.
  </div>

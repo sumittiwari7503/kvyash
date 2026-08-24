@@ -334,8 +334,8 @@ export default function ServicesPage() {
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
  
  {/* Category Title & Sidebar */}
- <div className="lg:col-span-4 flex flex-col gap-5">
- <div className="inline-flex self-start items-center justify-center p-3 rounded-lg bg-brand-50 text-brand-500 shadow-sm border border-brand-100 ">
+ <div className="lg:col-span-4 flex flex-col gap-5 reveal-on-scroll">
+ <div className="inline-flex self-start items-center justify-center p-3 rounded-lg bg-brand-50 text-brand-500 shadow-sm border border-brand-100 transition-all duration-300 hover:scale-105 hover:bg-brand-500 hover:text-white cursor-pointer">
  <Icon className="h-6 w-6" aria-hidden="true" />
  </div>
  <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
@@ -344,23 +344,23 @@ export default function ServicesPage() {
  
  <div className="flex flex-col gap-1.5 mt-1">
  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 ">Tailored For</span>
- <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+ <p className="text-slate-655 text-xs sm:text-sm leading-relaxed">
  {category.whoItHelps}
  </p>
  </div>
 
  <StartProjectButton
  intent={category.intent}
- className="inline-flex self-start items-center justify-center px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded transition-premium cursor-pointer shadow-sm mt-4 text-center"
+ className="inline-flex self-start items-center justify-center px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded transition-premium cursor-pointer shadow-sm mt-4 text-center group"
  >
- {"Start Scoping"}
- <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+ <span>Start Scoping</span>
+ <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
  </StartProjectButton>
  </div>
 
  {/* Services & Use Cases Grid */}
  <div className="lg:col-span-8 flex flex-col gap-6">
- <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
+ <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm reveal-on-scroll reveal-delay-100 hover:border-slate-350 hover:-translate-y-1 hover:shadow-premium-hover transition-all duration-300">
  <h3 className="font-extrabold text-navy-900 text-sm mb-3">What We Build</h3>
  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-600 ">
  {category.whatWeBuild.map((item) => (
@@ -372,9 +372,9 @@ export default function ServicesPage() {
  </ul>
  </div>
 
- <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
+ <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm reveal-on-scroll reveal-delay-200 hover:border-slate-350 hover:-translate-y-1 hover:shadow-premium-hover transition-all duration-300">
  <h3 className="font-extrabold text-navy-900 text-sm mb-3">Use Cases & Operational Goals</h3>
- <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 ">
+ <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-655 ">
  {category.useCases.map((item) => (
  <li key={item} className="flex items-start gap-2 leading-relaxed">
  <CheckCircle className="h-4 w-4 text-brand-500 shrink-0 mt-0.5" />
@@ -404,28 +404,27 @@ export default function ServicesPage() {
  <p className="text-slate-655 text-sm leading-relaxed">
  Every development project we execute is shipped with a comprehensive set of engineering files and configurations.
  </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {deliverablesList.map((dl, idx) => {
+              const Icon = dl.icon;
+              return (
+                <div
+                  key={dl.item}
+                  className="bg-white border border-slate-100 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between reveal-on-scroll group cursor-pointer"
+                  style={{ transitionDelay: `${idx * 100}ms` }}
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="inline-flex self-start items-center justify-center p-2 rounded bg-brand-50 text-brand-500 transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white group-hover:scale-105">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <h4 className="font-bold text-navy-900 text-base transition-colors duration-300 group-hover:text-brand-500">{dl.item}</h4>
+                    <p className="text-slate-500 text-xs leading-relaxed">{dl.details}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
  </div>
-
- <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
- {deliverablesList.map((dl) => {
- const Icon = dl.icon;
- return (
- <div
- key={dl.item}
- className="bg-white border border-slate-100 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-premium flex flex-col justify-between"
- >
- <div className="flex flex-col gap-4">
- <div className="inline-flex self-start items-center justify-center p-2 rounded bg-brand-50 text-brand-500 ">
- <Icon className="h-5 w-5" aria-hidden="true" />
- </div>
- <h4 className="font-bold text-navy-900 text-base">{dl.item}</h4>
- <p className="text-slate-500 text-xs leading-relaxed">{dl.details}</p>
- </div>
- </div>
- );
- })}
- </div>
-
  </div>
  </section>
 

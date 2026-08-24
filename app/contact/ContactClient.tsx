@@ -162,28 +162,28 @@ function ContactForm() {
  <div className="font-sans text-navy-900 bg-white transition-colors duration-300">
  
  {/* 1. Header Hero */}
- <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden reveal-on-scroll">
- <div className="absolute inset-0 opacity-5 .03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+ <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
+ <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
- <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-wide">
+ <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-wide reveal-on-scroll">
  Inquiry
  </span>
- <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 ">
+ <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 reveal-on-scroll reveal-delay-100">
  {"Let's discuss your project scope."}
  </h1>
- <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+ <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed reveal-on-scroll reveal-delay-200">
  {"Share your technical parameters, timelines, or operational friction points. Submit your project details and our team will review your enquiry."}
  </p>
  </div>
  </section>
 
  {/* 2. Form & FAQ split section */}
- <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
+ <section className="py-20 md:py-28 bg-white border-b border-slate-100">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
  
  {/* Form Column */}
- <div className="lg:col-span-7 flex flex-col gap-6">
+ <div className="lg:col-span-7 flex flex-col gap-6 reveal-on-scroll reveal-delay-300">
  
  {/* Mode Switcher */}
  <div className="flex bg-slate-100 p-1 rounded-xl self-start border border-slate-200/40 ">
