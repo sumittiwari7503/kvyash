@@ -321,7 +321,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 2. Detailed Capabilities List */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-24">
           {serviceCategories.map((category) => {
             const Icon = category.icon;
@@ -393,15 +393,15 @@ export default function ServicesPage() {
       </section>
 
       {/* 3. Core Deliverables Standards Table Section */}
-      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">Standards</h2>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Standards</span>
             <h3 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Standard Launch Package
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-655 dark:text-slate-400 text-sm leading-relaxed">
               Every development project we execute is shipped with a comprehensive set of engineering files and configurations.
             </p>
           </div>
@@ -430,14 +430,14 @@ export default function ServicesPage() {
       </section>
 
       {/* 3b. Frequently Asked Questions (GEO layer) */}
-      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-500">FAQ</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">FAQ</span>
             <h3 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Frequently Asked Questions
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-655 dark:text-slate-400 text-sm leading-relaxed">
               Find direct answers to common questions about KVYASH Technologies, our capabilities, and services.
             </p>
           </div>
@@ -487,7 +487,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 4. Scoping Call CTA */}
-      <section className="py-20 bg-white dark:bg-[#090d16] reveal-on-scroll">
+      <section className="py-16 md:py-24 bg-white dark:bg-[#090d16] reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             {"Let's design your software architecture."}

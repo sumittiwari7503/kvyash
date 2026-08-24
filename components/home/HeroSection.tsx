@@ -44,13 +44,13 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-900 border-b border-slate-950 [--mx:0] [--my:0]"
+      className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-50 dark:bg-[#090d16] border-b border-slate-200 dark:border-slate-950 [--mx:0] [--my:0]"
     >
       {/* Dynamic Animated Grid Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_60%,transparent_100%)] opacity-40 animate-grid-flow" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(37,99,235,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(37,99,235,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_60%,transparent_100%)] opacity-40 animate-grid-flow" />
 
       {/* Cyberpunk radial background glow */}
-      <div className="absolute top-12 left-1/4 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-12 left-1/4 w-[500px] h-[500px] bg-brand-500/5 dark:bg-brand-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -67,7 +67,7 @@ export default function HeroSection() {
             </span>
             
             <h1 
-              className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight transition-all duration-1000 delay-100 font-sans`}
+              className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 dark:text-white leading-tight transition-all duration-1000 delay-100 font-sans`}
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(20px)",
@@ -76,11 +76,11 @@ export default function HeroSection() {
             >
               From business idea <br className="hidden sm:inline" />
               to web development <br className="hidden sm:inline" />
-              and <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-300">AI automation</span>.
+              and <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-650 to-brand-500 dark:from-brand-400 dark:to-blue-300">AI automation</span>.
             </h1>
             
             <p 
-              className={`text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed`}
+              className={`text-slate-655 dark:text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed`}
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(20px)",
@@ -106,7 +106,7 @@ export default function HeroSection() {
               </StartProjectButton>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded border border-slate-700 bg-slate-800/40 text-slate-300 font-semibold hover:bg-slate-800 hover:text-white transition-all text-center text-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded border border-slate-300 dark:border-slate-700 bg-white/40 dark:bg-slate-800/40 text-slate-650 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-navy-900 dark:hover:text-white transition-all text-center text-sm"
               >
                 Talk to KVYASH
               </Link>

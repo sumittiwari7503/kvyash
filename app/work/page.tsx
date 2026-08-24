@@ -34,23 +34,23 @@ export default function WorkPage() {
       </section>
 
       {/* 2. Interactive Portfolio & Filters Section */}
-      <section className="py-20 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WorkClient />
         </div>
       </section>
 
       {/* 3. AI & Automation Capabilities Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
             <div className="lg:col-span-7 flex flex-col gap-4 text-center lg:text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-500">AI & AUTOMATION</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-500">AI & AUTOMATION</span>
               <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
                 AI systems built around real workflows.
               </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-slate-655 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We design AI-powered systems around the way a business actually operates — from lead capture and customer communication to CRM updates and workflow automation.
               </p>
             </div>
@@ -93,15 +93,15 @@ export default function WorkPage() {
       </section>
 
       {/* 4. How We Approach Projects */}
-      <section className="py-20 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Methodology</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Methodology</span>
             <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Our engineering standards.
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-655 dark:text-slate-400 text-sm leading-relaxed">
               We focus on building practical software solutions that prioritize direct access, clear scope, and documentation.
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function WorkPage() {
       </section>
 
       {/* 5. CTA Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 reveal-on-scroll">
+      <section className="py-16 md:py-24 bg-slate-50 dark:bg-[#0c1321]/50 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-xl p-8 sm:p-12 shadow-sm text-center flex flex-col gap-6 items-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">

@@ -213,8 +213,9 @@ const DEFAULT_SCOPING_DATA: ScopingDataState = {
   webType: "", webFeatures: "", webCms: ""
 };
 
-export default function Chatbot() {
+export default function Chatbot({ isInline = false }: { isInline?: boolean }) {
   const [isOpen, setIsOpen] = useState<boolean>(() => {
+    if (isInline) return true;
     if (typeof window !== "undefined") {
       try {
         const saved = localStorage.getItem("kvyash_chatbot_state_v1");
@@ -4342,7 +4343,7 @@ export default function Chatbot() {
       if (pathname === "/contact" || wasSuccess) {
         setTimeout(() => {
           resetChatbotToIdle();
-          if (pathname === "/contact") {
+          if (pathname === "/contact" && !isInline) {
             setIsOpen(false);
           }
         }, 0);
@@ -4455,6 +4456,612 @@ export default function Chatbot() {
       addBotMessage("Something went wrong while sending your enquiry. Your details are still here. Please try again.");
     }
   };
+
+  if (isInline) {
+    return (
+      <div className="flex flex-col bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-2xl w-full h-[580px] overflow-hidden relative shadow-premium pointer-events-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between bg-navy-900 dark:bg-slate-950 text-white px-5 py-4 shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center h-9 w-9 rounded-full bg-brand-500">
+              <Bot className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm">KVYASH Assistant</h3>
+              <span className="text-xs text-brand-100 flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                Consultant Mode
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Dynamic Progress Indicator */}
+        {((chatState as string) !== "IDLE" && (chatState as string) !== "SUCCESS" && (chatState as string) !== "SUBMITTING") && (
+          <div className="bg-brand-50 dark:bg-slate-900 border-b border-brand-100 dark:border-brand-900/60 text-brand-600 dark:text-brand-400 text-[10px] px-4 py-1.5 font-bold uppercase tracking-wider flex justify-between shrink-0">
+            <span>Project Scoping Flow</span>
+            <span>Step {getStepNumber(chatState)} of 8</span>
+          </div>
+        )}
+
+        {/* Messages list */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-[#090d16]/50">
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div
+                className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-line ${
+                  msg.sender === "user"
+                    ? "bg-brand-500 text-white rounded-tr-none"
+                    : "bg-white dark:bg-[#090d16] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none shadow-sm"
+                }`}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
+
+          {/* Inline Summary Card */}
+          {(chatState as string) === "REVIEW" && (
+            <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm space-y-3 animate-premium text-xs text-slate-700 dark:text-slate-300">
+              <h4 className="font-bold text-navy-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800/80 pb-1.5 text-sm uppercase tracking-wider">
+                PROJECT ENQUIRY SUMMARY
+              </h4>
+              <div className="space-y-1.5">
+                <div className="flex justify-between gap-2">
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Name:</span>
+                  <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.name}</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Email:</span>
+                  <span className="text-navy-900 dark:text-slate-200 text-right break-all">{intakeData.email}</span>
+                </div>
+                {intakeData.phone && intakeData.phone !== "Skipped" && (
+                  <div className="flex justify-between gap-2">
+                    <span className="font-semibold text-slate-400 dark:text-slate-500">Phone:</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.phone}</span>
+                  </div>
+                )}
+                {intakeData.company && intakeData.company !== "Skipped" && (
+                  <div className="flex justify-between gap-2">
+                    <span className="font-semibold text-slate-400 dark:text-slate-500">Company:</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.company}</span>
+                  </div>
+                )}
+                <div className="flex justify-between gap-2">
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Project Type:</span>
+                  <span className="text-navy-900 dark:text-slate-200 text-right font-bold text-brand-500 dark:text-brand-400">{intakeData.serviceLabel}</span>
+                </div>
+
+                {/* Structured Scoping Metadata Rows */}
+                {scopingData.consultGoal && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 dark:border-slate-800/80 pt-1">
+                      <span className="font-semibold text-slate-400 dark:text-slate-500">Goal:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.consultGoal}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400 dark:text-slate-500">Challenge:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.consultProblem}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.offlineBizType && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Offline Business:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlineBizType}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Online Action:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlineDesiredAction}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Online Payments:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlinePayments}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Marketing Support:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlineMarketing}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.marketType && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Target Marketplace:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketType}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Model Type:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketProductOrService}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Vendor Onboarding:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketVendorOnboarding}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Portals Needed:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketDashboards === "Yes" ? "Vendor & Customer Dashboards" : "Basic/Standard"}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.marketingBusiness && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Promoting:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingBusiness}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Platform Live:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingIsLive}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Primary Goal:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingObjective}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">SEO Audit:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingSEO}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.ecommProducts && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Selling Products:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommProducts}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Payments Gate:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommPayments}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Inventory Sync:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommInventory}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Admin Control:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommAdmin}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.crmType && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">CRM Setup:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.crmType}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">CRM Users:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.crmUsers}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">WhatsApp/Email:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.crmIntegrations}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.waSetup && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">WhatsApp CRM:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.waSetup} (Vol: {scopingData.waVolume})</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Replies & Followups:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">Replies: {scopingData.waReplies} / Followups: {scopingData.waFollowups}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.emailPlatform && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Email Platform:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.emailPlatform}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">AI Classification:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.emailClassify}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Human Approval:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.emailApproval}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.callPurpose && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Calling Agent:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.callPurpose} ({scopingData.callDirection})</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Voice Languages:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.callLanguages}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">CRM Sync & Handoff:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">CRM: {scopingData.callCrm} / Handoff: {scopingData.callHandoff}</span>
+                    </div>
+                  </>
+                )}
+                {scopingData.webType && (
+                  <>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
+                      <span className="font-semibold text-slate-400">Website Type:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.webType}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">Core Features:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.webFeatures}</span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="font-semibold text-slate-400">CMS Required:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.webCms}</span>
+                    </div>
+                  </>
+                )}
+
+                <div className="flex flex-col gap-0.5 pt-1 border-t border-slate-100 dark:border-slate-800/80">
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Compiled Blueprint Description:</span>
+                  <span className="text-navy-900 dark:text-slate-200 leading-relaxed bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/80 rounded p-1.5 mt-1 block whitespace-pre-line font-mono text-[10px]">
+                    {intakeData.requirements}
+                  </span>
+                </div>
+                {intakeData.timeline && intakeData.timeline !== "Not Specified" && (
+                  <div className="flex justify-between gap-2 pt-1 border-t border-slate-50">
+                    <span className="font-semibold text-slate-400">Timeline:</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.timeline}</span>
+                  </div>
+                )}
+                {intakeData.budget && intakeData.budget !== "Flexible / Unspecified" && (
+                  <div className="flex justify-between gap-2">
+                    <span className="font-semibold text-slate-400">Budget:</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.budget}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          
+          {/* Typings Indicator */}
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="bg-white border border-slate-100 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm flex items-center gap-1">
+                <span className="h-1.5 w-1.5 bg-slate-400 rounded-full animate-bounce" />
+                <span className="h-1.5 w-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                <span className="h-1.5 w-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]" />
+              </div>
+            </div>
+          )}
+          <div ref={chatEndRef} />
+        </div>
+
+        {/* Dynamic Controls / Choice Selectors Block */}
+        <div className="p-3 bg-white dark:bg-[#0d1321] border-t border-slate-100 dark:border-slate-800/85 flex flex-col gap-2 shrink-0">
+          
+          {/* Idle state shortcuts */}
+          {(chatState as string) === "IDLE" && !isTyping && (
+            <div className="flex flex-wrap gap-1.5 max-h-[140px] overflow-y-auto">
+              {currentQuickActions.map((prompt) => (
+                <button
+                  key={prompt.text}
+                  onClick={() => handleSend(prompt.text, prompt.type)}
+                  className="text-[10px] sm:text-xs text-brand-500 bg-brand-50 hover:bg-brand-100 border border-brand-100 rounded-full px-2.5 py-1 text-left transition-premium cursor-pointer shrink-0 animate-premium font-semibold"
+                >
+                  {prompt.text}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Skip buttons for optional fields */}
+          {((chatState as string) === "ASK_OPTIONAL_PHONE" || (chatState as string) === "ASK_OPTIONAL_COMPANY") && (
+            <button
+              onClick={handleSkipField}
+              className="w-full text-center py-2 border border-dashed border-slate-200 dark:border-slate-800 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-semibold transition-premium cursor-pointer"
+            >
+              {language === "en" ? "Skip optional step" : "Optional step skip karein"}
+            </button>
+          )}
+
+          {/* Project Type selector pills */}
+          {((chatState as string) === "ASK_PROJECT_TYPE" || ((chatState as string) === "ASK_PROJECT_TYPE" && returnToReview)) && (
+            <div className="grid grid-cols-3 gap-1 max-h-[140px] overflow-y-auto">
+              {Object.keys(SERVICE_SLUG_MAP).map((opt) => (
+                <button
+                  key={opt}
+                  onClick={() => handleSelectOption(opt)}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer truncate px-1"
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Scoping binary questions (Yes/No) quick replies */}
+          {((chatState as string) === "SCOPING_PROJECT" || (chatState as string) === "ASK_REQUIREMENTS") &&
+            (scopingStage === "ECOMM_PAYMENTS" || scopingStage === "ECOMM_INVENTORY" || scopingStage === "ECOMM_ADMIN" ||
+             scopingStage === "SAAS_AUTH" || scopingStage === "SAAS_DASHBOARD" || scopingStage === "SAAS_BILLING" || scopingStage === "SAAS_INTEGRATIONS" ||
+             scopingStage === "BOT_LEAD_CAPTURE" || scopingStage === "BOT_HANDOFF" ||
+             scopingStage === "APP_AUTH" || scopingStage === "APP_BACKEND" || scopingStage === "APP_NOTIFICATIONS" ||
+             scopingStage === "OFFLINE_PAYMENTS" || scopingStage === "OFFLINE_MARKETING" ||
+             scopingStage === "MARKET_DASHBOARDS" ||
+             scopingStage === "MARKETING_LIVE" || scopingStage === "MARKETING_SEO" ||
+             scopingStage === "CRM_DASHBOARDS" ||
+             scopingStage === "WA_REPLIES" || scopingStage === "WA_FOLLOWUPS" ||
+             scopingStage === "EMAIL_REPLIES" || scopingStage === "EMAIL_FOLLOWUPS" || scopingStage === "EMAIL_APPROVAL" ||
+             scopingStage === "CALL_HANDOFF" || scopingStage === "CALL_LOGGING") && (
+              <div className="flex gap-2 animate-premium">
+                <button
+                  type="button"
+                  onClick={() => handleSelectOption("Yes")}
+                  className="flex-1 text-center py-2 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded transition-premium cursor-pointer shadow-sm"
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleSelectOption("No")}
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-bold transition-premium cursor-pointer shadow-sm"
+                >
+                  No
+                </button>
+              </div>
+            )}
+
+          {/* AI Scoping Subtype selectors */}
+          {scopingStage === "AI_SELECT_SUBTYPE" && (
+            <div className="grid grid-cols-2 gap-1.5 max-h-[140px] overflow-y-auto animate-premium">
+              {[
+                { label: "AI Chatbot", value: "AI Chatbot" },
+                { label: "CRM", value: "CRM" },
+                { label: "WhatsApp CRM", value: "WhatsApp CRM" },
+                { label: "Email Automation", value: "Email Automation" },
+                { label: "AI Calling Agent", value: "AI Calling Agent" },
+                { label: "Lead Management", value: "Lead Management" },
+                { label: "Customer Support", value: "Customer Support" },
+                { label: "Business Workflow", value: "Business Workflow" },
+                { label: "Custom AI Agent", value: "Custom AI Agent" },
+                { label: "Not sure — Help me decide", value: "Not sure" }
+              ].map((opt) => (
+                <button
+                  key={opt.label}
+                  onClick={() => handleSelectOption(opt.value)}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-semibold transition-premium cursor-pointer truncate px-1"
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Timeline selector pills */}
+          {(chatState as string) === "ASK_OPTIONAL_TIMELINE" && (
+            <div className="grid grid-cols-3 gap-1">
+              {["ASAP", "1-4 weeks", "1-3 months", "3+ months", "Not sure"].map((opt) => (
+                <button
+                  key={opt}
+                  onClick={() => handleSelectOption(opt)}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+                >
+                  {opt}
+                </button>
+              ))}
+              <button
+                onClick={handleSkipField}
+                className="text-center py-1.5 border border-dashed border-slate-200 dark:border-slate-800 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+              >
+                Skip
+              </button>
+            </div>
+          )}
+
+          {/* Budget selector pills */}
+          {(chatState as string) === "ASK_OPTIONAL_BUDGET" && (
+            <div className="grid grid-cols-3 gap-1">
+              {["Under ₹50K", "₹50K-₹1L", "₹1L-₹3L", "₹3L+", "Not sure"].map((opt) => (
+                <button
+                  key={opt}
+                  onClick={() => handleSelectOption(opt)}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+                >
+                  {opt}
+                </button>
+              ))}
+              <button
+                onClick={() => handleSelectOption("Skip")}
+                className="text-center py-1.5 border border-dashed border-slate-200 dark:border-slate-800 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+              >
+                Skip
+              </button>
+            </div>
+          )}
+
+          {/* Review actions confirm/edit/cancel panel */}
+          {((chatState as string) === "REVIEW" || (chatState as string) === "SUBMITTING") && (
+            <div className="flex flex-col gap-2 animate-premium">
+              <span className="text-[10px] text-slate-500 font-medium text-center mb-1 leading-normal">
+                Please review your information before submitting. Your information is used to review and respond to your enquiry.
+              </span>
+              <div className="flex gap-1.5">
+                <button
+                  onClick={handleConfirmSubmit}
+                  disabled={(chatState as string) === "SUBMITTING" || isTyping}
+                  className="flex-[2] inline-flex items-center justify-center text-center py-2 bg-brand-500 hover:bg-brand-600 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed text-white text-xs font-bold rounded transition-premium cursor-pointer"
+                >
+                  {(chatState as string) === "SUBMITTING"
+                    ? (language === "en" ? "Submitting..." : "Submit ho raha hai...")
+                    : (language === "en" ? "Submit Enquiry" : "Enquiry Submit Karein")}
+                  {(chatState as string) !== "SUBMITTING" && <ArrowRight className="ml-1.5 h-3.5 w-3.5" />}
+                </button>
+                <button
+                  onClick={() => setChatState("PROJECT_EDIT")}
+                  disabled={(chatState as string) === "SUBMITTING" || isTyping}
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {language === "en" ? "Edit" : "Edit"}
+                </button>
+                <button
+                  onClick={handleCancelEnquiry}
+                  disabled={(chatState as string) === "SUBMITTING" || isTyping}
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {language === "en" ? "Cancel" : "Cancel"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Edit sub-selector drawer */}
+          {(chatState as string) === "PROJECT_EDIT" && (
+            <div className="flex flex-col gap-1.5 animate-premium">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Select Field to Edit</span>
+              <div className="grid grid-cols-2 gap-1.5">
+                <button
+                  onClick={() => handleEditField("name", "ASK_CONTACT_NAME")}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
+                >
+                  Edit Name
+                </button>
+                <button
+                  onClick={() => handleEditField("email", "ASK_CONTACT_EMAIL")}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
+                >
+                  Edit Email
+                </button>
+                <button
+                  onClick={() => handleEditField("serviceLabel", "ASK_PROJECT_TYPE")}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
+                >
+                  Edit Project Type
+                </button>
+                <button
+                  onClick={() => handleEditField("requirements", "ASK_REQUIREMENTS")}
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
+                >
+                  Edit Requirements
+                </button>
+              </div>
+              <button
+                onClick={() => setChatState("REVIEW")}
+                className="w-full text-center py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-700 dark:text-slate-300 text-xs font-bold transition-premium cursor-pointer"
+              >
+                Back to Summary
+              </button>
+            </div>
+          )}
+
+          {/* Submitting progress */}
+          {(chatState as string) === "SUBMITTING" && (
+            <div className="flex items-center justify-center gap-2 py-2 text-xs font-semibold text-slate-500">
+              <Loader2 className="h-4 w-4 animate-spin text-brand-500" />
+              Sending scoping parameters...
+            </div>
+          )}
+
+          {/* Success portal links */}
+          {(chatState as string) === "SUCCESS" && (
+            <div className="flex flex-col gap-2">
+              {isLocalMode && (
+                <div className="p-2.5 bg-amber-50 border border-amber-100 text-amber-800 text-[10px] rounded-lg flex items-start gap-1.5 leading-normal mb-1">
+                  <AlertCircle className="h-4 w-4 shrink-0 text-amber-500 mt-0.5" />
+                  <span>
+                    <strong>API Status Warning:</strong> Staging mode was active. Your lead details compiled correctly but Resend credentials must be configured on deployment for inbox dispatch.
+                  </span>
+                </div>
+              )}
+              <div className="flex gap-2">
+                <a
+                  href="/services"
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-semibold transition-premium cursor-pointer"
+                >
+                  View Services
+                </a>
+                <button
+                  onClick={() => {
+                    setChatState("IDLE");
+                  }}
+                  className="flex-1 text-center py-2 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded transition-premium cursor-pointer"
+                >
+                  Restart Assistant
+                </button>
+              </div>
+            </div>
+          )}
+
+        </div>
+
+        {/* Form input - locked if selecting pills or reviewing */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSend(inputText);
+          }}
+          className="flex items-center gap-2 border-t border-slate-200 dark:border-slate-800/80 p-3 bg-white dark:bg-[#0d1321] shrink-0"
+        >
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            disabled={
+              isTyping ||
+              (chatState as string) === "ASK_PROJECT_TYPE" ||
+              (chatState as string) === "ASK_OPTIONAL_TIMELINE" ||
+              (chatState as string) === "ASK_OPTIONAL_BUDGET" ||
+              (chatState as string) === "REVIEW" ||
+              (chatState as string) === "PROJECT_EDIT" ||
+              (chatState as string) === "SUBMITTING" ||
+              (chatState as string) === "SUCCESS"
+            }
+            placeholder={
+              (chatState as string) === "IDLE"
+                ? "Ask about our services..."
+                : (chatState as string) === "ASK_PROJECT_TYPE"
+                ? (language === "en" ? "Describe what you want to build..." : "Describe karein aap kya banana chahte hain...")
+                : (chatState as string) === "SCOPING_PROJECT"
+                ? (language === "en" ? "Tell me about your project..." : "Apne project ke baare mein batayein...")
+                : (chatState as string) === "ASK_REQUIREMENTS"
+                ? (language === "en" ? "Enter project requirements..." : "Project details batayein...")
+                : (chatState as string) === "ASK_CONTACT_NAME"
+                ? (language === "en" ? "Enter your name" : "Aapka naam kya hai?")
+                : (chatState as string) === "ASK_CONTACT_EMAIL"
+                ? (language === "en" ? "Enter your email" : "Aapka business email kya hai?")
+                : (chatState as string) === "ASK_OPTIONAL_PHONE"
+                ? (language === "en" ? "Enter your phone number" : "Aapka phone number kya hai?")
+                : (chatState as string) === "ASK_OPTIONAL_COMPANY"
+                ? (language === "en" ? "Enter your organization" : "Aapki company ka naam?")
+                : "Select an option below..."
+            }
+            aria-label="Ask chatbot a question"
+            className="flex-1 text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3.5 py-2.5 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-slate-950 transition-premium disabled:bg-slate-100 dark:disabled:bg-slate-900 disabled:text-slate-400 dark:disabled:text-slate-600"
+          />
+          <button
+            type="submit"
+            disabled={
+              isTyping ||
+              !inputText.trim() ||
+              (chatState as string) === "ASK_PROJECT_TYPE" ||
+              (chatState as string) === "ASK_OPTIONAL_TIMELINE" ||
+              (chatState as string) === "ASK_OPTIONAL_BUDGET" ||
+              (chatState as string) === "REVIEW" ||
+              (chatState as string) === "PROJECT_EDIT" ||
+              (chatState as string) === "SUBMITTING" ||
+              (chatState as string) === "SUCCESS"
+            }
+            className="flex items-center justify-center h-10 w-10 rounded-lg bg-brand-500 text-white hover:bg-brand-600 disabled:bg-slate-100 disabled:text-slate-400 transition-premium shrink-0 cursor-pointer"
+            aria-label="Send query"
+          >
+            <Send className="h-4 w-4" />
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed bottom-4 left-4 right-4 md:bottom-6 md:right-6 z-40 font-sans flex flex-col items-end gap-3 pointer-events-none">

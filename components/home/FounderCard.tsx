@@ -26,17 +26,17 @@ export default function FounderCard() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Heading and info */}
           <div className="lg:col-span-7 flex flex-col gap-5 text-center lg:text-left reveal-on-scroll">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-500">FOUNDER & ENGINEERING OWNERSHIP</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">FOUNDER & ENGINEERING OWNERSHIP</span>
             <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
               Built with direct engineering ownership.
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-slate-655 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
               KVYASH Technologies was founded by Sumit Tiwari with a commit to practical systems engineering, clean APIs, transparent status logs, and robust software product lifecycles.
             </p>
           </div>

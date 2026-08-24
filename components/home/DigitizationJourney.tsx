@@ -35,16 +35,16 @@ export default function DigitizationJourney() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3 reveal-on-scroll">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Business Digitization</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Business Digitization</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             From Offline Business to Online Business
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-655 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             We map physical operations to stable digital channels to transition brick-and-mortar setups into scalable systems.
           </p>
         </div>

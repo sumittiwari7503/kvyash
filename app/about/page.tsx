@@ -96,22 +96,22 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Core Philosophy & Narrative */}
-      <section id="approach" className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section id="approach" className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             Our Approach to Software Craftsmanship
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-slate-655 dark:text-slate-400 leading-relaxed">
             {"Many businesses struggle to find reliable technology partners. Traditional software agencies often rely on complex jargon, hidden fees, and outsourced teams that deliver brittle templates. This creates a disconnect between what the business actually needs and what the software eventually does."}
           </p>
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-slate-655 dark:text-slate-400 leading-relaxed">
             {"At KVYASH, we remove this friction by aligning software engineering directly with your business goals. We write code with modularity and scalability in mind, using standard stacks like Next.js, TypeScript, and SQL databases. We focus on building what is necessary, ensuring your systems are fast, secure, and easily maintainable by your in-house teams in the future."}
           </p>
         </div>
       </section>
 
       {/* --- NEW FOUNDER & ENGINEERING SECTION --- */}
-      <section id="founder" className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section id="founder" className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-24">
           
           {/* SECTION 1 & 2: Founder Hero & Card */}
@@ -213,7 +213,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 5: How KVYASH Works */}
-      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
           <div className="text-center max-w-3xl mx-auto flex flex-col gap-5">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
@@ -271,14 +271,14 @@ export default function AboutPage() {
       {/* --- END NEW FOUNDER & ENGINEERING SECTION --- */}
 
       {/* Engineering Principles & Core Values Grid */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">Standards</h2>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-500">Standards</h2>
             <h3 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Engineering Principles
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm">
+            <p className="text-slate-655 dark:text-slate-400 text-sm">
               The code standards and architecture guidelines that guide our development lifecycle.
             </p>
           </div>
@@ -291,7 +291,7 @@ export default function AboutPage() {
               >
                 <div>
                   <h4 className="text-base font-bold text-navy-900 dark:text-slate-100 mb-4 border-b border-slate-200 dark:border-slate-800 pb-3">{val.title}</h4>
-                  <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">{val.desc}</p>
+                  <p className="text-slate-655 dark:text-slate-400 text-xs leading-relaxed">{val.desc}</p>
                 </div>
               </div>
             ))}
@@ -300,7 +300,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Standards of Handoff */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -358,7 +358,7 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Contact CTA */}
-      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 reveal-on-scroll">
+      <section className="py-16 md:py-24 bg-slate-50 dark:bg-[#0c1321]/50 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             {"Let's establish a technical partnership."}

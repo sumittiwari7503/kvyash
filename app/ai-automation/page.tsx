@@ -128,14 +128,14 @@ export default function AiAutomationPage() {
       </section>
 
       {/* 2. core capabilities */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">How We Solve It</h2>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">How We Solve It</span>
             <h3 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Pragmatic Automation Verticals
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm">
+            <p className="text-slate-655 dark:text-slate-400 text-sm">
               We design and execute custom API connectors and data mapping solutions.
             </p>
           </div>
@@ -163,18 +163,18 @@ export default function AiAutomationPage() {
       </section>
 
       {/* 3. Deep-Dive Section */}
-      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
             <div className="flex flex-col gap-6">
-              <span className="inline-flex self-start items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-wide">
+              <span className="inline-flex self-start items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-widest">
                 Security & Scaling
               </span>
               <h3 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
                 Secure Data Isolation Standards
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+              <p className="text-slate-655 dark:text-slate-400 text-base leading-relaxed">
                 {"We prioritize data privacy. When integrating third-party AI APIs or vector indexing stores, we implement proxy validation middleware to ensure your proprietary business data is never leaked or used to train public models."}
               </p>
               
@@ -212,10 +212,10 @@ export default function AiAutomationPage() {
       </section>
 
       {/* 4. FAQs Section */}
-      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">FAQ</h2>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">FAQ</span>
             <h3 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               AI & Automation FAQs
             </h3>
@@ -237,7 +237,7 @@ export default function AiAutomationPage() {
       </section>
 
       {/* 5. CTA */}
-      <section className="py-20 bg-white dark:bg-[#090d16] reveal-on-scroll">
+      <section className="py-16 md:py-24 bg-white dark:bg-[#090d16] reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             {"Let's automate your manual workloads."}

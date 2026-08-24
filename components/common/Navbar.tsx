@@ -50,7 +50,7 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
           scrolled 
             ? "shadow-sm py-2 bg-white/80 dark:bg-[#090d16]/80 backdrop-blur-md border-slate-200/50 dark:border-slate-800/50" 
-            : "py-3 bg-white dark:bg-[#090d16] border-slate-100 dark:border-slate-800/20"
+            : "py-4 bg-white/0 dark:bg-[#090d16]/0 border-transparent"
         }`}
       >
         <div className="max-w-[1300px] mx-auto px-6 md:px-8">

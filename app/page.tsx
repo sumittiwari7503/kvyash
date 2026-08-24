@@ -27,34 +27,34 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="font-sans text-navy-900 bg-white min-h-screen flex flex-col justify-between">
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-white dark:bg-[#090d16] transition-colors duration-300 min-h-screen flex flex-col justify-between">
       
       {/* 1. Interactive Parallax Hero */}
       <HeroSection />
 
-      {/* 2. Interactive Service Capabilities */}
+      {/* 2. Interactive Service Capabilities (Trust / What We Build) */}
       <CapabilitiesSection />
 
-      {/* 3. Scroll-driven Process Timeline */}
-      <TimelineSection />
-
-      {/* 4. Active Automation Pipelines Flow */}
+      {/* 3. Active Automation Pipelines Flow (AI & Automation) */}
       <AutomationWorkflow />
 
-      {/* 5. Scroll-driven Digitization Journey */}
+      {/* 4. Scroll-driven Digitization Journey */}
       <DigitizationJourney />
+
+      {/* 5. High-Fidelity Project Visuals & Blueprint Cards (Selected Work) */}
+      <SelectedWork />
 
       {/* 6. Live SaaS & Marketplace Blueprint Mockup */}
       <DashboardMockup />
 
-      {/* 7. High-Fidelity Project Visuals & Blueprint Cards */}
-      <SelectedWork />
+      {/* 7. Scroll-driven Process Timeline (How We Work) */}
+      <TimelineSection />
 
       {/* 8. Founder Engineering Ownership & Custom Coordinate Grid */}
       <FounderCard />
 
       {/* 9. Client Feedback (Preserved Dynamic Reviews with Scroll-reveal) */}
-      <section id="feedback" className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80">
+      <section id="feedback" className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">

@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle, AlertCircle, ArrowRight, Loader2, Mail, MapPin } from "lucide-react";
 import companyData from "@/config/company.json";
+import Chatbot from "@/components/common/Chatbot";
 
 interface FormState {
   name: string;
@@ -65,6 +66,7 @@ function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [contactMode, setContactMode] = useState<"form" | "chat">("chat");
 
   // Pre-fill service dropdown from URL search parameter (e.g. /contact?service=ai-solutions)
   useEffect(() => {
@@ -176,43 +178,74 @@ function ContactForm() {
       </section>
 
       {/* 2. Form & FAQ split section */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
             {/* Form Column */}
-            <div className="lg:col-span-7 bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 md:p-8 shadow-premium">
-              {isSuccess ? (
-                <div className="flex flex-col items-center text-center gap-6 py-12 animate-premium duration-300">
-                  <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400">
-                    <CheckCircle className="h-10 w-10" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-navy-900 dark:text-slate-100 mb-2">{"Enquiry Sent Successfully"}</h3>
-                    <p className="text-slate-600 dark:text-slate-450 text-sm max-w-md leading-relaxed">
-                      {"Thank you for contacting KVYASH Technologies. We have received your enquiry and will get back to you soon."}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setIsSuccess(false)}
-                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-navy-900 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-900 transition-premium cursor-pointer"
-                  >
-                    {"Submit another enquiry"}
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
-                  <h3 className="text-lg font-bold text-navy-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800/80 pb-3 mb-2">Project Intake Form</h3>
-                  
-                  {submitError && (
-                    <div className="p-4 bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/60 text-red-700 dark:text-red-400 text-sm rounded-lg flex items-center gap-2" role="alert" aria-live="assertive">
-                      <AlertCircle className="h-5 w-5 shrink-0" />
-                      <span>{submitError}</span>
-                    </div>
-                  )}
+            <div className="lg:col-span-7 flex flex-col gap-6">
+              
+              {/* Mode Switcher */}
+              <div className="flex bg-slate-100 dark:bg-slate-900/60 p-1 rounded-xl self-start border border-slate-200/40 dark:border-slate-800/40">
+                <button
+                  type="button"
+                  onClick={() => setContactMode("chat")}
+                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-premium cursor-pointer ${
+                    contactMode === "chat"
+                      ? "bg-white dark:bg-[#0d1321] text-brand-500 dark:text-brand-400 shadow-sm border border-slate-200/20 dark:border-slate-800/20"
+                      : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                  }`}
+                >
+                  Interactive Scoping Assistant
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setContactMode("form")}
+                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-premium cursor-pointer ${
+                    contactMode === "form"
+                      ? "bg-white dark:bg-[#0d1321] text-brand-500 dark:text-brand-400 shadow-sm border border-slate-200/20 dark:border-slate-800/20"
+                      : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                  }`}
+                >
+                  Standard Intake Form
+                </button>
+              </div>
 
-                  {/* Honeypot field for bot protection */}
-                  <div className="hidden" aria-hidden="true">
+              {contactMode === "chat" ? (
+                <Chatbot isInline={true} />
+              ) : (
+                <div className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 md:p-8 shadow-premium">
+                  {isSuccess ? (
+                    <div className="flex flex-col items-center text-center gap-6 py-12 animate-premium duration-300">
+                      <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400">
+                        <CheckCircle className="h-10 w-10" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-navy-900 dark:text-slate-100 mb-2">{"Enquiry Sent Successfully"}</h3>
+                        <p className="text-slate-600 dark:text-slate-450 text-sm max-w-md leading-relaxed">
+                          {"Thank you for contacting KVYASH Technologies. We have received your enquiry and will get back to you soon."}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setIsSuccess(false)}
+                        className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-navy-900 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-900 transition-premium cursor-pointer"
+                      >
+                        {"Submit another enquiry"}
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
+                      <h3 className="text-lg font-bold text-navy-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800/80 pb-3 mb-2">Project Intake Form</h3>
+                      
+                      {submitError && (
+                        <div className="p-4 bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/60 text-red-700 dark:text-red-400 text-sm rounded-lg flex items-center gap-2" role="alert" aria-live="assertive">
+                          <AlertCircle className="h-5 w-5 shrink-0" />
+                          <span>{submitError}</span>
+                        </div>
+                      )}
+
+                      {/* Honeypot field for bot protection */}
+                      <div className="hidden" aria-hidden="true">
                     <input
                       type="text"
                       name="website"
@@ -399,9 +432,11 @@ function ContactForm() {
                       </>
                     )}
                   </button>
-                </form>
-              )}
-            </div>
+                  </form>
+                )}
+              </div>
+            )}
+          </div>
 
             {/* Sidebar FAQ Column */}
             <div className="lg:col-span-5 flex flex-col gap-10">
@@ -497,7 +532,7 @@ function ContactForm() {
 
               {/* Scoping FAQ list */}
               <div className="space-y-6 bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm">
-                <h4 className="text-sm font-bold text-navy-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-2">Scoping FAQ</h4>
+                <h4 className="text-sm font-bold text-navy-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2">Scoping FAQ</h4>
                 {faqs.map((faq) => (
                   <div key={faq.q} className="space-y-1.5 border-b border-slate-50 dark:border-slate-800 last:border-0 pb-4 last:pb-0">
                     <h5 className="font-bold text-navy-900 dark:text-slate-200 text-sm">{faq.q}</h5>

@@ -93,11 +93,11 @@ export default function WorkClient() {
                     <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest">{bp.category}</span>
                     <span className={`text-[8px] font-bold border px-1.5 py-0.5 rounded uppercase ${
                       bp.status === "BUILT"
-                        ? "bg-green-50 text-green-700 border-green-200"
+                        ? "bg-green-50 dark:bg-green-950/40 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800/80"
                         : bp.status === "PROTOTYPE"
-                        ? "bg-blue-50 text-blue-700 border-blue-200"
+                        ? "bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/80"
                         : bp.status === "IN DEVELOPMENT"
-                        ? "bg-amber-50 text-amber-700 border-amber-200"
+                        ? "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/80"
                         : "bg-slate-100 dark:bg-slate-900 text-navy-900 dark:text-slate-200 border-slate-200 dark:border-slate-800"
                     }`}>
                       {bp.status}

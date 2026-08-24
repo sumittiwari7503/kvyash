@@ -102,7 +102,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* 2. Solutions detail */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           {solutionsData.map((sol) => {
             const Icon = sol.icon;
@@ -180,13 +180,13 @@ export default function SolutionsPage() {
       </section>
 
       {/* 4. Methodology */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">Our Diagnostics</h2>
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Our Diagnostics</span>
           <h3 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             How We Diagnose & Address Bottlenecks
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-slate-655 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
             {"We don't start by writing code. We first map out your current operational flows, database relationships, and third-party APIs to identify where data friction occurs. This scoping ensures we build exactly what is required to streamline your processes."}
           </p>
           
@@ -208,7 +208,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* 4. CTA */}
-      <section className="py-20 bg-white dark:bg-[#090d16] reveal-on-scroll">
+      <section className="py-16 md:py-24 bg-white dark:bg-[#090d16] reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             {"Let's solve your operational bottlenecks."}

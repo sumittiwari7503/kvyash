@@ -54,17 +54,17 @@ export default function DashboardMockup() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Context Copy */}
           <div className="lg:col-span-6 flex flex-col gap-6 reveal-on-scroll">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Core Engineering</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Core Engineering</span>
             <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
               Marketplace, SaaS & Custom Software
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-655 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
               We design and build multi-party platforms, multi-tenant subscription software, and robust Postgres-backed databases customized around your B2B/B2C logic.
             </p>
             

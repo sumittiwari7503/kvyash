@@ -106,12 +106,12 @@ export default function SelectedWork() {
   ];
 
   return (
-    <section id="work" className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
+    <section id="work" className="py-20 md:py-28 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col gap-3 reveal-on-scroll">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Selected Work</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Selected Work</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             Production architectures.
           </h2>

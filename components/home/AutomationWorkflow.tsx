@@ -69,7 +69,7 @@ export default function AutomationWorkflow() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 bg-slate-900 border-b border-slate-950 overflow-hidden relative">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-slate-900 border-b border-slate-950 overflow-hidden relative">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
       <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-brand-500/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -77,7 +77,7 @@ export default function AutomationWorkflow() {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3 reveal-on-scroll">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-400">Core Automation Pipeline</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-400">Core Automation Pipeline</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             AI systems that work with your business.
           </h2>

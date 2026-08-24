@@ -87,17 +87,17 @@ export default function CapabilitiesSection() {
   ];
 
   return (
-    <section ref={sectionRef} id="capabilities" className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
+    <section ref={sectionRef} id="capabilities" className="py-20 md:py-28 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col gap-3 reveal-on-scroll">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Service Avenues</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Capabilities</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
-            What can KVYASH help you with?
+            What we build.
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-            Select an avenue below to start a scoped project configuration directly in that category.
+          <p className="text-slate-650 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+            We design and build custom web applications, multi-tenant SaaS products, secure databases, and workflow automations.
           </p>
         </div>
 
