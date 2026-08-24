@@ -15,10 +15,10 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="font-sans text-navy-900 bg-white">
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-white dark:bg-[#090d16] transition-colors duration-300">
       
       {/* 1. Hero Section */}
-      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden">
+      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden reveal-on-scroll">
         <div className="absolute inset-0 opacity-5 dark:opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-5 relative z-10">
           <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-wide">
@@ -34,14 +34,14 @@ export default function WorkPage() {
       </section>
 
       {/* 2. Interactive Portfolio & Filters Section */}
-      <section className="py-20 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-20 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WorkClient />
         </div>
       </section>
 
       {/* 3. AI & Automation Capabilities Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
@@ -93,7 +93,7 @@ export default function WorkPage() {
       </section>
 
       {/* 4. How We Approach Projects */}
-      <section className="py-20 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-20 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
@@ -131,7 +131,7 @@ export default function WorkPage() {
       </section>
 
       {/* 5. CTA Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50">
+      <section className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-xl p-8 sm:p-12 shadow-sm text-center flex flex-col gap-6 items-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">

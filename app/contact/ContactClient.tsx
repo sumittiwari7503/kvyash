@@ -157,10 +157,10 @@ function ContactForm() {
   };
 
   return (
-    <div className="font-sans text-navy-900 bg-white">
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-white dark:bg-[#090d16] transition-colors duration-300">
       
       {/* 1. Header Hero */}
-      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
+      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden reveal-on-scroll">
         <div className="absolute inset-0 opacity-5 dark:opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
           <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-wide">
@@ -176,7 +176,7 @@ function ContactForm() {
       </section>
 
       {/* 2. Form & FAQ split section */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             

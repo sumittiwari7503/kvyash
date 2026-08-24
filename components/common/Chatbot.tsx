@@ -4457,17 +4457,17 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 font-sans flex flex-col items-end gap-3 pointer-events-none">
+    <div className="fixed bottom-4 left-4 right-4 md:bottom-6 md:right-6 z-40 font-sans flex flex-col items-end gap-3 pointer-events-none">
       {/* Chat Panel Box */}
       <div
-        className={`flex flex-col bg-white border border-slate-200 shadow-2xl rounded-2xl w-[calc(100vw-32px)] h-[80vh] max-h-[460px] sm:w-[380px] sm:h-[500px] sm:max-h-[80vh] overflow-hidden transform transition-all duration-300 origin-bottom-right ${
+        className={`flex flex-col bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 shadow-2xl rounded-2xl w-[calc(100vw-32px)] h-[80vh] max-h-[460px] sm:w-[380px] sm:h-[500px] sm:max-h-[80vh] overflow-hidden transform transition-all duration-300 origin-bottom-right ${
           isOpen
             ? "scale-100 opacity-100 translate-y-0 pointer-events-auto"
             : "scale-95 opacity-0 translate-y-4 pointer-events-none"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between bg-navy-900 text-white px-5 py-4 shrink-0">
+        <div className="flex items-center justify-between bg-navy-900 dark:bg-slate-950 text-white px-5 py-4 shrink-0">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center h-9 w-9 rounded-full bg-brand-500">
               <Bot className="h-5 w-5 text-white" />
@@ -4496,14 +4496,14 @@ export default function Chatbot() {
 
         {/* Dynamic Progress Indicator */}
         {(chatState as string) !== "IDLE" && (chatState as string) !== "SUCCESS" && (chatState as string) !== "SUBMITTING" && (
-          <div className="bg-brand-50 border-b border-brand-100 text-brand-600 text-[10px] px-4 py-1.5 font-bold uppercase tracking-wider flex justify-between shrink-0">
+          <div className="bg-brand-50 dark:bg-slate-900 border-b border-brand-100 dark:border-brand-900/60 text-brand-600 dark:text-brand-400 text-[10px] px-4 py-1.5 font-bold uppercase tracking-wider flex justify-between shrink-0">
             <span>Project Scoping Flow</span>
             <span>Step {getStepNumber(chatState)} of 8</span>
           </div>
         )}
 
         {/* Messages list */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-[#090d16]/50">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -4513,7 +4513,7 @@ export default function Chatbot() {
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-line ${
                   msg.sender === "user"
                     ? "bg-brand-500 text-white rounded-tr-none"
-                    : "bg-white border border-slate-200 text-slate-700 rounded-tl-none shadow-sm"
+                    : "bg-white dark:bg-[#090d16] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none shadow-sm"
                 }`}
               >
                 {msg.text}
@@ -4523,46 +4523,46 @@ export default function Chatbot() {
 
           {/* Inline Summary Card */}
           {(chatState as string) === "REVIEW" && (
-            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-3 animate-premium text-xs text-slate-700">
-              <h4 className="font-bold text-navy-900 border-b border-slate-100 pb-1.5 text-sm uppercase tracking-wider">
+            <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm space-y-3 animate-premium text-xs text-slate-700 dark:text-slate-300">
+              <h4 className="font-bold text-navy-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800/80 pb-1.5 text-sm uppercase tracking-wider">
                 PROJECT ENQUIRY SUMMARY
               </h4>
               <div className="space-y-1.5">
                 <div className="flex justify-between gap-2">
-                  <span className="font-semibold text-slate-400">Name:</span>
-                  <span className="text-navy-900 text-right">{intakeData.name}</span>
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Name:</span>
+                  <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.name}</span>
                 </div>
                 <div className="flex justify-between gap-2">
-                  <span className="font-semibold text-slate-400">Email:</span>
-                  <span className="text-navy-900 text-right break-all">{intakeData.email}</span>
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Email:</span>
+                  <span className="text-navy-900 dark:text-slate-200 text-right break-all">{intakeData.email}</span>
                 </div>
                 {intakeData.phone && intakeData.phone !== "Skipped" && (
                   <div className="flex justify-between gap-2">
-                    <span className="font-semibold text-slate-400">Phone:</span>
-                    <span className="text-navy-900 text-right">{intakeData.phone}</span>
+                    <span className="font-semibold text-slate-400 dark:text-slate-500">Phone:</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.phone}</span>
                   </div>
                 )}
                 {intakeData.company && intakeData.company !== "Skipped" && (
                   <div className="flex justify-between gap-2">
-                    <span className="font-semibold text-slate-400">Company:</span>
-                    <span className="text-navy-900 text-right">{intakeData.company}</span>
+                    <span className="font-semibold text-slate-400 dark:text-slate-500">Company:</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.company}</span>
                   </div>
                 )}
                 <div className="flex justify-between gap-2">
-                  <span className="font-semibold text-slate-400">Project Type:</span>
-                  <span className="text-navy-900 text-right font-bold text-brand-500">{intakeData.serviceLabel}</span>
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Project Type:</span>
+                  <span className="text-navy-900 dark:text-slate-200 text-right font-bold text-brand-500 dark:text-brand-400">{intakeData.serviceLabel}</span>
                 </div>
 
                 {/* Structured Scoping Metadata Rows */}
                 {scopingData.consultGoal && (
                   <>
-                    <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
-                      <span className="font-semibold text-slate-400">Goal:</span>
-                      <span className="text-navy-900 text-right">{scopingData.consultGoal}</span>
+                    <div className="flex justify-between gap-2 border-t border-slate-50 dark:border-slate-800/80 pt-1">
+                      <span className="font-semibold text-slate-400 dark:text-slate-500">Goal:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.consultGoal}</span>
                     </div>
                     <div className="flex justify-between gap-2">
-                      <span className="font-semibold text-slate-400">Challenge:</span>
-                      <span className="text-navy-900 text-right">{scopingData.consultProblem}</span>
+                      <span className="font-semibold text-slate-400 dark:text-slate-500">Challenge:</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.consultProblem}</span>
                     </div>
                   </>
                 )}
@@ -4570,19 +4570,19 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Offline Business:</span>
-                      <span className="text-navy-900 text-right">{scopingData.offlineBizType}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlineBizType}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Online Action:</span>
-                      <span className="text-navy-900 text-right">{scopingData.offlineDesiredAction}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlineDesiredAction}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Online Payments:</span>
-                      <span className="text-navy-900 text-right">{scopingData.offlinePayments}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlinePayments}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Marketing Support:</span>
-                      <span className="text-navy-900 text-right">{scopingData.offlineMarketing}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.offlineMarketing}</span>
                     </div>
                   </>
                 )}
@@ -4590,19 +4590,19 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Target Marketplace:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketType}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketType}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Model Type:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketProductOrService}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketProductOrService}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Vendor Onboarding:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketVendorOnboarding}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketVendorOnboarding}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Portals Needed:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketDashboards === "Yes" ? "Vendor & Customer Dashboards" : "Basic/Standard"}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketDashboards === "Yes" ? "Vendor & Customer Dashboards" : "Basic/Standard"}</span>
                     </div>
                   </>
                 )}
@@ -4610,19 +4610,19 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Promoting:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketingBusiness}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingBusiness}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Platform Live:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketingIsLive}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingIsLive}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Primary Goal:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketingObjective}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingObjective}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">SEO Audit:</span>
-                      <span className="text-navy-900 text-right">{scopingData.marketingSEO}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.marketingSEO}</span>
                     </div>
                   </>
                 )}
@@ -4630,19 +4630,19 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Selling Products:</span>
-                      <span className="text-navy-900 text-right">{scopingData.ecommProducts}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommProducts}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Payments Gate:</span>
-                      <span className="text-navy-900 text-right">{scopingData.ecommPayments}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommPayments}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Inventory Sync:</span>
-                      <span className="text-navy-900 text-right">{scopingData.ecommInventory}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommInventory}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Admin Control:</span>
-                      <span className="text-navy-900 text-right">{scopingData.ecommAdmin}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.ecommAdmin}</span>
                     </div>
                   </>
                 )}
@@ -4650,15 +4650,15 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">CRM Setup:</span>
-                      <span className="text-navy-900 text-right">{scopingData.crmType}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.crmType}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">CRM Users:</span>
-                      <span className="text-navy-900 text-right">{scopingData.crmUsers}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.crmUsers}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">WhatsApp/Email:</span>
-                      <span className="text-navy-900 text-right">{scopingData.crmIntegrations}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.crmIntegrations}</span>
                     </div>
                   </>
                 )}
@@ -4666,11 +4666,11 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">WhatsApp CRM:</span>
-                      <span className="text-navy-900 text-right">{scopingData.waSetup} (Vol: {scopingData.waVolume})</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.waSetup} (Vol: {scopingData.waVolume})</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Replies & Followups:</span>
-                      <span className="text-navy-900 text-right">Replies: {scopingData.waReplies} / Followups: {scopingData.waFollowups}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">Replies: {scopingData.waReplies} / Followups: {scopingData.waFollowups}</span>
                     </div>
                   </>
                 )}
@@ -4678,15 +4678,15 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Email Platform:</span>
-                      <span className="text-navy-900 text-right">{scopingData.emailPlatform}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.emailPlatform}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">AI Classification:</span>
-                      <span className="text-navy-900 text-right">{scopingData.emailClassify}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.emailClassify}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Human Approval:</span>
-                      <span className="text-navy-900 text-right">{scopingData.emailApproval}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.emailApproval}</span>
                     </div>
                   </>
                 )}
@@ -4694,15 +4694,15 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Calling Agent:</span>
-                      <span className="text-navy-900 text-right">{scopingData.callPurpose} ({scopingData.callDirection})</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.callPurpose} ({scopingData.callDirection})</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Voice Languages:</span>
-                      <span className="text-navy-900 text-right">{scopingData.callLanguages}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.callLanguages}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">CRM Sync & Handoff:</span>
-                      <span className="text-navy-900 text-right">CRM: {scopingData.callCrm} / Handoff: {scopingData.callHandoff}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">CRM: {scopingData.callCrm} / Handoff: {scopingData.callHandoff}</span>
                     </div>
                   </>
                 )}
@@ -4710,35 +4710,35 @@ export default function Chatbot() {
                   <>
                     <div className="flex justify-between gap-2 border-t border-slate-50 pt-1">
                       <span className="font-semibold text-slate-400">Website Type:</span>
-                      <span className="text-navy-900 text-right">{scopingData.webType}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.webType}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">Core Features:</span>
-                      <span className="text-navy-900 text-right">{scopingData.webFeatures}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.webFeatures}</span>
                     </div>
                     <div className="flex justify-between gap-2">
                       <span className="font-semibold text-slate-400">CMS Required:</span>
-                      <span className="text-navy-900 text-right">{scopingData.webCms}</span>
+                      <span className="text-navy-900 dark:text-slate-200 text-right">{scopingData.webCms}</span>
                     </div>
                   </>
                 )}
 
-                <div className="flex flex-col gap-0.5 pt-1 border-t border-slate-100">
-                  <span className="font-semibold text-slate-400">Compiled Blueprint Description:</span>
-                  <span className="text-navy-900 leading-relaxed bg-slate-50 border border-slate-100 rounded p-1.5 mt-1 block whitespace-pre-line font-mono text-[10px]">
+                <div className="flex flex-col gap-0.5 pt-1 border-t border-slate-100 dark:border-slate-800/80">
+                  <span className="font-semibold text-slate-400 dark:text-slate-500">Compiled Blueprint Description:</span>
+                  <span className="text-navy-900 dark:text-slate-200 leading-relaxed bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/80 rounded p-1.5 mt-1 block whitespace-pre-line font-mono text-[10px]">
                     {intakeData.requirements}
                   </span>
                 </div>
                 {intakeData.timeline && intakeData.timeline !== "Not Specified" && (
                   <div className="flex justify-between gap-2 pt-1 border-t border-slate-50">
                     <span className="font-semibold text-slate-400">Timeline:</span>
-                    <span className="text-navy-900 text-right">{intakeData.timeline}</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.timeline}</span>
                   </div>
                 )}
                 {intakeData.budget && intakeData.budget !== "Flexible / Unspecified" && (
                   <div className="flex justify-between gap-2">
                     <span className="font-semibold text-slate-400">Budget:</span>
-                    <span className="text-navy-900 text-right">{intakeData.budget}</span>
+                    <span className="text-navy-900 dark:text-slate-200 text-right">{intakeData.budget}</span>
                   </div>
                 )}
               </div>
@@ -4759,7 +4759,7 @@ export default function Chatbot() {
         </div>
 
         {/* Dynamic Controls / Choice Selectors Block */}
-        <div className="p-3 bg-white border-t border-slate-100 flex flex-col gap-2 shrink-0">
+        <div className="p-3 bg-white dark:bg-[#0d1321] border-t border-slate-100 dark:border-slate-800/80 flex flex-col gap-2 shrink-0">
           
           {/* Idle state shortcuts */}
           {(chatState as string) === "IDLE" && !isTyping && (
@@ -4780,7 +4780,7 @@ export default function Chatbot() {
           {((chatState as string) === "ASK_OPTIONAL_PHONE" || (chatState as string) === "ASK_OPTIONAL_COMPANY") && (
             <button
               onClick={handleSkipField}
-              className="w-full text-center py-2 border border-dashed border-slate-200 rounded text-slate-500 hover:bg-slate-50 text-xs font-semibold transition-premium cursor-pointer"
+              className="w-full text-center py-2 border border-dashed border-slate-200 dark:border-slate-800 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-semibold transition-premium cursor-pointer"
             >
               {language === "en" ? "Skip optional step" : "Optional step skip karein"}
             </button>
@@ -4793,7 +4793,7 @@ export default function Chatbot() {
                 <button
                   key={opt}
                   onClick={() => handleSelectOption(opt)}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer truncate px-1"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer truncate px-1"
                 >
                   {opt}
                 </button>
@@ -4825,7 +4825,7 @@ export default function Chatbot() {
                 <button
                   type="button"
                   onClick={() => handleSelectOption("No")}
-                  className="flex-1 text-center py-2 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-bold transition-premium cursor-pointer shadow-sm"
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-bold transition-premium cursor-pointer shadow-sm"
                 >
                   No
                 </button>
@@ -4850,7 +4850,7 @@ export default function Chatbot() {
                 <button
                   key={opt.label}
                   onClick={() => handleSelectOption(opt.value)}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-[10px] sm:text-xs font-semibold transition-premium cursor-pointer truncate px-1"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-semibold transition-premium cursor-pointer truncate px-1"
                 >
                   {opt.label}
                 </button>
@@ -4865,14 +4865,14 @@ export default function Chatbot() {
                 <button
                   key={opt}
                   onClick={() => handleSelectOption(opt)}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
                 >
                   {opt}
                 </button>
               ))}
               <button
                 onClick={handleSkipField}
-                className="text-center py-1.5 border border-dashed border-slate-200 rounded text-slate-500 hover:bg-slate-50 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+                className="text-center py-1.5 border border-dashed border-slate-200 dark:border-slate-800 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
               >
                 Skip
               </button>
@@ -4886,14 +4886,14 @@ export default function Chatbot() {
                 <button
                   key={opt}
                   onClick={() => handleSelectOption(opt)}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
                 >
                   {opt}
                 </button>
               ))}
               <button
                 onClick={() => handleSelectOption("Skip")}
-                className="text-center py-1.5 border border-dashed border-slate-200 rounded text-slate-500 hover:bg-slate-50 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
+                className="text-center py-1.5 border border-dashed border-slate-200 dark:border-slate-800 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] sm:text-xs font-medium transition-premium cursor-pointer"
               >
                 Skip
               </button>
@@ -4920,14 +4920,14 @@ export default function Chatbot() {
                 <button
                   onClick={() => setChatState("PROJECT_EDIT")}
                   disabled={(chatState as string) === "SUBMITTING" || isTyping}
-                  className="flex-1 text-center py-2 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {language === "en" ? "Edit" : "Edit"}
                 </button>
                 <button
                   onClick={handleCancelEnquiry}
                   disabled={(chatState as string) === "SUBMITTING" || isTyping}
-                  className="flex-1 text-center py-2 border border-slate-200 rounded text-red-500 hover:bg-red-50 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 text-xs font-bold transition-premium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {language === "en" ? "Cancel" : "Cancel"}
                 </button>
@@ -4942,32 +4942,32 @@ export default function Chatbot() {
               <div className="grid grid-cols-2 gap-1.5">
                 <button
                   onClick={() => handleEditField("name", "ASK_CONTACT_NAME")}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-medium transition-premium cursor-pointer"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
                 >
                   Edit Name
                 </button>
                 <button
                   onClick={() => handleEditField("email", "ASK_CONTACT_EMAIL")}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-medium transition-premium cursor-pointer"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
                 >
                   Edit Email
                 </button>
                 <button
                   onClick={() => handleEditField("serviceLabel", "ASK_PROJECT_TYPE")}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-medium transition-premium cursor-pointer"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
                 >
                   Edit Project Type
                 </button>
                 <button
                   onClick={() => handleEditField("requirements", "ASK_REQUIREMENTS")}
-                  className="text-center py-1.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-medium transition-premium cursor-pointer"
+                  className="text-center py-1.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-medium transition-premium cursor-pointer"
                 >
                   Edit Requirements
                 </button>
               </div>
               <button
                 onClick={() => setChatState("REVIEW")}
-                className="w-full text-center py-2 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 text-xs font-bold transition-premium cursor-pointer"
+                className="w-full text-center py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-700 dark:text-slate-300 text-xs font-bold transition-premium cursor-pointer"
               >
                 Back to Summary
               </button>
@@ -4996,7 +4996,7 @@ export default function Chatbot() {
               <div className="flex gap-2">
                 <a
                   href="/services"
-                  className="flex-1 text-center py-2 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-premium cursor-pointer"
+                  className="flex-1 text-center py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-semibold transition-premium cursor-pointer"
                 >
                   View Services
                 </a>
@@ -5021,7 +5021,7 @@ export default function Chatbot() {
             e.preventDefault();
             handleSend(inputText);
           }}
-          className="flex items-center gap-2 border-t border-slate-200 p-3 bg-white shrink-0"
+          className="flex items-center gap-2 border-t border-slate-200 dark:border-slate-800/80 p-3 bg-white dark:bg-[#0d1321] shrink-0"
         >
           <input
             type="text"
@@ -5057,7 +5057,7 @@ export default function Chatbot() {
                 : "Select an option below..."
             }
             aria-label="Ask chatbot a question"
-            className="flex-1 text-sm bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:bg-white transition-premium disabled:bg-slate-100 disabled:text-slate-400"
+            className="flex-1 text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3.5 py-2.5 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-slate-950 transition-premium disabled:bg-slate-100 dark:disabled:bg-slate-900 disabled:text-slate-400 dark:disabled:text-slate-600"
           />
           <button
             type="submit"

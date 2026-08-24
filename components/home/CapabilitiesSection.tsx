@@ -148,14 +148,14 @@ export default function CapabilitiesSection() {
                     {/* Index 0: Web Development Preview */}
                     {idx === 0 && (
                       <div className="w-full h-full flex flex-col justify-between">
-                        <div className="flex items-center gap-1 bg-slate-200/50 p-1 rounded-md text-[8px] font-mono text-slate-500">
+                        <div className="flex items-center gap-1 bg-slate-200/50 dark:bg-slate-800/80 p-1 rounded-md text-[8px] font-mono text-slate-500 dark:text-slate-400">
                           <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
                           <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
                           <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                          <span className="ml-1 text-[7px] truncate text-slate-400">kvyash.com</span>
+                          <span className="ml-1 text-[7px] truncate text-slate-400 dark:text-slate-500">kvyash.com</span>
                         </div>
                         <div className="flex-1 flex items-center gap-2 px-1 mt-2">
-                          <div className="h-6 flex-1 bg-slate-200/60 rounded flex items-center px-1.5 text-[8px] text-slate-400 font-mono">
+                          <div className="h-6 flex-1 bg-slate-200/60 dark:bg-slate-900/60 rounded flex items-center px-1.5 text-[8px] text-slate-400 dark:text-slate-500 font-mono">
                             {isHovered ? "Building system..." : "Enter idea..."}
                           </div>
                           <div className="h-6 w-12 bg-brand-500 text-white text-[7px] font-bold rounded flex items-center justify-center transition-all group-hover:bg-brand-600">
@@ -169,7 +169,7 @@ export default function CapabilitiesSection() {
                     {idx === 1 && (
                       <div className="flex items-center justify-around w-full px-4">
                         <div className="flex flex-col items-center">
-                          <div className="h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-mono font-bold text-slate-500 relative">
+                          <div className="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-[8px] font-mono font-bold text-slate-500 dark:text-slate-400 relative">
                             API
                             {isHovered && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-brand-500 animate-ping" />}
                           </div>
@@ -191,7 +191,7 @@ export default function CapabilitiesSection() {
                     {/* Index 2: AI Agent Flow */}
                     {idx === 2 && (
                       <div className="flex items-center gap-1.5 justify-center text-[7px] font-mono">
-                        <span className="bg-slate-200/80 px-1 py-0.5 rounded text-slate-600">Trigger</span>
+                        <span className="bg-slate-200/80 dark:bg-slate-800/80 px-1 py-0.5 rounded text-slate-600 dark:text-slate-300">Trigger</span>
                         <span className="text-slate-300">&rarr;</span>
                         <span className="bg-brand-500 text-white px-1.5 py-0.5 rounded font-bold animate-pulse">AI Agent</span>
                         <span className="text-slate-300">&rarr;</span>
@@ -205,7 +205,7 @@ export default function CapabilitiesSection() {
                         <div className="bg-emerald-500 text-white text-[8px] rounded-lg px-2 py-1 max-w-[80%] self-start rounded-tl-none shadow-sm transition-transform duration-300 group-hover:scale-95">
                           Need booking bot setup
                         </div>
-                        <div className="bg-white border border-slate-200 text-slate-700 text-[8px] rounded-lg px-2 py-1 max-w-[80%] self-end rounded-tr-none shadow-sm">
+                        <div className="bg-white dark:bg-[#090d16] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-[8px] rounded-lg px-2 py-1 max-w-[80%] self-end rounded-tr-none shadow-sm">
                           {isHovered ? "Configuring calendar slot..." : "Initializing CRM API..."}
                         </div>
                       </div>
@@ -214,7 +214,7 @@ export default function CapabilitiesSection() {
                     {/* Index 4: Consulting Stack Architecture */}
                     {idx === 4 && (
                       <div className="flex flex-col gap-1 w-full max-w-[150px] font-mono text-[7px] text-center">
-                        <div className="bg-slate-200 text-slate-700 border border-slate-300 rounded py-0.5">Frontend App (Next.js)</div>
+                        <div className="bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-350 border border-slate-300 dark:border-slate-700 rounded py-0.5">Frontend App (Next.js)</div>
                         <div className="bg-brand-500 text-white rounded py-0.5 relative">
                           API controller
                           {isHovered && <span className="absolute inset-0 bg-brand-600 rounded animate-ping opacity-25" />}
@@ -228,7 +228,7 @@ export default function CapabilitiesSection() {
                       <div className="w-full flex justify-between items-center text-[8px] font-mono px-2">
                         <div className="flex flex-col">
                           <span className="text-slate-400">Vendor Item</span>
-                          <span className="font-bold text-navy-900">$120.00</span>
+                          <span className="font-bold text-navy-900 dark:text-slate-100">$120.00</span>
                         </div>
                         <div className="h-6 w-16 bg-emerald-500 text-white rounded flex items-center justify-center font-bold">
                           {isHovered ? "Paid split" : "Pay with Card"}

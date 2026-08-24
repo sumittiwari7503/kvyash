@@ -5,6 +5,7 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import Chatbot from "@/components/common/Chatbot";
 import CookieBanner from "@/components/common/CookieBanner";
+import ScrollRevealProvider from "@/components/common/ScrollRevealProvider";
 import companyData from "@/config/company.json";
 
 const geistSans = Geist({
@@ -125,7 +126,8 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-navy-900">
+      <body className="min-h-full flex flex-col bg-white dark:bg-[#090d16] text-navy-900 dark:text-slate-100 transition-colors duration-300">
+        <ScrollRevealProvider />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Chatbot />

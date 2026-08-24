@@ -67,7 +67,7 @@ export default function WorkClient() {
             className={`px-4 py-2 text-xs font-bold rounded-full border transition-all cursor-pointer ${
               activeFilter === f.id
                 ? "bg-brand-500 text-white border-brand-500 shadow-sm"
-                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+                : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
             }`}
           >
             {f.label}
@@ -86,7 +86,7 @@ export default function WorkClient() {
             return (
               <div
                 key={bp.title}
-                className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-premium transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-premium transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -98,20 +98,20 @@ export default function WorkClient() {
                         ? "bg-blue-50 text-blue-700 border-blue-200"
                         : bp.status === "IN DEVELOPMENT"
                         ? "bg-amber-50 text-amber-700 border-amber-200"
-                        : "bg-slate-100 text-navy-900 border-slate-200"
+                        : "bg-slate-100 dark:bg-slate-900 text-navy-900 dark:text-slate-200 border-slate-200 dark:border-slate-800"
                     }`}>
                       {bp.status}
                     </span>
                   </div>
-                  <h3 className="text-sm font-bold text-navy-900 leading-tight mb-2 group-hover:text-brand-500 transition-colors">{bp.title}</h3>
-                  <p className="text-slate-600 text-xs leading-relaxed mb-6">{bp.desc}</p>
+                  <h3 className="text-sm font-bold text-navy-900 dark:text-slate-100 leading-tight mb-2 group-hover:text-brand-500 transition-colors">{bp.title}</h3>
+                  <p className="text-slate-650 dark:text-slate-400 text-xs leading-relaxed mb-6">{bp.desc}</p>
                   
                   {/* Tech Stack Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {bp.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[9px] bg-slate-50 text-slate-500 border border-slate-200 rounded px-2 py-0.5 font-medium"
+                        className="text-[9px] bg-slate-50 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 rounded px-2 py-0.5 font-medium"
                       >
                         {tech}
                       </span>
@@ -121,7 +121,7 @@ export default function WorkClient() {
 
                 <StartProjectButton
                   intent="BUILD_SOMETHING"
-                  className="inline-flex items-center text-xs font-bold text-navy-900 hover:text-brand-500 mt-2 cursor-pointer self-start group-hover:translate-x-0.5 transition-transform"
+                  className="inline-flex items-center text-xs font-bold text-navy-900 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 mt-2 cursor-pointer self-start group-hover:translate-x-0.5 transition-transform"
                 >
                   Explore Architecture <ChevronRight className="ml-1 h-3.5 w-3.5" />
                 </StartProjectButton>

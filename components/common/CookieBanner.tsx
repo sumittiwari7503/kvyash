@@ -38,25 +38,25 @@ export default function CookieBanner() {
 
   return (
     <div 
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 bg-white border border-slate-200 rounded-xl p-5 shadow-premium flex flex-col gap-4 animate-premium duration-300"
+      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-premium flex flex-col gap-4 animate-premium duration-300"
       role="dialog" 
       aria-label="Cookie Consent Banner"
     >
       <div className="flex flex-col gap-1.5">
-        <h4 className="text-sm font-bold text-navy-900">Cookie Preferences</h4>
-        <p className="text-slate-600 text-xs leading-relaxed">
+        <h4 className="text-sm font-bold text-navy-900 dark:text-slate-100">Cookie Preferences</h4>
+        <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
           We use essential cookies to verify contact form submissions and secure user sessions. We do not use third-party advertising or marketing trackers.
         </p>
       </div>
 
       {showPreferences ? (
-        <div className="flex flex-col gap-3 pt-2 border-t border-slate-100">
+        <div className="flex flex-col gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-navy-900">Essential Cookies</span>
+            <span className="font-semibold text-navy-900 dark:text-slate-100">Essential Cookies</span>
             <span className="text-slate-400 font-medium">Always Active</span>
           </div>
           <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-navy-900">Optional Analytics</span>
+            <span className="font-semibold text-navy-900 dark:text-slate-100">Optional Analytics</span>
             <label className="relative inline-flex items-center cursor-pointer">
               <input 
                 type="checkbox" 
@@ -64,7 +64,7 @@ export default function CookieBanner() {
                 onChange={(e) => setAnalyticsConsent(e.target.checked)}
                 className="sr-only peer" 
               />
-              <div className="w-9 h-5 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-500"></div>
+              <div className="w-9 h-5 bg-slate-200 dark:bg-slate-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:after:bg-slate-200 after:border-slate-300 dark:after:border-slate-700 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-500"></div>
             </label>
           </div>
           <div className="flex gap-2.5 mt-2">
@@ -76,7 +76,7 @@ export default function CookieBanner() {
             </button>
             <button
               onClick={() => setShowPreferences(false)}
-              className="px-3 py-2 border border-slate-200 rounded text-slate-600 hover:bg-slate-50 text-xs font-semibold transition-premium cursor-pointer"
+              className="px-3 py-2 border border-slate-200 dark:border-slate-800 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-semibold transition-premium cursor-pointer"
             >
               Back
             </button>
@@ -93,16 +93,16 @@ export default function CookieBanner() {
             </button>
             <button
               onClick={handleRejectOptional}
-              className="flex-1 text-center py-2.5 border border-slate-200 rounded text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-premium cursor-pointer"
+              className="flex-1 text-center py-2.5 border border-slate-200 dark:border-slate-800 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-semibold transition-premium cursor-pointer"
             >
               Reject Optional
             </button>
           </div>
           <button
             onClick={() => setShowPreferences(true)}
-            className="text-center text-brand-500 hover:text-brand-600 text-xs font-medium transition-premium cursor-pointer self-start"
+            className="text-center text-[10px] font-bold text-slate-400 dark:text-slate-500 hover:text-brand-500 dark:hover:text-brand-400 transition-premium uppercase tracking-wider cursor-pointer"
           >
-            Manage Cookie Preferences
+            Customize Preferences
           </button>
         </div>
       )}

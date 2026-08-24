@@ -41,7 +41,7 @@ const solutionsData = [
 
 export default function SolutionsPage() {
   return (
-    <div className="font-sans text-navy-900 bg-white">
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-white dark:bg-[#090d16] transition-colors duration-300">
       {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
@@ -86,7 +86,7 @@ export default function SolutionsPage() {
       />
       
       {/* 1. Header Hero */}
-      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden">
+      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden reveal-on-scroll">
         <div className="absolute inset-0 opacity-5 dark:opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
           <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-wide">
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* 2. Solutions detail */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           {solutionsData.map((sol) => {
             const Icon = sol.icon;
@@ -144,7 +144,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* 3. Technology Stack & Systems Integration Matrix */}
-      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
             <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">Our Stack</h2>
@@ -180,7 +180,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* 4. Methodology */}
-      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
+      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6">
           <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">Our Diagnostics</h2>
           <h3 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
@@ -208,7 +208,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* 4. CTA */}
-      <section className="py-20 bg-white dark:bg-[#090d16]">
+      <section className="py-20 bg-white dark:bg-[#090d16] reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             {"Let's solve your operational bottlenecks."}

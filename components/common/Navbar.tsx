@@ -69,7 +69,7 @@ export default function Navbar() {
                     className={`text-sm font-medium transition-premium hover:text-brand-500 dark:hover:text-brand-400 ${
                       isActive 
                         ? "text-brand-500 font-semibold" 
-                        : "text-slate-650 dark:text-slate-350"
+                        : "text-slate-600 dark:text-slate-400"
                     }`}
                   >
                     {item.label}
@@ -145,7 +145,7 @@ export default function Navbar() {
                 className={`text-lg font-medium py-2 border-b border-slate-50 dark:border-slate-800/40 transition-premium hover:text-brand-500 dark:hover:text-brand-400 ${
                   isActive 
                     ? "text-brand-500 font-semibold" 
-                    : "text-slate-650 dark:text-slate-350"
+                    : "text-slate-600 dark:text-slate-400"
                 }`}
               >
                 {item.label}
