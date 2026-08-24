@@ -54,17 +54,17 @@ export default function Home() {
       <FounderCard />
 
       {/* 9. Client Feedback (Preserved Dynamic Reviews with Scroll-reveal) */}
-      <section id="feedback" className="py-20 bg-slate-50 border-b border-slate-200/60">
+      <section id="feedback" className="py-20 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column */}
             <div className="lg:col-span-5 flex flex-col gap-3 text-center lg:text-left">
               <span className="text-xs font-bold uppercase tracking-wider text-brand-500">CLIENT FEEDBACK</span>
-              <h2 className="text-3xl font-extrabold text-navy-900 tracking-tight">
+              <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
                 Real work. Real feedback.
               </h2>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-md mx-auto lg:mx-0">
+              <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed max-w-md mx-auto lg:mx-0">
                 Verified feedback from real client collaborations will appear here with permission.
               </p>
             </div>
@@ -73,14 +73,14 @@ export default function Home() {
             <div className="lg:col-span-7 w-full">
               {clientReviews.filter(r => r.verified && r.approved).length === 0 ? (
                 /* Compact Empty State Card */
-                <div className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-sm flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 max-w-2xl mx-auto lg:ml-auto">
+                <div className="bg-white dark:bg-[#0d1321] border border-slate-200/80 dark:border-slate-800/80 rounded-xl p-6 shadow-sm flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 max-w-2xl mx-auto lg:ml-auto">
                   <div className="flex items-start gap-4 text-center sm:text-left flex-col sm:flex-row">
-                    <div className="h-10 w-10 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 mx-auto sm:mx-0">
+                    <div className="h-10 w-10 rounded-full bg-slate-50 dark:bg-slate-900 text-slate-400 dark:text-slate-500 flex items-center justify-center shrink-0 mx-auto sm:mx-0">
                       <ShieldCheck className="h-5 w-5" />
                     </div>
                     <div className="space-y-1">
-                      <h4 className="font-bold text-navy-900 text-sm">Building our client feedback library.</h4>
-                      <p className="text-slate-500 text-xs leading-relaxed max-w-md">
+                      <h4 className="font-bold text-navy-900 dark:text-slate-100 text-sm">Building our client feedback library.</h4>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed max-w-md">
                         Verified client feedback will be published as real collaborations are completed and permission is provided.
                       </p>
                     </div>
@@ -99,7 +99,7 @@ export default function Home() {
                     .map((rev) => (
                       <div
                         key={rev.id}
-                        className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between"
+                        className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm flex flex-col justify-between"
                       >
                         <div>
                           <div className="flex items-center gap-1 mb-3">
@@ -112,20 +112,20 @@ export default function Home() {
                               />
                             ))}
                           </div>
-                          <p className="text-slate-600 text-xs leading-relaxed italic mb-4">
+                          <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed italic mb-4">
                             &ldquo;{rev.review}&rdquo;
                           </p>
                         </div>
 
-                        <div className="flex items-center gap-2.5 pt-3 border-t border-slate-100">
-                          <div className="h-7 w-7 rounded-full bg-brand-50 flex items-center justify-center text-brand-500 font-bold text-xs shrink-0">
+                        <div className="flex items-center gap-2.5 pt-3 border-t border-slate-100 dark:border-slate-800">
+                          <div className="h-7 w-7 rounded-full bg-brand-50 dark:bg-slate-900 flex items-center justify-center text-brand-500 dark:text-brand-400 font-bold text-xs shrink-0">
                             {rev.name.split(" ").map(n => n[0]).join("")}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <span className="block font-bold text-navy-900 text-[11px] truncate">{rev.name}</span>
-                            <span className="block text-slate-500 text-[9px] truncate">{rev.role} at {rev.company}</span>
+                            <span className="block font-bold text-navy-900 dark:text-slate-100 text-[11px] truncate">{rev.name}</span>
+                            <span className="block text-slate-500 dark:text-slate-400 text-[9px] truncate">{rev.role} at {rev.company}</span>
                           </div>
-                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[8px] font-bold bg-green-50 text-green-700 border border-green-200 uppercase shrink-0">
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[8px] font-bold bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800 uppercase shrink-0">
                             Verified
                           </span>
                         </div>

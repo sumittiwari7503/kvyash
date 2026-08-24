@@ -106,16 +106,16 @@ export default function SelectedWork() {
   ];
 
   return (
-    <section id="work" className="py-24 bg-slate-50 border-b border-slate-200/60 overflow-hidden">
+    <section id="work" className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col gap-3 reveal-on-scroll">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Selected Work</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             Production architectures.
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-650 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             Technical blueprints of the solutions and production code pipelines we design and deploy.
           </p>
         </div>
@@ -125,23 +125,23 @@ export default function SelectedWork() {
           {selectedProjects.map((proj, idx) => (
             <div
               key={proj.title}
-              className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-premium transition-all duration-500 flex flex-col justify-between group reveal-on-scroll hover:shadow-premium-hover hover:border-brand-500/10 hover:-translate-y-1.5"
+              className="bg-white dark:bg-[#0d1321] border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-premium transition-all duration-500 flex flex-col justify-between group reveal-on-scroll hover:shadow-premium-hover hover:border-brand-500/10 dark:hover:border-brand-400/20 hover:-translate-y-1.5"
               style={{ transitionDelay: `${idx * 150}ms` }}
             >
               <div>
                 {/* Meta details */}
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest">{proj.category}</span>
-                  <span className="text-[8px] font-extrabold bg-slate-100 text-navy-900 border border-slate-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-brand-500 dark:text-brand-400 uppercase tracking-widest">{proj.category}</span>
+                  <span className="text-[8px] font-extrabold bg-slate-100 dark:bg-slate-900 text-navy-900 dark:text-slate-200 border border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded-full uppercase tracking-wider">
                     {proj.statusLabel}
                   </span>
                 </div>
 
-                <h3 className="font-extrabold text-navy-900 text-base mb-3 group-hover:text-brand-500 transition-colors duration-300">
+                <h3 className="font-extrabold text-navy-900 dark:text-slate-100 text-base mb-3 group-hover:text-brand-500 dark:group-hover:text-brand-400 transition-colors duration-300">
                   {proj.title}
                 </h3>
                 
-                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
                   {proj.desc}
                 </p>
 
@@ -154,7 +154,7 @@ export default function SelectedWork() {
               {/* Action Link */}
               <Link
                 href={proj.link}
-                className="inline-flex items-center text-xs font-bold text-navy-900 hover:text-brand-500 group-hover:translate-x-1 transition-all duration-300"
+                className="inline-flex items-center text-xs font-bold text-navy-900 dark:text-slate-350 hover:text-brand-500 dark:hover:text-brand-400 group-hover:translate-x-1 transition-all duration-300"
               >
                 View Blueprint
                 <ChevronRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

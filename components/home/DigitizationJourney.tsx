@@ -35,16 +35,16 @@ export default function DigitizationJourney() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 bg-slate-50 border-b border-slate-200/60 overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3 reveal-on-scroll">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Business Digitization</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             From Offline Business to Online Business
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             We map physical operations to stable digital channels to transition brick-and-mortar setups into scalable systems.
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function DigitizationJourney() {
           <div className="flex flex-row lg:justify-between items-start min-w-[900px] lg:min-w-0 gap-4 lg:gap-2 relative py-8">
             
             {/* Desktop Connector Line running across */}
-            <div className="hidden lg:block absolute top-[52px] left-[5%] right-[5%] h-0.5 bg-slate-200 z-0" />
+            <div className="hidden lg:block absolute top-[52px] left-[5%] right-[5%] h-0.5 bg-slate-200 dark:bg-slate-800 z-0" />
 
             {stages.map((stage, idx) => (
               <div 
@@ -63,22 +63,22 @@ export default function DigitizationJourney() {
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
                 {/* Node circle */}
-                <div className="h-10 w-10 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-navy-900 transition-all duration-500 group-hover:bg-brand-500 group-hover:text-white group-hover:scale-110 group-hover:border-brand-500">
+                <div className="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-850 bg-white dark:bg-slate-950 shadow-sm flex items-center justify-center text-navy-900 dark:text-slate-300 transition-all duration-500 group-hover:bg-brand-500 dark:group-hover:bg-brand-400 group-hover:text-white group-hover:scale-110 group-hover:border-brand-500">
                   {stage.icon}
                 </div>
 
                 {/* Step indicator */}
-                <span className="text-[9px] font-mono text-slate-400 mt-3 font-bold">
+                <span className="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-3 font-bold">
                   STEP 0{idx + 1}
                 </span>
 
                 {/* Main Label */}
-                <h4 className="text-xs font-bold text-navy-900 mt-1 uppercase tracking-wide group-hover:text-brand-500 transition-colors">
+                <h4 className="text-xs font-bold text-navy-900 dark:text-slate-200 mt-1 uppercase tracking-wide group-hover:text-brand-500 dark:group-hover:text-brand-400 transition-colors">
                   {stage.title}
                 </h4>
 
                 {/* Subtitle */}
-                <p className="text-[10px] text-slate-500 mt-0.5 max-w-[120px] leading-relaxed">
+                <p className="text-[10px] text-slate-500 dark:text-slate-450 mt-0.5 max-w-[120px] leading-relaxed">
                   {stage.subtitle}
                 </p>
               </div>
@@ -97,11 +97,11 @@ export default function DigitizationJourney() {
           ].map((item) => (
             <div 
               key={item.title} 
-              className="bg-white p-5 border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 relative group"
+              className="bg-white dark:bg-[#0d1321] p-5 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 relative group"
             >
               <div className="w-1.5 h-full bg-brand-500 absolute left-0 top-0 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <h4 className="text-navy-900 font-bold text-sm mb-2">{item.title}</h4>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+              <h4 className="text-navy-900 dark:text-slate-100 font-bold text-sm mb-2">{item.title}</h4>
+              <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -160,51 +160,52 @@ function ContactForm() {
     <div className="font-sans text-navy-900 bg-white">
       
       {/* 1. Header Hero */}
-      <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-16 md:pt-40 md:pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6">
-          <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-wide">
+      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 dark:opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
+          <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-wide">
             Inquiry
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 dark:text-white">
             {"Let's discuss your project scope."}
           </h1>
-          <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             {"Share your technical parameters, timelines, or operational friction points. Submit your project details and our team will review your enquiry."}
           </p>
         </div>
       </section>
 
       {/* 2. Form & FAQ split section */}
-      <section className="py-24 bg-white border-b border-slate-100">
+      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
             {/* Form Column */}
-            <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-premium">
+            <div className="lg:col-span-7 bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 md:p-8 shadow-premium">
               {isSuccess ? (
                 <div className="flex flex-col items-center text-center gap-6 py-12 animate-premium duration-300">
-                  <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-brand-50 text-brand-500">
+                  <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400">
                     <CheckCircle className="h-10 w-10" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-navy-900 mb-2">{"Enquiry Sent Successfully"}</h3>
-                    <p className="text-slate-600 text-sm max-w-md leading-relaxed">
+                    <h3 className="text-2xl font-bold text-navy-900 dark:text-slate-100 mb-2">{"Enquiry Sent Successfully"}</h3>
+                    <p className="text-slate-600 dark:text-slate-450 text-sm max-w-md leading-relaxed">
                       {"Thank you for contacting KVYASH Technologies. We have received your enquiry and will get back to you soon."}
                     </p>
                   </div>
                   <button
                     onClick={() => setIsSuccess(false)}
-                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-slate-200 bg-white text-navy-900 text-sm font-semibold hover:bg-slate-50 transition-premium cursor-pointer"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-navy-900 dark:text-slate-200 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-900 transition-premium cursor-pointer"
                   >
                     {"Submit another enquiry"}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
-                  <h3 className="text-lg font-bold text-navy-900 border-b border-slate-100 pb-3 mb-2">Project Intake Form</h3>
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800/80 pb-3 mb-2">Project Intake Form</h3>
                   
                   {submitError && (
-                    <div className="p-4 bg-red-50 border border-red-100 text-red-700 text-sm rounded-lg flex items-center gap-2" role="alert" aria-live="assertive">
+                    <div className="p-4 bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/60 text-red-700 dark:text-red-400 text-sm rounded-lg flex items-center gap-2" role="alert" aria-live="assertive">
                       <AlertCircle className="h-5 w-5 shrink-0" />
                       <span>{submitError}</span>
                     </div>
@@ -224,7 +225,7 @@ function ContactForm() {
 
                   {/* Name field */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="name" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                    <label htmlFor="name" className="text-xs font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
                       Full Name *
                     </label>
                     <input
@@ -237,8 +238,8 @@ function ContactForm() {
                       required
                       aria-invalid={!!errors.name}
                       aria-describedby={errors.name ? "name-error" : undefined}
-                      className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
-                        errors.name ? "border-red-500 bg-red-50/20" : "border-slate-200"
+                      className={`text-sm bg-slate-50 dark:bg-slate-950 border rounded-lg px-4 py-3 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white dark:focus:bg-slate-950 transition-premium ${
+                        errors.name ? "border-red-500 bg-red-50/20" : "border-slate-200 dark:border-slate-800"
                       }`}
                     />
                     {errors.name && (
@@ -252,7 +253,7 @@ function ContactForm() {
                   {/* Email & Phone Row */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="email" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                      <label htmlFor="email" className="text-xs font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
                         Business Email *
                       </label>
                       <input
@@ -265,8 +266,8 @@ function ContactForm() {
                         required
                         aria-invalid={!!errors.email}
                         aria-describedby={errors.email ? "email-error" : undefined}
-                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
-                          errors.email ? "border-red-500 bg-red-50/20" : "border-slate-200"
+                        className={`text-sm bg-slate-50 dark:bg-slate-950 border rounded-lg px-4 py-3 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white dark:focus:bg-slate-950 transition-premium ${
+                          errors.email ? "border-red-500 bg-red-50/20" : "border-slate-200 dark:border-slate-800"
                         }`}
                       />
                       {errors.email && (
@@ -278,7 +279,7 @@ function ContactForm() {
                     </div>
  
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="phone" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                      <label htmlFor="phone" className="text-xs font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
                         Phone Number *
                       </label>
                       <input
@@ -291,8 +292,8 @@ function ContactForm() {
                         required
                         aria-invalid={!!errors.phone}
                         aria-describedby={errors.phone ? "phone-error" : undefined}
-                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
-                          errors.phone ? "border-red-500 bg-red-50/20" : "border-slate-200"
+                        className={`text-sm bg-slate-50 dark:bg-slate-950 border rounded-lg px-4 py-3 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white dark:focus:bg-slate-950 transition-premium ${
+                          errors.phone ? "border-red-500 bg-red-50/20" : "border-slate-200 dark:border-slate-800"
                         }`}
                       />
                       {errors.phone && (
@@ -307,7 +308,7 @@ function ContactForm() {
                   {/* Organization & Service Row */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="company" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                      <label htmlFor="company" className="text-xs font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
                         Organization
                       </label>
                       <input
@@ -317,12 +318,12 @@ function ContactForm() {
                         value={form.company}
                         onChange={handleChange}
                         placeholder="Enter your organization"
-                        className="text-sm bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium"
+                        className="text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 text-slate-850 dark:text-slate-250 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white dark:focus:bg-slate-950 transition-premium"
                       />
                     </div>
  
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="service" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                      <label htmlFor="service" className="text-xs font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
                         Service Category *
                       </label>
                       <select
@@ -333,8 +334,8 @@ function ContactForm() {
                         required
                         aria-invalid={!!errors.service}
                         aria-describedby={errors.service ? "service-error" : undefined}
-                        className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium ${
-                          errors.service ? "border-red-500 bg-red-50/20" : "border-slate-200"
+                        className={`text-sm bg-slate-50 dark:bg-slate-950 border rounded-lg px-4 py-3 text-slate-850 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white dark:focus:bg-slate-950 transition-premium ${
+                          errors.service ? "border-red-500 bg-red-50/20" : "border-slate-200 dark:border-slate-800"
                         }`}
                       >
                         <option value="">Select service type...</option>
@@ -355,7 +356,7 @@ function ContactForm() {
  
                   {/* Message textarea */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="message" className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                    <label htmlFor="message" className="text-xs font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
                       Project Requirements *
                     </label>
                     <textarea
@@ -368,8 +369,8 @@ function ContactForm() {
                       required
                       aria-invalid={!!errors.message}
                       aria-describedby={errors.message ? "message-error" : undefined}
-                      className={`text-sm bg-slate-50 border rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-premium resize-none ${
-                        errors.message ? "border-red-500 bg-red-50/20" : "border-slate-200"
+                      className={`text-sm bg-slate-50 dark:bg-slate-950 border rounded-lg px-4 py-3 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:bg-white dark:focus:bg-slate-950 transition-premium resize-none ${
+                        errors.message ? "border-red-500 bg-red-50/20" : "border-slate-200 dark:border-slate-800"
                       }`}
                     />
                     {errors.message && (
@@ -384,7 +385,7 @@ function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center px-6 py-4 rounded-lg bg-brand-500 text-white font-semibold hover:bg-brand-600 active:scale-[0.98] disabled:bg-slate-100 disabled:text-slate-400 transition-premium shadow-md shadow-brand-500/10 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center px-6 py-4 rounded-lg bg-brand-500 text-white font-semibold hover:bg-brand-600 active:scale-[0.98] disabled:bg-slate-100 dark:disabled:bg-slate-900 disabled:text-slate-400 dark:disabled:text-slate-600 transition-premium shadow-md shadow-brand-500/10 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
@@ -406,86 +407,86 @@ function ContactForm() {
             <div className="lg:col-span-5 flex flex-col gap-10">
               
               {/* Contact parameters card */}
-              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-premium flex flex-col gap-5">
-                <h4 className="text-sm font-bold text-navy-900 uppercase tracking-wider border-b border-slate-200 pb-2">Company Channels</h4>
+              <div className="bg-slate-50 dark:bg-[#0d1321] border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-premium flex flex-col gap-5">
+                <h4 className="text-sm font-bold text-navy-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Company Channels</h4>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3.5 text-sm text-slate-600">
-                    <Mail className="h-5 w-5 text-brand-500 shrink-0" />
+                  <div className="flex items-center gap-3.5 text-sm text-slate-600 dark:text-slate-450">
+                    <Mail className="h-5 w-5 text-brand-500 dark:text-brand-400 shrink-0" />
                     <div>
-                      <span className="block font-semibold text-navy-900 text-xs uppercase text-slate-400">Direct Scoping Inbox</span>
-                      <a href={`mailto:${companyData.email}`} className="hover:text-brand-500 transition-premium">
+                      <span className="block font-semibold text-navy-900 dark:text-slate-350 text-xs uppercase text-slate-400">Direct Scoping Inbox</span>
+                      <a href={`mailto:${companyData.email}`} className="hover:text-brand-500 dark:hover:text-brand-400 transition-premium">
                         {companyData.email}
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3.5 text-sm text-slate-600">
-                    <MapPin className="h-5 w-5 text-brand-500 shrink-0" />
+                  <div className="flex items-center gap-3.5 text-sm text-slate-600 dark:text-slate-450">
+                    <MapPin className="h-5 w-5 text-brand-500 dark:text-brand-400 shrink-0" />
                     <div>
-                      <span className="block font-semibold text-navy-900 text-xs uppercase text-slate-400">Primary Location & Time</span>
-                      <span>{companyData.location}</span>
+                      <span className="block font-semibold text-navy-900 dark:text-slate-350 text-xs uppercase text-slate-400">Primary Location & Time</span>
+                      <span className="dark:text-slate-300">{companyData.location}</span>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3.5 text-sm text-slate-600">
-                    <svg className="h-5 w-5 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div className="flex items-start gap-3.5 text-sm text-slate-600 dark:text-slate-450">
+                    <svg className="h-5 w-5 text-brand-500 dark:text-brand-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.87c0-.26.05-.52.13-.7a.91.91 0 0 1 .84-.6c.6 0 .84.53.84 1.3v4.87h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.1H5v8.4h3z"/>
                     </svg>
                     <div>
-                      <span className="block font-semibold text-navy-900 text-xs uppercase text-slate-400">LinkedIn</span>
+                      <span className="block font-semibold text-navy-900 dark:text-slate-350 text-xs uppercase text-slate-400">LinkedIn</span>
                       <a
                         href="https://www.linkedin.com/company/kvyash-technologies/?viewAsMember=true"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-brand-500 transition-premium"
+                        className="hover:text-brand-500 dark:hover:text-brand-400 transition-premium"
                       >
                         LinkedIn
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3.5 text-sm text-slate-600">
-                    <svg className="h-5 w-5 text-brand-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                  <div className="flex items-start gap-3.5 text-sm text-slate-600 dark:text-slate-450">
+                    <svg className="h-5 w-5 text-brand-500 dark:text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                     </svg>
                     <div>
-                      <span className="block font-semibold text-navy-900 text-xs uppercase text-slate-400">Instagram</span>
+                      <span className="block font-semibold text-navy-900 dark:text-slate-350 text-xs uppercase text-slate-400">Instagram</span>
                       <a
                         href="https://www.instagram.com/kvyashtechnologies/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-brand-500 transition-premium"
+                        className="hover:text-brand-500 dark:hover:text-brand-400 transition-premium"
                       >
                         Instagram
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3.5 text-sm text-slate-600">
-                    <svg className="h-5 w-5 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div className="flex items-start gap-3.5 text-sm text-slate-600 dark:text-slate-450">
+                    <svg className="h-5 w-5 text-brand-500 dark:text-brand-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
                     </svg>
                     <div>
-                      <span className="block font-semibold text-navy-900 text-xs uppercase text-slate-400">Facebook</span>
+                      <span className="block font-semibold text-navy-900 dark:text-slate-350 text-xs uppercase text-slate-400">Facebook</span>
                       <a
                         href="https://www.facebook.com/profile.php?id=61593152129252&mibextid=wwXIfr&rdid=J5OmuVjX2vhYEwrr&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BYthtVV3P%2F%3Fmibextid%3DwwXIfr#"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-brand-500 transition-premium"
+                        className="hover:text-brand-500 dark:hover:text-brand-400 transition-premium"
                       >
                         Facebook
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3.5 text-sm text-slate-600">
-                    <svg className="h-5 w-5 text-brand-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div className="flex items-start gap-3.5 text-sm text-slate-600 dark:text-slate-450">
+                    <svg className="h-5 w-5 text-brand-500 dark:text-brand-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                     <div>
-                      <span className="block font-semibold text-navy-900 text-xs uppercase text-slate-400">X (Twitter)</span>
+                      <span className="block font-semibold text-navy-900 dark:text-slate-350 text-xs uppercase text-slate-400">X (Twitter)</span>
                       <a
                         href="https://x.com/kvyashtechnolog"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-brand-500 transition-premium"
+                        className="hover:text-brand-500 dark:hover:text-brand-400 transition-premium"
                       >
                         @kvyashtechnolog
                       </a>
@@ -495,12 +496,12 @@ function ContactForm() {
               </div>
 
               {/* Scoping FAQ list */}
-              <div className="space-y-6">
-                <h4 className="text-sm font-bold text-navy-900 uppercase tracking-wider border-b border-slate-100 pb-2">Scoping FAQ</h4>
+              <div className="space-y-6 bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm">
+                <h4 className="text-sm font-bold text-navy-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-2">Scoping FAQ</h4>
                 {faqs.map((faq) => (
-                  <div key={faq.q} className="space-y-1.5">
-                    <h5 className="font-bold text-navy-900 text-sm">{faq.q}</h5>
-                    <p className="text-slate-600 text-xs leading-relaxed">{faq.a}</p>
+                  <div key={faq.q} className="space-y-1.5 border-b border-slate-50 dark:border-slate-800 last:border-0 pb-4 last:pb-0">
+                    <h5 className="font-bold text-navy-900 dark:text-slate-200 text-sm">{faq.q}</h5>
+                    <p className="text-slate-650 dark:text-slate-400 text-xs leading-relaxed">{faq.a}</p>
                   </div>
                 ))}
               </div>

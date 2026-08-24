@@ -154,6 +154,35 @@ export default function HeroSection() {
               />
             </svg>
 
+            {/* Parallax Card 5: Live Telemetry Status Indicators */}
+            <div
+              style={{
+                transform: "translate(calc(var(--mx) * 5px), calc(var(--my) * 5px))",
+              }}
+              className="absolute top-10 right-[15%] w-[160px] bg-slate-950/90 border border-slate-800 rounded-lg p-3 shadow-2xl transition-transform duration-300 ease-out z-30 font-mono text-[8px] text-slate-400 space-y-1.5"
+            >
+              <div className="flex items-center justify-between text-[9px] font-bold text-slate-200 border-b border-slate-800 pb-1 mb-1">
+                <span>SYSTEM MONITOR</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              </div>
+              <div className="flex items-center justify-between">
+                <span>API STATUS</span>
+                <span className="text-emerald-400 font-bold">CONNECTED</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>AUTOMATION</span>
+                <span className="text-emerald-400 font-bold">ACTIVE</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>DATABASE</span>
+                <span className="text-emerald-400 font-bold">ONLINE</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>AI AGENT</span>
+                <span className="text-brand-400 font-bold">READY</span>
+              </div>
+            </div>
+
             {/* Parallax Card 1: Client Browser/Request */}
             <div 
               style={{

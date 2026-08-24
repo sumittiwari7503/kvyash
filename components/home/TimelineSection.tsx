@@ -73,16 +73,16 @@ export default function TimelineSection() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 bg-slate-50 border-b border-slate-200/60 overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col gap-3">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-500">How We Partner</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             The Digital Growth Journey
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             A comprehensive, end-to-end engineering roadmap designed to translate early requirements into verified growth.
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function TimelineSection() {
         <div className="relative">
           
           {/* Vertical line running through the center/left */}
-          <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-0.5 bg-slate-200 -translate-x-1/2 z-0" />
+          <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-0.5 bg-slate-200 dark:bg-slate-800 -translate-x-1/2 z-0" />
 
           {/* Steps Loop */}
           <div className="space-y-12">
@@ -116,14 +116,14 @@ export default function TimelineSection() {
                     isEven ? "md:opacity-100" : "md:opacity-0 pointer-events-none"
                   }`}>
                     {isEven && (
-                      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                      <div className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all">
                         <div className="flex items-center gap-3 justify-start md:justify-end mb-2">
-                          <span className="text-[10px] font-mono text-brand-500 font-extrabold uppercase bg-brand-50 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-mono text-brand-500 dark:text-brand-400 font-extrabold uppercase bg-brand-50 dark:bg-slate-900 px-2 py-0.5 rounded-full">
                             Phase {item.step}
                           </span>
                         </div>
-                        <h4 className="text-navy-900 font-extrabold text-base mb-2">{item.label}</h4>
-                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                        <h4 className="text-navy-900 dark:text-slate-100 font-extrabold text-base mb-2">{item.label}</h4>
+                        <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                       </div>
                     )}
                   </div>
@@ -131,10 +131,10 @@ export default function TimelineSection() {
                   {/* Icon Dot in the middle */}
                   <div className="absolute left-6 md:left-1/2 top-1.5 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 flex items-center justify-center">
                     <div 
-                      className={`h-11 w-11 rounded-full border-2 bg-white flex items-center justify-center transition-all duration-500 ${
+                      className={`h-11 w-11 rounded-full border-2 bg-white dark:bg-slate-950 flex items-center justify-center transition-all duration-500 ${
                         isActive 
-                          ? "border-brand-500 text-brand-500 scale-110 shadow-[0_0_12px_rgba(37,99,235,0.3)]" 
-                          : "border-slate-300 text-slate-400"
+                          ? "border-brand-500 text-brand-500 dark:text-brand-400 scale-110 shadow-[0_0_12px_rgba(37,99,235,0.3)]" 
+                          : "border-slate-300 dark:border-slate-800 text-slate-400 dark:text-slate-650"
                       }`}
                     >
                       {item.icon}
@@ -146,21 +146,21 @@ export default function TimelineSection() {
                     !isEven ? "md:opacity-100" : "md:opacity-0 pointer-events-none"
                   }`}>
                     {!isEven && (
-                      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                      <div className="bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all">
                         <div className="flex items-center gap-3 justify-start mb-2">
-                          <span className="text-[10px] font-mono text-brand-500 font-extrabold uppercase bg-brand-50 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-mono text-brand-500 dark:text-brand-400 font-extrabold uppercase bg-brand-50 dark:bg-slate-900 px-2 py-0.5 rounded-full">
                             Phase {item.step}
                           </span>
                         </div>
-                        <h4 className="text-navy-900 font-extrabold text-base mb-2">{item.label}</h4>
-                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                        <h4 className="text-navy-900 dark:text-slate-100 font-extrabold text-base mb-2">{item.label}</h4>
+                        <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                       </div>
                     )}
 
                     {/* Fallback layout for mobile: Show card text directly below heading */}
-                    <div className="block md:hidden bg-white border border-slate-200 p-5 rounded-xl shadow-sm mt-3">
-                      <h4 className="text-navy-900 font-extrabold text-sm mb-1">{item.label}</h4>
-                      <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+                    <div className="block md:hidden bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 p-5 rounded-xl shadow-sm mt-3">
+                      <h4 className="text-navy-900 dark:text-slate-100 font-extrabold text-sm mb-1">{item.label}</h4>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
 

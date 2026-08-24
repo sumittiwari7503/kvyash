@@ -87,16 +87,16 @@ export default function CapabilitiesSection() {
   ];
 
   return (
-    <section ref={sectionRef} id="capabilities" className="py-24 bg-white border-b border-slate-200/60 overflow-hidden">
+    <section ref={sectionRef} id="capabilities" className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col gap-3 reveal-on-scroll">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Service Avenues</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             What can KVYASH help you with?
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             Select an avenue below to start a scoped project configuration directly in that category.
           </p>
         </div>
@@ -112,9 +112,9 @@ export default function CapabilitiesSection() {
                 key={card.title}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                className={`bg-slate-50 border border-slate-200/80 rounded-2xl p-6 shadow-premium transition-all duration-500 flex flex-col justify-between group relative overflow-hidden reveal-on-scroll glowing-border ${
+                className={`bg-slate-50 dark:bg-[#0d1321] border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-premium transition-all duration-500 flex flex-col justify-between group relative overflow-hidden reveal-on-scroll glowing-border ${
                   isLastCentering ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : ""
-                } hover:-translate-y-1.5 hover:border-brand-500/20 hover:bg-white hover:shadow-premium-hover`}
+                } hover:-translate-y-1.5 hover:border-brand-500/20 dark:hover:border-brand-400/30 hover:bg-white dark:hover:bg-[#0e172a] hover:shadow-premium-hover`}
                 style={{ transitionDelay: `${(idx % 3) * 100}ms` }}
               >
                 {/* Background glow behind card on hover */}
@@ -127,23 +127,23 @@ export default function CapabilitiesSection() {
                 <div className="flex flex-col gap-4 relative z-10">
                   {/* Category & Icon Row */}
                   <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center justify-center p-3 rounded-xl bg-brand-50 text-brand-500 transition-all duration-500 group-hover:bg-brand-500 group-hover:text-white group-hover:scale-110">
+                    <div className="inline-flex items-center justify-center p-3 rounded-xl bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 transition-all duration-500 group-hover:bg-brand-500 dark:group-hover:bg-brand-400 group-hover:text-white group-hover:scale-110">
                       {card.icon}
                     </div>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-slate-100 dark:bg-slate-900/60 px-2 py-0.5 rounded-full animate-premium">
                       {card.category}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-extrabold text-navy-900 group-hover:text-brand-500 transition-colors duration-300">
+                  <h3 className="text-lg font-extrabold text-navy-900 dark:text-slate-100 group-hover:text-brand-500 dark:group-hover:text-brand-400 transition-colors duration-300">
                     {card.title}
                   </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     {card.desc}
                   </p>
 
                   {/* Micro Visualizer Area */}
-                  <div className="h-[90px] w-full bg-slate-900/5 rounded-xl border border-slate-200/40 relative overflow-hidden flex items-center justify-center p-4">
+                  <div className="h-[90px] w-full bg-slate-900/5 dark:bg-slate-900/40 rounded-xl border border-slate-200/40 dark:border-slate-800/45 relative overflow-hidden flex items-center justify-center p-4">
                     
                     {/* Index 0: Web Development Preview */}
                     {idx === 0 && (

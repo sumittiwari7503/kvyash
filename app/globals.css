@@ -23,11 +23,17 @@
   --foreground: #0f172a;
 }
 
+.dark {
+  --background: #090d16;
+  --foreground: #f8fafc;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Restrained animations for transitions */

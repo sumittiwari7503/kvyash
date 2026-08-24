@@ -54,33 +54,33 @@ export default function DashboardMockup() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white border-b border-slate-200/60 overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-200/60 dark:border-slate-800/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Context Copy */}
           <div className="lg:col-span-6 flex flex-col gap-6 reveal-on-scroll">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-500">Core Engineering</span>
-            <h2 className="text-3xl font-extrabold text-navy-900 tracking-tight leading-tight">
+            <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
               Marketplace, SaaS & Custom Software
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
               We design and build multi-party platforms, multi-tenant subscription software, and robust Postgres-backed databases customized around your B2B/B2C logic.
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-[10px] font-bold text-navy-900 uppercase tracking-wider">
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded shadow-sm text-center">B2B/B2C Marketplace</div>
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded shadow-sm text-center">Multi-Tenant SaaS</div>
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded shadow-sm text-center">Custom CRM & DBs</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-[10px] font-bold text-navy-900 dark:text-slate-200 uppercase tracking-wider">
+              <div className="p-3 bg-slate-50 dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded shadow-sm text-center">B2B/B2C Marketplace</div>
+              <div className="p-3 bg-slate-50 dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded shadow-sm text-center">Multi-Tenant SaaS</div>
+              <div className="p-3 bg-slate-50 dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded shadow-sm text-center">Custom CRM & DBs</div>
             </div>
 
-            <div className="flex flex-col gap-2 text-xs text-slate-500">
+            <div className="flex flex-col gap-2 text-xs text-slate-500 dark:text-slate-450">
               <div className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-slate-400" />
+                <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-700" />
                 Scalable system architecture prototype models.
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-slate-400" />
+                <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-700" />
                 Designed for speed, SEO performance, and security.
               </div>
             </div>

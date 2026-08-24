@@ -305,22 +305,23 @@ export default function ServicesPage() {
       />
       
       {/* 1. Header Hero */}
-      <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-20 md:pt-40 md:pb-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6">
-          <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-wide">
+      <section className="bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 dark:opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
+          <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 uppercase tracking-wide">
             Our Services
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 dark:text-white">
             Consult &bull; Build &bull; Launch &bull; Automate &bull; Market &bull; Grow
           </h1>
-          <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             {"We partner with organizations to structure technical blueprints, build robust applications, automate workflow paths, and scale digital channels."}
           </p>
         </div>
       </section>
 
       {/* 2. Detailed Capabilities List */}
-      <section className="py-24 bg-white border-b border-slate-100">
+      <section className="py-24 bg-white dark:bg-[#090d16] border-b border-slate-100 dark:border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-24">
           {serviceCategories.map((category) => {
             const Icon = category.icon;
@@ -328,22 +329,22 @@ export default function ServicesPage() {
               <div
                 key={category.id}
                 id={category.id}
-                className="border-b border-slate-100 pb-20 last:border-0 last:pb-0"
+                className="border-b border-slate-100 dark:border-slate-800/60 pb-20 last:border-0 last:pb-0"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                   
                   {/* Category Title & Sidebar */}
                   <div className="lg:col-span-4 flex flex-col gap-5">
-                    <div className="inline-flex self-start items-center justify-center p-3 rounded-lg bg-brand-50 text-brand-500 shadow-sm border border-brand-100">
+                    <div className="inline-flex self-start items-center justify-center p-3 rounded-lg bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400 shadow-sm border border-brand-100 dark:border-brand-800/80">
                       <Icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
                       {category.title}
                     </h2>
                     
                     <div className="flex flex-col gap-1.5 mt-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tailored For</span>
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Tailored For</span>
+                      <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
                         {category.whoItHelps}
                       </p>
                     </div>
@@ -359,24 +360,24 @@ export default function ServicesPage() {
 
                   {/* Services & Use Cases Grid */}
                   <div className="lg:col-span-8 flex flex-col gap-6">
-                    <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
-                      <h3 className="font-extrabold text-navy-900 text-sm mb-3">What We Build</h3>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-600">
+                    <div className="bg-slate-50 dark:bg-[#0d1321] border border-slate-200/60 dark:border-slate-800/80 rounded-xl p-6 shadow-sm">
+                      <h3 className="font-extrabold text-navy-900 dark:text-slate-100 text-sm mb-3">What We Build</h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-600 dark:text-slate-400">
                         {category.whatWeBuild.map((item) => (
                           <li key={item} className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-brand-500 dark:bg-brand-400 shrink-0" />
                             {item}
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
-                      <h3 className="font-extrabold text-navy-900 text-sm mb-3">Use Cases & Operational Goals</h3>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600">
+                    <div className="bg-slate-50 dark:bg-[#0d1321] border border-slate-200/60 dark:border-slate-800/80 rounded-xl p-6 shadow-sm">
+                      <h3 className="font-extrabold text-navy-900 dark:text-slate-100 text-sm mb-3">Use Cases & Operational Goals</h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 dark:text-slate-400">
                         {category.useCases.map((item) => (
                           <li key={item} className="flex items-start gap-2 leading-relaxed">
-                            <CheckCircle className="h-4 w-4 text-brand-500 shrink-0 mt-0.5" />
+                            <CheckCircle className="h-4 w-4 text-brand-500 dark:text-brand-400 shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -392,15 +393,15 @@ export default function ServicesPage() {
       </section>
 
       {/* 3. Core Deliverables Standards Table Section */}
-      <section className="py-24 bg-slate-50 border-b border-slate-100">
+      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
             <h2 className="text-xs font-bold uppercase tracking-wider text-brand-500">Standards</h2>
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <h3 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Standard Launch Package
             </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
               Every development project we execute is shipped with a comprehensive set of engineering files and configurations.
             </p>
           </div>
@@ -411,14 +412,14 @@ export default function ServicesPage() {
               return (
                 <div
                   key={dl.item}
-                  className="bg-white border border-slate-100 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-premium flex flex-col justify-between"
+                  className="bg-white dark:bg-[#0d1321] border border-slate-100 dark:border-slate-800 rounded-xl p-6 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transform transition-premium flex flex-col justify-between"
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="inline-flex self-start items-center justify-center p-2 rounded bg-brand-50 text-brand-500">
+                    <div className="inline-flex self-start items-center justify-center p-2 rounded bg-brand-50 dark:bg-slate-900 text-brand-500 dark:text-brand-400">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
-                    <h4 className="font-bold text-navy-900 text-base">{dl.item}</h4>
-                    <p className="text-slate-500 text-xs leading-relaxed">{dl.details}</p>
+                    <h4 className="font-bold text-navy-900 dark:text-slate-100 text-base">{dl.item}</h4>
+                    <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">{dl.details}</p>
                   </div>
                 </div>
               );
@@ -429,19 +430,19 @@ export default function ServicesPage() {
       </section>
 
       {/* 3b. Frequently Asked Questions (GEO layer) */}
-      <section className="py-24 bg-slate-50 border-b border-slate-100">
+      <section className="py-24 bg-slate-50 dark:bg-[#0c1321]/50 border-b border-slate-100 dark:border-slate-800/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-500">FAQ</span>
-            <h3 className="text-3xl font-extrabold text-navy-900 tracking-tight">
+            <h3 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Frequently Asked Questions
             </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
               Find direct answers to common questions about KVYASH Technologies, our capabilities, and services.
             </p>
           </div>
 
-          <div className="space-y-8 bg-white border border-slate-200 rounded-2xl p-8 md:p-10 shadow-sm">
+          <div className="space-y-8 bg-white dark:bg-[#0d1321] border border-slate-200 dark:border-slate-800 rounded-2xl p-8 md:p-10 shadow-sm">
             {[
               {
                 q: "What does KVYASH Technologies do?",
@@ -472,11 +473,11 @@ export default function ServicesPage() {
                 a: "KVYASH Technologies was founded and is led by Sumit Tiwari, who serves as the Founder & Engineering Lead. He leads technical discovery, planning, software architecture, development, AI integrations, and system delivery."
               }
             ].map((faq, idx) => (
-              <div key={idx} className="border-b border-slate-100 last:border-0 pb-6 last:pb-0 text-left">
-                <h4 className="font-extrabold text-navy-900 text-base mb-2">
+              <div key={idx} className="border-b border-slate-100 dark:border-slate-800 last:border-0 pb-6 last:pb-0 text-left">
+                <h4 className="font-extrabold text-navy-900 dark:text-slate-100 text-base mb-2">
                   {faq.q}
                 </h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                   {faq.a}
                 </p>
               </div>
@@ -486,16 +487,16 @@ export default function ServicesPage() {
       </section>
 
       {/* 4. Scoping Call CTA */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-[#090d16]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 items-center">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
             {"Let's design your software architecture."}
           </h3>
-          <p className="text-slate-600 text-sm sm:text-base max-w-xl leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl leading-relaxed">
             Submit your system constraints or scaling challenges to schedule a scoping discussion with our engineering team.
           </p>
           <StartProjectButton
-            className="inline-flex items-center justify-center px-6 py-3.5 rounded-md bg-brand-500 text-white font-semibold hover:bg-brand-600 active:scale-[0.98] transition-premium shadow-sm"
+            className="inline-flex items-center justify-center px-6 py-3.5 rounded-md bg-brand-500 text-white font-semibold hover:bg-brand-600 active:scale-[0.98] transition-premium shadow-sm cursor-pointer"
           >
             {"Start Scoping Call"}
             <ArrowRight className="ml-2 h-4 w-4" />
