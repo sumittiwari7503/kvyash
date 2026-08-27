@@ -90,7 +90,7 @@ export default function HeroSection() {
                 transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 300ms, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 300ms"
               }}
             >
-              KVYASH Technologies is a premium software engineering studio. We build high-performance web platforms, custom SaaS products, and workflow automations that scale operational efficiency.
+              KVYASH Technologies is a premium software engineering studio. We build high-performance <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web platforms</Link>, custom <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">SaaS products</Link>, and <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">workflow automations</Link> that scale operational efficiency.
             </p>
             
             <div 

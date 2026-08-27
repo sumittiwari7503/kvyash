@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function FounderCard() {
@@ -60,7 +61,7 @@ export default function FounderCard() {
             </div>
             
             <p className="text-slate-655 text-sm sm:text-base leading-relaxed max-w-xl">
-              KVYASH Technologies is built around a simple idea: technology should solve real business problems, not add unnecessary complexity.
+              At KVYASH Technologies, we believe technology should solve real business problems, not add unnecessary complexity. Learn more <Link href="/about" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">about our engineering philosophy</Link>.
             </p>
 
             <div className="space-y-1 pt-2 border-t border-slate-100 max-w-xl">

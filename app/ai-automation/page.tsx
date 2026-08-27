@@ -122,7 +122,7 @@ export default function AiAutomationPage() {
  Pragmatic artificial intelligence integrated into business operations.
  </h1>
  <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
- {"We bypass the industry hype to implement stable, automated data pipelines and API integrations that reduce actual operational friction and headcount bottlenecks."}
+ We bypass the industry hype to implement stable, automated data pipelines, custom <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">enterprise API integrations</Link>, and intelligent <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">scoping systems</Link> (see our previous <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>).
  </p>
  </div>
  </section>

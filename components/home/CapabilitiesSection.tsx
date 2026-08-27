@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { Code, Layers, Cpu, MessageSquare, HelpCircle, ShoppingCart, TrendingUp, ChevronRight } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
 
@@ -96,8 +97,8 @@ export default function CapabilitiesSection() {
  <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
  What we build.
  </h2>
- <p className="text-slate-650 text-sm sm:text-base leading-relaxed">
- We design and build custom web applications, multi-tenant SaaS products, secure databases, and workflow automations.
+ <p className="text-slate-655 text-sm sm:text-base leading-relaxed">
+ We design and build custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web applications</Link>, multi-tenant <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">SaaS products</Link>, secure databases, and <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">workflow automations</Link>.
  </p>
  </div>
 

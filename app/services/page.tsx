@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
  Code,
  ArrowRight,
@@ -314,9 +315,9 @@ export default function ServicesPage() {
  <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 ">
  Consult &bull; Build &bull; Launch &bull; Automate &bull; Market &bull; Grow
  </h1>
- <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
- {"We partner with organizations to structure technical blueprints, build robust applications, automate workflow paths, and scale digital channels."}
- </p>
+      <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+        We partner with organizations to structure technical blueprints, build robust applications (view our <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>), design custom <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">enterprise software</Link>, deploy intelligent <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">workflow automations</Link>, and launch digital products.
+      </p>
  </div>
  </section>
 

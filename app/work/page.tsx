@@ -138,7 +138,7 @@ export default function WorkPage() {
  Have a system in mind?
  </h2>
  <p className="text-slate-600 text-sm sm:text-base max-w-lg leading-relaxed">
- Tell us what you&apos;re trying to build, improve, automate, or take online.
+ Tell us what you&apos;re trying to build, improve, <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">automate</Link>, or take online with custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web development</Link> and <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">software solutions</Link>.
  </p>
  
  <div className="flex flex-col sm:flex-row items-center gap-3">

@@ -91,7 +91,7 @@ export default function AboutPage() {
  Bridging the gap between business objectives and software execution.
  </h1>
  <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
- {"KVYASH Technologies was founded to deliver stable, high-performance software without the overhead. We operate as an engineering partner focused on clean codebase craft and authentic partnerships."}
+ KVYASH Technologies was founded to deliver stable, high-performance software without the overhead. We operate as an engineering partner, designing custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web development services</Link>, stable <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">SaaS solutions</Link>, and secure <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">AI workflows</Link>.
  </p>
  </div>
  </section>
@@ -106,7 +106,7 @@ export default function AboutPage() {
  {"Many businesses struggle to find reliable technology partners. Traditional software agencies often rely on complex jargon, hidden fees, and outsourced teams that deliver brittle templates. This creates a disconnect between what the business actually needs and what the software eventually does."}
  </p>
  <p className="text-slate-655 leading-relaxed">
- {"At KVYASH, we remove this friction by aligning software engineering directly with your business goals. We write code with modularity and scalability in mind, using standard stacks like Next.js, TypeScript, and SQL databases. We focus on building what is necessary, ensuring your systems are fast, secure, and easily maintainable by your in-house teams in the future."}
+ At KVYASH, we remove this friction by aligning software engineering directly with your business goals. We write code with modularity and scalability in mind, using standard stacks like Next.js, TypeScript, and SQL databases (explore our <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>). We focus on building what is necessary, ensuring your systems are fast, secure, and easily maintainable by your in-house teams in the future.
  </p>
  </div>
  </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import StartProjectButton from "./StartProjectButton";
 
@@ -91,7 +92,12 @@ export default function WorkClient() {
  >
  <div>
  <div className="flex items-center justify-between gap-2 mb-3">
- <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest">{bp.category}</span>
+ <Link 
+ href={bp.categoryId === "ai-automation" ? "/ai-automation" : bp.categoryId === "saas-marketplace" ? "/solutions" : "/services"}
+ className="text-[10px] font-bold text-brand-500 hover:text-brand-600 transition-colors uppercase tracking-widest"
+ >
+ {bp.category}
+ </Link>
  <span className={`text-[8px] font-bold border px-1.5 py-0.5 rounded uppercase ${
  bp.status === "BUILT"
  ? "bg-green-50 text-green-700 border-green-200 "

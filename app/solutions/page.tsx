@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ArrowRight, Server, ShieldAlert, GitBranch } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
 
@@ -95,9 +96,9 @@ export default function SolutionsPage() {
  <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 ">
  System solutions configured to solve real business friction.
  </h1>
- <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
- {"We design and execute custom system integrations that address bottlenecks, helping businesses scale operational efficiency and data consistency."}
- </p>
+      <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+        We design and execute custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">system integrations</Link> and <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">automated workflows</Link> that address business bottlenecks (see our previous <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>).
+      </p>
  </div>
  </section>
 
