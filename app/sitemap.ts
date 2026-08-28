@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
  '/solutions',
  '/ai-automation',
  '/resources/ai-automation-for-businesses',
+ '/resources/saas-development-india',
  '/work',
  '/contact',
  '/privacy-policy',
