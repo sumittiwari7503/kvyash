@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
  '/ai-automation',
  '/resources/ai-automation-for-businesses',
  '/resources/saas-development-india',
+ '/resources/whatsapp-crm-development',
  '/work',
  '/contact',
  '/privacy-policy',

@@ -97,7 +97,7 @@ export default function SolutionsPage() {
  System solutions configured to solve real business friction.
  </h1>
       <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-        We design and execute custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">system integrations</Link> and <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">automated workflows</Link> that address business bottlenecks. Read our blueprint guide on <Link href="/resources/saas-development-india" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">SaaS development in India</Link> or see our previous <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>.
+        We design and execute custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">system integrations</Link> and <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">automated workflows</Link> that address business bottlenecks. Read our guides on <Link href="/resources/saas-development-india" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">SaaS development in India</Link> and <Link href="/resources/whatsapp-crm-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">WhatsApp CRM development</Link> or see our previous <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>.
       </p>
  </div>
  </section>
