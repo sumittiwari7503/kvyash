@@ -136,7 +136,7 @@ export default function AiAutomationPage() {
  Pragmatic Automation Verticals
  </h3>
  <p className="text-slate-655 text-sm">
- We design and execute custom API connectors and data mapping solutions.
+ We design and execute custom API connectors and data mapping solutions. Learn what processes can be optimized with our guide on <Link href="/resources/ai-automation-for-businesses" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">AI automation for businesses</Link>.
  </p>
  </div>
 
