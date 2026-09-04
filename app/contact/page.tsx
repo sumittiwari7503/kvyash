@@ -2,13 +2,13 @@ import React from "react";
 import ContactClient from "./ContactClient";
 
 export const metadata = {
- title: {
- absolute: "KVYASH Technologies | Contact"
- },
- description: "Connect with KVYASH Technologies. Request a digital solution scoping session, ask questions, or start technology consulting project.",
- alternates: {
- canonical: "https://kvyash.com/contact",
- },
+  title: {
+    absolute: "Contact & Project Scoping | KVYASH Technologies"
+  },
+  description: "Discuss your software, SaaS, or AI automation project with KVYASH Technologies. Submit your parameters for a technical scoping review and architecture plan.",
+  alternates: {
+    canonical: "https://kvyash.com/contact",
+  },
 };
 
 export default function ContactPage() {
