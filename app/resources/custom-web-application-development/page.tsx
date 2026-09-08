@@ -3,8 +3,8 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, HelpCircle, Layers, Cpu, Database, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata = {
-  title: "Custom Web Application Development: Architecture, Stack Selection & Scalability | KVYASH",
-  description: "A comprehensive engineering guide on custom web application development, frontend & backend architecture, database modeling, stack selection, and scalable deployment.",
+  title: "Custom Web Application Development: Architecture & Scalability | KVYASH",
+  description: "Explore custom web application architecture, stack selection, databases, security, APIs, and scalability in this practical engineering guide from KVYASH.",
   alternates: {
     canonical: "https://kvyash.com/resources/custom-web-application-development",
   },
