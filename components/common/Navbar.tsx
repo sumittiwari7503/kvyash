@@ -61,10 +61,12 @@ export default function Navbar() {
  <nav className="hidden md:flex items-center gap-8">
  {headerNavItems.map((item) => {
  const isActive = pathname === item.href;
+ const isAbout = item.href === "/about";
  return (
  <Link
  key={item.href}
  href={item.href}
+ prefetch={isAbout ? false : undefined}
  className={`text-sm font-medium transition-premium hover:text-brand-500 relative py-1 group ${
  isActive 
  ? "text-brand-500 font-semibold" 
@@ -139,10 +141,12 @@ export default function Navbar() {
  <nav className="flex flex-col gap-6 mb-8">
  {headerNavItems.map((item) => {
  const isActive = pathname === item.href;
+ const isAbout = item.href === "/about";
  return (
  <Link
  key={item.href}
  href={item.href}
+ prefetch={isAbout ? false : undefined}
  onClick={() => setIsOpen(false)}
  className={`text-lg font-medium py-2 border-b border-slate-50 transition-premium hover:text-brand-500 ${
  isActive 

@@ -44,6 +44,7 @@ export default function Footer() {
  <ul className="flex flex-col gap-2.5">
  {section.links.map((link) => {
  const isExternal = link.href.startsWith("http");
+ const isAbout = link.href === "/about";
  return (
  <li key={link.label}>
  {isExternal ? (
@@ -58,6 +59,7 @@ export default function Footer() {
  ) : (
  <Link
  href={link.href}
+ prefetch={isAbout ? false : undefined}
  className="text-slate-600 hover:text-brand-500 transition-premium text-xs"
  >
  {link.label}

@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle, Shield, Code, Hammer, ArrowRight } from "lucide-react";
 
 export const metadata = {
@@ -127,9 +127,13 @@ export default function AboutPage() {
 
               {/* Portrait Wrapper */}
               <div className="relative overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-lg transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.015] group-hover:shadow-2xl group-hover:border-slate-300">
-                <img
+                <Image
                   src="/sumit.jpg"
-                  alt="Sumit Tiwari"
+                  alt="Sumit Tiwari - Founder & Technology Lead"
+                  width={600}
+                  height={600}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 340px, 340px"
+                  loading="lazy"
                   className="w-full h-auto aspect-square object-cover object-center filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
                 />
               </div>
