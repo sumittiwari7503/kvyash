@@ -17,6 +17,13 @@ export default function HeroSection() {
     const container = containerRef.current;
     if (!container) return;
 
+    const isFinePointer = typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches;
+    if (!isFinePointer) {
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const { width, height, left, top } = container.getBoundingClientRect();
       const x = (e.clientX - left) / width - 0.5; // -0.5 to 0.5

@@ -1,75 +1,87 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { MessageSquare, Cpu, ShieldCheck, Database, Send, Bell } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
 
 export default function AutomationWorkflow() {
- const [activeStep, setActiveStep] = useState(0);
- const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
 
- useEffect(() => {
- // Scroll reveal binding
- const observer = new IntersectionObserver(
- (entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) {
- entry.target.classList.add("revealed");
- }
- });
- },
- { threshold: 0.1 }
- );
+  useEffect(() => {
+    // Respect reduced motion preference
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
- const elements = sectionRef.current?.querySelectorAll(".reveal-on-scroll");
- elements?.forEach((el) => observer.observe(el));
+    let interval: NodeJS.Timeout | null = null;
+    
+    const startLoop = () => {
+      if (!interval) {
+        interval = setInterval(() => {
+          setActiveStep((prev) => (prev + 1) % 5);
+        }, 3000);
+      }
+    };
 
- // Automation step loop
- const interval = setInterval(() => {
- setActiveStep((prev) => (prev + 1) % 5);
- }, 2500);
+    const stopLoop = () => {
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    };
 
- return () => {
- observer.disconnect();
- clearInterval(interval);
- };
- }, []);
+    const handleVisibility = () => {
+      if (document.hidden) {
+        stopLoop();
+      } else {
+        startLoop();
+      }
+    };
 
- const steps = [
- {
- title: "WhatsApp Message",
- desc: "Incoming lead inquiry via chat",
- icon: <MessageSquare className="h-5 w-5" />,
- color: "border-emerald-500 text-emerald-500 bg-emerald-500/10"
- },
- {
- title: "AI Agent Engine",
- desc: "Instant intent parsing & translation",
- icon: <Cpu className="h-5 w-5 animate-spin [animation-duration:8s]" />,
- color: "border-brand-500 text-brand-500 bg-brand-500/10"
- },
- {
- title: "Lead Qualification",
- desc: "Filters out low-budget or invalid bids",
- icon: <ShieldCheck className="h-5 w-5" />,
- color: "border-purple-500 text-purple-500 bg-purple-50/10"
- },
- {
- title: "CRM Sync",
- desc: "Updates contact cards & logs",
- icon: <Database className="h-5 w-5" />,
- color: "border-blue-500 text-blue-500 bg-blue-500/10"
- },
- {
- title: "Team Alert",
- desc: "Routes hot prospect alert instantly",
- icon: <Bell className="h-5 w-5" />,
- color: "border-amber-500 text-amber-500 bg-amber-500/10"
- }
- ];
+    startLoop();
+    document.addEventListener("visibilitychange", handleVisibility);
 
- return (
- <section ref={sectionRef} className="py-20 md:py-28 bg-slate-900 border-b border-slate-950 overflow-hidden relative">
+    return () => {
+      stopLoop();
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
+
+  const steps = [
+    {
+      title: "WhatsApp Message",
+      desc: "Incoming lead inquiry via chat",
+      icon: <MessageSquare className="h-5 w-5" />,
+      color: "border-emerald-500 text-emerald-500 bg-emerald-500/10"
+    },
+    {
+      title: "AI Agent Engine",
+      desc: "Instant intent parsing & translation",
+      icon: <Cpu className="h-5 w-5 animate-spin [animation-duration:8s]" />,
+      color: "border-brand-500 text-brand-500 bg-brand-500/10"
+    },
+    {
+      title: "Lead Qualification",
+      desc: "Filters out low-budget or invalid bids",
+      icon: <ShieldCheck className="h-5 w-5" />,
+      color: "border-purple-500 text-purple-500 bg-purple-50/10"
+    },
+    {
+      title: "CRM Sync",
+      desc: "Updates contact cards & logs",
+      icon: <Database className="h-5 w-5" />,
+      color: "border-blue-500 text-blue-500 bg-blue-500/10"
+    },
+    {
+      title: "Team Alert",
+      desc: "Routes hot prospect alert instantly",
+      icon: <Bell className="h-5 w-5" />,
+      color: "border-amber-500 text-amber-500 bg-amber-500/10"
+    }
+  ];
+
+  return (
+    <section className="py-20 md:py-28 bg-slate-900 border-b border-slate-950 overflow-hidden relative">
  <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
  <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-brand-500/5 rounded-full blur-[100px] pointer-events-none" />
 

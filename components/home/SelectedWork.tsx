@@ -1,30 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 export default function SelectedWork() {
- const sectionRef = useRef<HTMLDivElement>(null);
-
- useEffect(() => {
- const observer = new IntersectionObserver(
- (entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) {
- entry.target.classList.add("revealed");
- }
- });
- },
- { threshold: 0.1 }
- );
-
- const elements = sectionRef.current?.querySelectorAll(".reveal-on-scroll");
- elements?.forEach((el) => observer.observe(el));
-
- return () => observer.disconnect();
- }, []);
-
  const selectedProjects = [
  {
  title: "Static Site Generation with Edge Revalidation (ISR)",

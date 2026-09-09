@@ -1,29 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Store, Globe, Eye, CreditCard, Users, Zap, Award } from "lucide-react";
 
 export default function DigitizationJourney() {
- const sectionRef = useRef<HTMLDivElement>(null);
-
- useEffect(() => {
- const observer = new IntersectionObserver(
- (entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) {
- entry.target.classList.add("revealed");
- }
- });
- },
- { threshold: 0.1 }
- );
-
- const elements = sectionRef.current?.querySelectorAll(".reveal-on-scroll");
- elements?.forEach((el) => observer.observe(el));
-
- return () => observer.disconnect();
- }, []);
-
  const stages = [
  { title: "Offline Business", subtitle: "Physical Operations", icon: <Store className="h-4 w-4" /> },
  { title: "Website", subtitle: "Digital Identity", icon: <Globe className="h-4 w-4" /> },
@@ -35,7 +15,7 @@ export default function DigitizationJourney() {
  ];
 
  return (
- <section ref={sectionRef} className="py-20 md:py-28 bg-slate-50 border-b border-slate-200/60 overflow-hidden">
+ <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-200/60 overflow-hidden">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  
  {/* Header */}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Code, Layers, Cpu, MessageSquare, HelpCircle, ShoppingCart, TrendingUp, ChevronRight } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
@@ -15,25 +15,6 @@ interface CapabilityCard {
 
 export default function CapabilitiesSection() {
  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
- const sectionRef = useRef<HTMLDivElement>(null);
-
- useEffect(() => {
- const observer = new IntersectionObserver(
- (entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) {
- entry.target.classList.add("revealed");
- }
- });
- },
- { threshold: 0.1 }
- );
-
- const elements = sectionRef.current?.querySelectorAll(".reveal-on-scroll");
- elements?.forEach((el) => observer.observe(el));
-
- return () => observer.disconnect();
- }, []);
 
  const cards: CapabilityCard[] = [
  {
@@ -88,7 +69,7 @@ export default function CapabilitiesSection() {
  ];
 
  return (
- <section ref={sectionRef} id="capabilities" className="py-20 md:py-28 bg-white border-b border-slate-200/60 overflow-hidden">
+ <section id="capabilities" className="py-20 md:py-28 bg-white border-b border-slate-200/60 overflow-hidden">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  
  {/* Section Header */}

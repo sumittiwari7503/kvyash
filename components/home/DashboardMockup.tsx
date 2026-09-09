@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Server, Users, CreditCard, ChevronRight, Activity, ArrowUpRight } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
 
@@ -10,51 +10,37 @@ export default function DashboardMockup() {
  "SYS: DB connection pool spawned (14/100).",
  "SYS: Heartbeat pulse active."
  ]);
- const sectionRef = useRef<HTMLDivElement>(null);
 
  useEffect(() => {
- // Scroll reveal binding
- const observer = new IntersectionObserver(
- (entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) {
- entry.target.classList.add("revealed");
- }
- });
- },
- { threshold: 0.1 }
- );
+   // Live telemetry logger simulation
+   const logPool = [
+     "AUTH: Token verified for Client Session #8902.",
+     "DB: Row write committed to 'tenant_metrics' partition.",
+     "API: GET /api/v1/automation returned 200 OK.",
+     "CRON: Syncing active queues with Postgres pool.",
+     "AI: Vector store search finished (12ms).",
+     "SYS: SSL certificate handshake verified."
+   ];
 
- const elements = sectionRef.current?.querySelectorAll(".reveal-on-scroll");
- elements?.forEach((el) => observer.observe(el));
+   const interval = setInterval(() => {
+     if (typeof document !== "undefined" && document.hidden) return;
+     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+     
+     const randomLog = logPool[Math.floor(Math.random() * logPool.length)];
+     const timestamp = new Date().toLocaleTimeString();
+     setTelemetryLogs((prev) => [
+       `[${timestamp}] ${randomLog}`,
+       ...prev.slice(0, 2)
+     ]);
+   }, 3500);
 
- // Live telemetry logger simulation
- const logPool = [
- "AUTH: Token verified for Client Session #8902.",
- "DB: Row write committed to 'tenant_metrics' partition.",
- "API: GET /api/v1/automation returned 200 OK.",
- "CRON: Syncing active queues with Postgres pool.",
- "AI: Vector store search finished (12ms).",
- "SYS: SSL certificate handshake verified."
- ];
-
- const interval = setInterval(() => {
- const randomLog = logPool[Math.floor(Math.random() * logPool.length)];
- const timestamp = new Date().toLocaleTimeString();
- setTelemetryLogs((prev) => [
- `[${timestamp}] ${randomLog}`,
- ...prev.slice(0, 2)
- ]);
- }, 3500);
-
- return () => {
- observer.disconnect();
- clearInterval(interval);
- };
+   return () => {
+     clearInterval(interval);
+   };
  }, []);
 
  return (
- <section ref={sectionRef} className="py-20 md:py-28 bg-white border-b border-slate-200/60 overflow-hidden">
+ <section className="py-20 md:py-28 bg-white border-b border-slate-200/60 overflow-hidden">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
  
