@@ -160,7 +160,7 @@ export default function AIAutomationArticle() {
                     Lead Management
                   </h3>
                   <p className="pl-7">
-                    Manually processing incoming website inquiries creates sales friction. AI pipelines can capture a new lead form, parse the message to determine project scope, cross-reference data records, assign a qualification score, and update your CRM before notifying your sales representatives. Review our specialized <Link href="/services" className="font-semibold text-brand-600 hover:underline">web development services</Link> to learn how we structure these intake models.
+                    Manually processing incoming website inquiries creates sales friction. AI pipelines can capture a new lead form, parse the message to determine project scope, cross-reference data records, assign a qualification score, and update your CRM before notifying your sales representatives. Review our specialized <Link href="/services" className="font-semibold text-brand-600 hover:underline">web development services</Link> and <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:underline">custom web application architecture</Link> to learn how we structure these intake models.
                   </p>
                 </div>
 

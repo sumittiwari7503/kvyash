@@ -245,7 +245,7 @@ export default function SaaSDevelopmentArticle() {
                     Database Schema Design
                   </h3>
                   <p className="pl-7">
-                    Stable data indexing and relational mapping prevent application queries from slowing down as databases grow. A clean migration strategy is required to update tables safely without causing system downtime.
+                    Stable data indexing and relational mapping prevent application queries from slowing down as databases grow. A clean migration strategy is required to update tables safely without causing system downtime. Learn more about data modeling and performance in our guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:underline">custom web application development</Link>.
                   </p>
                 </div>
 

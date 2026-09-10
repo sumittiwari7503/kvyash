@@ -300,7 +300,7 @@ export default function WhatsAppCRMArticle() {
                 Technically, a WhatsApp CRM integration connects the official messaging API (which handles input/output packets) to a secure server middleware. When a client sends a message, a webhook triggers a database query, fetching client records, applying routing rules, and passing coordinates to your support team dashboard. 
               </p>
               <p>
-                To learn how we design databases and API integrations, explore KVYASH&apos;s <Link href="/services" className="font-semibold text-brand-600 hover:underline">engineering services</Link>.
+                To learn how we design databases and API integrations, explore KVYASH&apos;s <Link href="/services" className="font-semibold text-brand-600 hover:underline">engineering services</Link> and our guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:underline">custom web application development</Link>.
               </p>
             </div>
 

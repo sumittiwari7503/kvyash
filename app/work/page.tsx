@@ -85,7 +85,7 @@ export default function WorkPage() {
           <div>
             <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Solution</h4>
             <p>
-              We engineered a custom Next.js client layout integrating server-side static path exports connected to dynamic caching policies. The system caches HTML pages on Edge CDN node locations and registers revalidation timers, allowing updates to propagate automatically when new data is compiled. To learn how we design web structures, check out KVYASH&apos;s custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web development services</Link>.
+              We engineered a custom Next.js client layout integrating server-side static path exports connected to dynamic caching policies. The system caches HTML pages on Edge CDN node locations and registers revalidation timers, allowing updates to propagate automatically when new data is compiled. To learn how we design web structures, check out KVYASH&apos;s custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web development services</Link> and our in-depth guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">custom web application development</Link>.
             </p>
           </div>
 

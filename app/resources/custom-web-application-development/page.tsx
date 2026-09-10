@@ -328,7 +328,7 @@ export default function CustomWebApplicationDevelopmentArticle() {
                 </table>
               </div>
               <p>
-                Starting with a clean, modular monolith enables rapid iteration while preserving an effortless upgrade path toward decoupled services as traffic multiplies. To explore custom software roadmaps for your team, review our <Link href="/solutions" className="font-semibold text-brand-600 hover:underline">enterprise software solutions</Link> and <Link href="/ai-automation" className="font-semibold text-brand-600 hover:underline">AI automation systems</Link>.
+                Starting with a clean, modular monolith enables rapid iteration while preserving an effortless upgrade path toward decoupled services as traffic multiplies. To explore custom software roadmaps for your team, review our <Link href="/solutions" className="font-semibold text-brand-600 hover:underline">enterprise software solutions</Link>, <Link href="/ai-automation" className="font-semibold text-brand-600 hover:underline">AI automation systems</Link>, and our practical guide to <Link href="/resources/ai-automation-for-businesses" className="font-semibold text-brand-600 hover:underline">AI automation for businesses</Link>.
               </p>
             </div>
 
