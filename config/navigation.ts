@@ -29,7 +29,7 @@ export const footerSections: FooterSection[] = [
   {
     title: "Services",
     links: [
-      { label: "Web Development", href: "/services#development" },
+      { label: "Web Development", href: "/web-development" },
       { label: "AI & Automation", href: "/ai-automation" },
       { label: "Consultancy", href: "/services#consulting" },
       { label: "Offline → Online", href: "/services#offline-online" },

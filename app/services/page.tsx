@@ -316,7 +316,7 @@ export default function ServicesPage() {
  Consult &bull; Build &bull; Launch &bull; Automate &bull; Market &bull; Grow
  </h1>
       <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-        We partner with organizations to structure technical blueprints (read our <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">architecture guide</Link>), build robust applications (view our <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>), design custom <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">enterprise software</Link>, deploy intelligent <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">workflow automations</Link>, and launch digital products.
+        We partner with organizations to structure technical blueprints (read our <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">architecture guide</Link>), engineer custom <Link href="/web-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web applications</Link> (view our <Link href="/work" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">production architectures</Link>), design scalable <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">enterprise software</Link>, deploy intelligent <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">workflow automations</Link>, and launch digital products.
       </p>
  </div>
  </section>
@@ -350,13 +350,24 @@ export default function ServicesPage() {
  </p>
  </div>
 
+ <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-4">
  <StartProjectButton
  intent={category.intent}
- className="inline-flex self-start items-center justify-center px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded transition-premium cursor-pointer shadow-sm mt-4 text-center group"
+ className="inline-flex self-start items-center justify-center px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded transition-premium cursor-pointer shadow-sm text-center group"
  >
  <span>Start Scoping</span>
  <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
  </StartProjectButton>
+ {category.id === "development" && (
+ <Link
+ href="/web-development"
+ className="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-500 transition-colors"
+ >
+ <span>Web Dev Page</span>
+ <ArrowRight className="ml-1 h-3.5 w-3.5" />
+ </Link>
+ )}
+ </div>
  </div>
 
  {/* Services & Use Cases Grid */}
