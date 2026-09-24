@@ -344,7 +344,7 @@ export default function WorkPage() {
                 href="/contact"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-slate-300 dark:border-navy-700 bg-white dark:bg-navy-950 text-navy-900 dark:text-slate-100 font-semibold hover:bg-slate-50 dark:hover:bg-navy-900 transition-all text-center"
               >
-                Talk to KVYASH
+                Let&apos;s Talk
               </Link>
             </div>
           </div>

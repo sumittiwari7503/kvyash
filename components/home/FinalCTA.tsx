@@ -39,7 +39,7 @@ export default function FinalCTA() {
               href="/contact"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750 text-navy-900 dark:text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-2xs text-center"
             >
-              Talk to KVYASH
+              Let&apos;s Talk
             </Link>
           </div>
 

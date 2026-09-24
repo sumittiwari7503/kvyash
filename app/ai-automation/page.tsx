@@ -263,13 +263,21 @@ export default function AiAutomationPage() {
           <p className="text-slate-600 dark:text-slate-300 text-base max-w-xl leading-relaxed">
             Drop us your workflow challenges or API specifications. We will outline a pragmatic automation approach.
           </p>
-          <StartProjectButton
-            intent="AI_AUTOMATION"
-            className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer"
-          >
-            <span>Start Scoping Project</span>
-            <ArrowRight className="h-4 w-4" />
-          </StartProjectButton>
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <StartProjectButton
+              intent="AI_AUTOMATION"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-navy-900 hover:bg-black dark:bg-white dark:hover:bg-slate-100 text-white dark:text-navy-900 font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer"
+            >
+              <span>Start a Project</span>
+              <ArrowRight className="h-4 w-4" />
+            </StartProjectButton>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-6 py-4 rounded-full border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              Let&apos;s Talk
+            </Link>
+          </div>
         </div>
       </section>
 

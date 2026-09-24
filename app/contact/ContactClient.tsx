@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle, AlertCircle, ArrowRight, Loader2, Mail, MapPin, Sparkles, FileText, HelpCircle, ShieldCheck } from "lucide-react";
 import companyData from "@/config/company.json";
@@ -56,12 +56,15 @@ const faqs = [
 function ContactForm() {
   const searchParams = useSearchParams();
 
+  const initialMode = searchParams.get("mode") === "form" || searchParams.get("tab") === "form" ? "form" : "chat";
+  const initialService = searchParams.get("service") || "";
+
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
     phone: "",
     company: "",
-    service: "",
+    service: servicesList.some((s) => s.value === initialService) ? initialService : "",
     message: "",
     website: "",
   });
@@ -70,18 +73,7 @@ function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [contactMode, setContactMode] = useState<"chat" | "form">("chat");
-
-  // Pre-fill service dropdown from URL search parameter (e.g. /contact?service=web-development)
-  useEffect(() => {
-    const serviceParam = searchParams.get("service");
-    if (serviceParam && servicesList.some((s) => s.value === serviceParam) && form.service !== serviceParam) {
-      const timer = setTimeout(() => {
-        setForm((prev) => ({ ...prev, service: serviceParam }));
-      }, 0);
-      return () => clearTimeout(timer);
-    }
-  }, [searchParams, form.service]);
+  const [contactMode, setContactMode] = useState<"chat" | "form">(initialMode);
 
   const validate = (): boolean => {
     const tempErrors: FormErrors = {};

@@ -70,8 +70,14 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Desktop Actions: Theme Toggle & CTA */}
-            <div className="hidden sm:flex items-center gap-3">
+            {/* Desktop Actions: Theme Toggle, Let's Talk & Start a Project */}
+            <div className="hidden sm:flex items-center gap-2.5">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-navy-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+              >
+                Let&apos;s Talk
+              </Link>
               <ThemeToggle />
               <StartProjectButton
                 intent="BUILD_SOMETHING"
@@ -166,7 +172,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
             className="w-full text-center py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
           >
-            Contact Engineering Team
+            Let&apos;s Talk
           </Link>
           <p className="text-[11px] text-slate-400 dark:text-slate-500 text-center mt-1">
             Greater Noida • Noida • Delhi NCR • Global

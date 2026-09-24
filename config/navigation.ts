@@ -14,7 +14,7 @@ export const headerNavItems: NavItem[] = [
   { label: "Solutions", href: "/solutions" },
   { label: "Web Development", href: "/web-development" },
   { label: "AI & Automation", href: "/ai-automation" },
-  { label: "Resources", href: "/resources/custom-web-application-development" },
+  { label: "Resources", href: "/resources" },
   { label: "About", href: "/about" },
 ];
 

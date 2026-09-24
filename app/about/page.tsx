@@ -399,7 +399,7 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex items-center justify-center px-6 py-4 rounded-full border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
-              Contact Directly
+              Let&apos;s Talk
             </Link>
           </div>
         </div>
