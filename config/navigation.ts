@@ -9,11 +9,13 @@ export interface FooterSection {
 }
 
 export const headerNavItems: NavItem[] = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "AI & Automation", href: "/ai-automation" },
-  { label: "Solutions", href: "/solutions" },
   { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Web Development", href: "/web-development" },
+  { label: "AI & Automation", href: "/ai-automation" },
+  { label: "Resources", href: "/resources/custom-web-application-development" },
+  { label: "About", href: "/about" },
 ];
 
 export const footerSections: FooterSection[] = [
@@ -22,33 +24,42 @@ export const footerSections: FooterSection[] = [
     links: [
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
-      { label: "Work", href: "/work" },
-      { label: "Contact", href: "/contact" },
+      { label: "Work & Case Studies", href: "/work" },
+      { label: "Project Scoping", href: "/contact" },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "Web Development", href: "/web-development" },
-      { label: "AI & Automation", href: "/ai-automation" },
-      { label: "Consultancy", href: "/services#consulting" },
-      { label: "Offline → Online", href: "/services#offline-online" },
-      { label: "Marketplace/SaaS", href: "/services#marketplace-saas" },
-      { label: "Marketing & Growth", href: "/services#marketing" },
+      { label: "Custom Web Development", href: "/web-development" },
+      { label: "AI & Workflow Automation", href: "/ai-automation" },
+      { label: "Technology Consulting", href: "/services#consulting" },
+      { label: "SaaS & Marketplace Engineering", href: "/services#marketplace-saas" },
+      { label: "Business Systems Integration", href: "/solutions" },
+      { label: "Digital Transformation", href: "/services#offline-online" },
     ],
   },
-
   {
-    title: "Legal",
+    title: "Resources",
+    links: [
+      { label: "Web App Architecture Guide", href: "/resources/custom-web-application-development" },
+      { label: "SaaS Development India", href: "/resources/saas-development-india" },
+      { label: "WhatsApp CRM Engineering", href: "/resources/whatsapp-crm-development" },
+      { label: "AI Automation for Business", href: "/resources/ai-automation-for-businesses" },
+    ],
+  },
+  {
+    title: "Legal & Trust",
     links: [
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Cookie Policy", href: "/cookie-policy" },
       { label: "Terms of Service", href: "/terms" },
       { label: "Disclaimer", href: "/disclaimer" },
+      { label: "Client Feedback", href: "/submit-review" },
     ],
   },
   {
-    title: "Social",
+    title: "Connect",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/company/kvyash-technologies/?viewAsMember=true" },
       { label: "Instagram", href: "https://www.instagram.com/kvyashtechnologies/" },

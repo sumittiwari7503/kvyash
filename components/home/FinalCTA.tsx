@@ -7,20 +7,20 @@ import StartProjectButton from "@/components/common/StartProjectButton";
 
 export default function FinalCTA() {
   return (
-    <section className="py-24 md:py-32 bg-slate-50 border-b border-slate-200/60 overflow-hidden relative">
+    <section className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden relative transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Editorial Studio Callout Box */}
-        <div className="bg-white border border-slate-200/80 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-studio text-center flex flex-col items-center gap-8 reveal-on-scroll">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-studio text-center flex flex-col items-center gap-8 reveal-on-scroll">
           
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-brand-600 font-semibold block">
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-600 dark:text-brand-400 font-semibold block">
               Initiate Project Scoping
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
               Have a software system you need engineered?
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               Tell us what you&apos;re trying to build, automate, or take online. We&apos;ll help you scope the technical architecture, database schemas, and delivery roadmap.
             </p>
           </div>
@@ -29,7 +29,7 @@ export default function FinalCTA() {
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <StartProjectButton
               intent="BUILD_SOMETHING"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer group text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-brand-500 hover:bg-brand-600 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-navy-900 font-semibold rounded-full text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer group text-center"
             >
               <span>Start Scoping Project</span>
               <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -37,41 +37,41 @@ export default function FinalCTA() {
             
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-navy-900 font-semibold text-sm sm:text-base transition-all duration-300 shadow-sm text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750 text-navy-900 dark:text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-2xs text-center"
             >
               Talk to KVYASH
             </Link>
           </div>
 
           {/* Trust Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 mt-4 border-t border-slate-100 w-full max-w-4xl text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 mt-4 border-t border-slate-100 dark:border-slate-800 w-full max-w-4xl text-left">
             <div className="flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-brand-50 text-brand-600 shrink-0">
+              <div className="p-2 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 shrink-0">
                 <ShieldCheck className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-navy-900">Fixed-Scope Blueprint</h4>
-                <p className="text-[11px] text-slate-500 mt-0.5">Defined milestones and clear boundaries before coding.</p>
+                <h4 className="text-xs font-bold text-navy-900 dark:text-white">Fixed-Scope Blueprint</h4>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Defined milestones and clear boundaries before coding.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-brand-50 text-brand-600 shrink-0">
+              <div className="p-2 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 shrink-0">
                 <MessageSquare className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-navy-900">Direct Dev Communication</h4>
-                <p className="text-[11px] text-slate-500 mt-0.5">Work directly with engineers without account middle layers.</p>
+                <h4 className="text-xs font-bold text-navy-900 dark:text-white">Direct Dev Communication</h4>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Work directly with engineers without account middle layers.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-brand-50 text-brand-600 shrink-0">
+              <div className="p-2 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 shrink-0">
                 <Code className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-navy-900">Full Code Ownership</h4>
-                <p className="text-[11px] text-slate-500 mt-0.5">Direct GitHub repository and IP transfer on launch.</p>
+                <h4 className="text-xs font-bold text-navy-900 dark:text-white">Full Code Ownership</h4>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Direct GitHub repository and IP transfer on launch.</p>
               </div>
             </div>
           </div>

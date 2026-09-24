@@ -104,9 +104,9 @@ const capabilities = [
   },
   {
     icon: Cpu,
-    title: "Performance & Edge Delivery",
+    title: "Performance & Delivery",
     points: [
-      "Prerendered static HTML cached geographically across Edge CDNs",
+      "Prerendered static HTML cached globally across CDNs",
       "Incremental Static Regeneration (ISR) for fresh content updates",
       "Streamlined JavaScript bundles without unnecessary third-party tracking bloat",
       "Core Web Vitals tuning optimized for Google search indexability"
@@ -138,8 +138,8 @@ const techStack = [
     items: ["PostgreSQL", "Supabase", "Redis Cache", "Prisma / Drizzle ORM", "Secure Object Storage"]
   },
   {
-    category: "Cloud & Deployment",
-    items: ["Edge CDN Networks", "Hostinger Cloud", "AWS", "Docker Containers", "Git Version Control"]
+    category: "Cloud & Infrastructure",
+    items: ["Global CDN Distribution", "Hostinger Cloud", "AWS", "Docker Containers", "Git Version Control"]
   }
 ];
 
@@ -171,7 +171,7 @@ const lifecycleSteps = [
   },
   {
     number: "06",
-    title: "Edge Deployment & DNS Setup",
+    title: "Cloud Deployment & DNS Setup",
     desc: "We configure domain routing, SSL/TLS certificates, CDN edge caching rules, and production database environments for smooth launch."
   },
   {
@@ -196,7 +196,7 @@ const targetAudiences = [
   },
   {
     title: "Companies Modernizing Legacy Systems",
-    desc: "Businesses transitioning outdated, slow web applications into modern Next.js and React web architectures deployed with global edge caching."
+    desc: "Businesses transitioning outdated, slow web applications into modern Next.js and React web architectures deployed with global caching."
   }
 ];
 
@@ -229,7 +229,7 @@ const faqs = [
 
 export default function WebDevelopmentPage() {
   return (
-    <div className="font-sans text-navy-900 bg-white transition-colors duration-300">
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
       {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
@@ -298,30 +298,30 @@ export default function WebDevelopmentPage() {
       />
 
       {/* 1. Header Hero Section */}
-      <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-20 md:pt-40 md:pb-28 relative overflow-hidden reveal-on-scroll">
-        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+      <section className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 pt-36 pb-20 md:pt-44 md:pb-28 relative overflow-hidden reveal-on-scroll">
+        <div className="absolute inset-0 bg-studio-dots opacity-60 dark:opacity-40 pointer-events-none" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
-          <span className="inline-flex self-center items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-50 text-brand-600 border border-brand-100 uppercase tracking-wide">
+          <span className="inline-flex self-center items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white dark:bg-slate-900 text-brand-600 dark:text-brand-400 border border-slate-200/80 dark:border-slate-800 uppercase tracking-wide shadow-2xs">
             <Sparkles className="h-3.5 w-3.5" />
             Engineering • Modern Web Systems • Custom Applications
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 dark:text-white leading-[1.1]">
             Custom Web &amp; Web Application Development Services
           </h1>
-          <p className="text-slate-600 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
-            We engineer high-performance business websites, bespoke web applications, customer portals, and internal operations tools. Built with Next.js, React, TypeScript, and scalable relational databases—delivered with clean architecture, edge caching performance, and repository handover under agreed terms.
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+            We engineer high-performance business websites, bespoke web applications, customer portals, and internal operations tools. Built with Next.js, React, TypeScript, and scalable relational databases—delivered with clean architecture, caching performance, and repository handover under agreed terms.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <StartProjectButton
               intent="BUILD_SOMETHING"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 bg-brand-500 hover:bg-brand-600 text-white text-xs sm:text-sm font-bold rounded-full transition-all shadow-md cursor-pointer group"
             >
               <span>Scope Your Web Project</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </StartProjectButton>
             <Link
               href="/work"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-lg border border-slate-200 hover:border-slate-300 transition-all duration-300 shadow-sm text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold rounded-full border border-slate-300 dark:border-slate-700 transition-all shadow-2xs text-center"
             >
               Explore Engineering Blueprints
             </Link>
@@ -330,35 +330,35 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 2. What We Build Section (7 Capability Pillars) */}
-      <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-white dark:bg-slate-900/40 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Solutions Portfolio</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Solutions Portfolio</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               What We Build
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               From high-converting corporate web platforms to complex multi-tenant cloud software, we develop purpose-built digital systems tailored to your business operations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whatWeBuild.map((item, idx) => {
               const Icon = item.icon;
               const isLast = idx === 6;
               return (
                 <div
                   key={item.title}
-                  className={`bg-slate-50 border border-slate-200/70 rounded-2xl p-7 flex flex-col justify-between hover:border-brand-500/30 hover:bg-white hover:shadow-premium-hover hover:-translate-y-1 transition-all duration-300 ${
+                  className={`bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-7 lg:p-8 flex flex-col justify-between studio-card ${
                     isLast ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : ""
                   }`}
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="inline-flex self-start items-center justify-center p-3 rounded-xl bg-white text-brand-500 shadow-sm border border-slate-100">
+                    <div className="inline-flex self-start items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 shadow-2xs border border-slate-200/60 dark:border-slate-700">
                       <Icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <h3 className="text-xl font-bold text-navy-900 leading-snug">{item.title}</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="text-xl font-bold text-navy-900 dark:text-white leading-snug">{item.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               );
@@ -368,15 +368,15 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 3. Engineering Capabilities Section */}
-      <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Architecture &amp; Quality</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Architecture &amp; Quality</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Engineering Capabilities
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              We apply software engineering principles to modern web development, focusing on maintainability, edge performance optimization, and relational data integrity.
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+              We apply software engineering principles to modern web development, focusing on maintainability, performance optimization, and relational data integrity.
             </p>
           </div>
 
@@ -386,18 +386,18 @@ export default function WebDevelopmentPage() {
               return (
                 <div
                   key={cap.title}
-                  className="bg-white border border-slate-200/80 rounded-2xl p-8 flex flex-col gap-5 shadow-sm hover:border-brand-500/20 hover:shadow-md transition-all duration-300"
+                  className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-8 flex flex-col gap-5 shadow-2xs studio-card"
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="p-2.5 rounded-lg bg-brand-50 text-brand-500 border border-brand-100">
+                    <div className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-brand-600 dark:text-brand-400 border border-slate-200/60 dark:border-slate-700">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
-                    <h3 className="text-xl font-bold text-navy-900">{cap.title}</h3>
+                    <h3 className="text-xl font-bold text-navy-900 dark:text-white">{cap.title}</h3>
                   </div>
                   <ul className="space-y-3 pt-2">
                     {cap.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <li key={pt} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -410,14 +410,14 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 4. Technology Stack Matrix */}
-      <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-white dark:bg-slate-900/50 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Modern Technology Stack</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Modern Technology Stack</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Engineered With Modern Foundations
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               We choose robust, industry-standard technologies that deliver longevity, strong ecosystem support, and zero reliance on proprietary black boxes.
             </p>
           </div>
@@ -426,12 +426,12 @@ export default function WebDevelopmentPage() {
             {techStack.map((stack) => (
               <div
                 key={stack.category}
-                className="bg-slate-50 border border-slate-200/70 rounded-xl p-6 flex flex-col gap-4 shadow-sm"
+                className="bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 flex flex-col gap-4 shadow-2xs studio-card"
               >
-                <h3 className="text-xs font-bold uppercase tracking-wider text-brand-600">{stack.category}</h3>
-                <ul className="space-y-2">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 font-mono">{stack.category}</h3>
+                <ul className="space-y-2.5">
                   {stack.items.map((item) => (
-                    <li key={item} className="text-xs sm:text-sm font-medium text-slate-700 flex items-center gap-2">
+                    <li key={item} className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" />
                       {item}
                     </li>
@@ -444,34 +444,34 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 5. 7-Step Development Lifecycle */}
-      <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Our Methodology</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Our Methodology</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               7-Step Development Lifecycle
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              A transparent, milestone-driven engineering process from requirements scoping through edge deployment and handover.
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+              A transparent, milestone-driven engineering process from requirements scoping through cloud deployment and handover.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {lifecycleSteps.map((step, idx) => {
               const isLast = idx === 6;
               return (
                 <div
                   key={step.number}
-                  className={`bg-white border border-slate-200/70 rounded-2xl p-7 flex flex-col justify-between shadow-sm hover:border-slate-300 transition-all duration-300 ${
+                  className={`bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-7 flex flex-col justify-between shadow-2xs studio-card ${
                     isLast ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : ""
                   }`}
                 >
                   <div className="flex flex-col gap-3">
-                    <span className="text-xs font-extrabold text-brand-600 uppercase tracking-widest">
+                    <span className="text-xs font-mono font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
                       Step {step.number}
                     </span>
-                    <h3 className="text-lg font-bold text-navy-900">{step.title}</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{step.desc}</p>
+                    <h3 className="text-lg font-bold text-navy-900 dark:text-white">{step.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               );
@@ -481,23 +481,23 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 6. Security, IP Ownership & Quality Practices */}
-      <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-white dark:bg-slate-900/40 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 flex flex-col gap-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Security &amp; Standards</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Security &amp; Standards</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
                 Built For Reliability, Security, and Longevity
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                 We design web systems with defensive engineering practices, utilizing parameterized database queries, authenticated API boundaries, and isolated tenant permissions.
               </p>
               <div className="space-y-4 pt-2">
                 <div className="flex items-start gap-3.5">
                   <ShieldCheck className="h-5 w-5 text-brand-500 shrink-0 mt-1" />
                   <div>
-                    <h3 className="text-sm font-bold text-navy-900">Code &amp; Deliverables Transfer</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm mt-0.5 leading-relaxed">
+                    <h3 className="text-sm font-bold text-navy-900 dark:text-white">Code &amp; Deliverables Transfer</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-0.5 leading-relaxed">
                       All custom source code, database migration files, and components are transferred directly to your Git repository upon milestone completion under agreed terms with zero vendor lock-in.
                     </p>
                   </div>
@@ -505,8 +505,8 @@ export default function WebDevelopmentPage() {
                 <div className="flex items-start gap-3.5">
                   <Database className="h-5 w-5 text-brand-500 shrink-0 mt-1" />
                   <div>
-                    <h3 className="text-sm font-bold text-navy-900">Row-Level Security &amp; Data Isolation</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm mt-0.5 leading-relaxed">
+                    <h3 className="text-sm font-bold text-navy-900 dark:text-white">Row-Level Security &amp; Data Isolation</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-0.5 leading-relaxed">
                       Databases are configured with strict access policies, ensuring multi-tenant data isolation and secure environment variable separation.
                     </p>
                   </div>
@@ -514,8 +514,8 @@ export default function WebDevelopmentPage() {
                 <div className="flex items-start gap-3.5">
                   <Zap className="h-5 w-5 text-brand-500 shrink-0 mt-1" />
                   <div>
-                    <h3 className="text-sm font-bold text-navy-900">Edge Caching &amp; Core Web Vitals</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm mt-0.5 leading-relaxed">
+                    <h3 className="text-sm font-bold text-navy-900 dark:text-white">Edge Caching &amp; Core Web Vitals</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-0.5 leading-relaxed">
                       Static assets and dynamic routes are tuned for rapid paint times, low layout shifts, and responsive interaction latencies across mobile and desktop.
                     </p>
                   </div>
@@ -523,29 +523,29 @@ export default function WebDevelopmentPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-slate-50 border border-slate-200/80 rounded-2xl p-8 shadow-sm">
-              <h3 className="text-lg font-bold text-navy-900 mb-4 flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+            <div className="lg:col-span-6 bg-slate-50 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-8 shadow-2xs">
+              <h3 className="text-lg font-bold text-navy-900 dark:text-white mb-5 flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                 Standard Engineering Checklist
               </h3>
-              <ul className="space-y-3 text-xs sm:text-sm text-slate-655">
-                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/60">
+              <ul className="space-y-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   <span>TypeScript strict mode enabled across entire codebase</span>
                 </li>
-                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/60">
+                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   <span>Strict linter compliance and clean build passes</span>
                 </li>
-                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/60">
+                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   <span>Self-referential canonical tags and OpenGraph metadata</span>
                 </li>
-                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/60">
+                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   <span>Automated database connection pooling &amp; SSL connections</span>
                 </li>
-                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/60">
+                <li className="flex items-center gap-2.5 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   <span>Sanitized form inputs and API payload validation</span>
                 </li>
@@ -560,26 +560,26 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 7. Who This Service Is For */}
-      <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Target Audiences</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Target Audiences</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Who This Service Is For
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               We collaborate with business leaders, technical founders, and operational teams who require reliable, maintainable web software.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {targetAudiences.map((aud) => (
               <div
                 key={aud.title}
-                className="bg-white border border-slate-200/70 rounded-xl p-7 flex flex-col gap-3 shadow-sm hover:border-brand-500/20 transition-all duration-300"
+                className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-7 lg:p-8 flex flex-col gap-3 shadow-2xs studio-card"
               >
-                <h3 className="text-lg font-bold text-navy-900">{aud.title}</h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{aud.desc}</p>
+                <h3 className="text-lg font-bold text-navy-900 dark:text-white">{aud.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{aud.desc}</p>
               </div>
             ))}
           </div>
@@ -587,27 +587,27 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 8. Custom Development vs. Templates / No-Code */}
-      <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-white dark:bg-slate-900/40 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Approach Comparison</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Approach Comparison</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Custom Development vs. Templates &amp; No-Code
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               Understanding when no-code tools suffice and when custom Next.js engineering is required for business scalability.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 flex flex-col justify-between">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-8 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Basic Tools</span>
-                <h3 className="text-xl font-bold text-navy-900 mb-4">Templates &amp; No-Code Builders</h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                  Effective for simple content blogs, temporary landing experiments, and early proof-of-concept prototypes with standard layout needs.
+                <span className="text-xs font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">Basic Tools</span>
+                <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-4">Templates &amp; No-Code Builders</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                  Effective for simple blogs, temporary landing experiments, and early proof-of-concept prototypes with standard layout needs.
                 </p>
-                <ul className="space-y-2.5 text-xs text-slate-600">
+                <ul className="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                     <span>Rapid setup for basic static layouts</span>
@@ -628,17 +628,17 @@ export default function WebDevelopmentPage() {
               </div>
             </div>
 
-            <div className="bg-brand-50/50 border border-brand-200/70 rounded-2xl p-8 flex flex-col justify-between">
+            <div className="bg-brand-50/50 dark:bg-slate-900 border border-brand-200/70 dark:border-brand-900/60 rounded-3xl p-8 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-2">Engineered Solution</span>
-                <h3 className="text-xl font-bold text-navy-900 mb-4">Custom Next.js &amp; React Engineering</h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                <span className="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-2">Engineered Solution</span>
+                <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-4">Custom Next.js &amp; React Engineering</h3>
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
                   Essential when your company requires proprietary workflows, unique database logic, granular role permissions, edge caching performance, and full code ownership.
                 </p>
-                <ul className="space-y-2.5 text-xs text-slate-700">
+                <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-brand-500" />
-                    <span>Optimized page rendering via Edge CDN caching</span>
+                    <span>Optimized page rendering via CDN edge caching</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-brand-500" />
@@ -659,30 +659,30 @@ export default function WebDevelopmentPage() {
         </div>
       </section>
 
-      {/* 9. Verifiable Production Proof */}
-      <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100 reveal-on-scroll">
+      {/* 9. Verifiable Technical Proof */}
+      <section className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white border border-slate-200/80 rounded-2xl p-8 md:p-10 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-8 md:p-10 shadow-studio flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="flex flex-col gap-4 max-w-2xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Verifiable Technical Proof</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
-                Static Site Generation with Edge Revalidation
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Verifiable Technical Proof</span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
+                Static Site Generation with Incremental Revalidation
               </h2>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                Review our internal production Next.js architecture utilizing static page exports, dynamic edge caching policies, and optimized Largest Contentful Paint benchmarks. Explore our live <Link href="/work#case-studies" className="font-semibold text-brand-600 hover:underline">production case studies</Link>, explore <Link href="/solutions" className="font-semibold text-brand-600 hover:underline">B2B software consulting blueprints</Link>, or read our architectural guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:underline">custom web application development</Link>.
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Review our internal production Next.js architecture utilizing static page exports, dynamic caching policies, and optimized Largest Contentful Paint benchmarks. Explore our live <Link href="/work#case-studies" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">production case studies</Link>, explore <Link href="/solutions" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">B2B software blueprints</Link>, or read our guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">custom web application development</Link>.
               </p>
             </div>
             <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3">
               <Link
                 href="/work"
-                className="inline-flex items-center justify-center px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded-lg transition-all duration-300 shadow-sm text-center"
+                className="inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded-full transition-all shadow-md text-center"
               >
                 <span>View Case Studies</span>
-                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center px-5 py-3 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center px-5 py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-700 transition-all text-center"
               >
                 Services Overview
               </Link>
@@ -692,14 +692,14 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 10. Buyer FAQ Section */}
-      <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-white dark:bg-slate-900/40 border-b border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Frequently Asked Questions</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Frequently Asked Questions</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight">
               Web Development FAQ
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               Common questions about our custom web engineering, technology stack, project scoping, and technical deliverables.
             </p>
           </div>
@@ -708,13 +708,13 @@ export default function WebDevelopmentPage() {
             {faqs.map((faq) => (
               <div
                 key={faq.q}
-                className="bg-slate-50 border border-slate-200/70 rounded-xl p-6 transition-all duration-300 hover:border-slate-300"
+                className="bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-7 transition-all duration-300 shadow-2xs"
               >
-                <h3 className="text-base font-bold text-navy-900 mb-2.5 flex items-start gap-2.5">
+                <h3 className="text-base font-bold text-navy-900 dark:text-white mb-2.5 flex items-start gap-2.5">
                   <HelpCircle className="h-5 w-5 text-brand-500 shrink-0 mt-0.5" />
                   <span>{faq.q}</span>
                 </h3>
-                <p className="text-slate-655 text-xs sm:text-sm leading-relaxed pl-7.5">{faq.a}</p>
+                <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed pl-7.5">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -722,34 +722,34 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 11. Final Project Scoping CTA Block */}
-      <section className="py-20 md:py-28 bg-slate-50 relative overflow-hidden reveal-on-scroll">
+      <section className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden reveal-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6 relative z-10">
-          <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-600 border border-brand-100 uppercase tracking-wide">
+          <span className="inline-flex self-center items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white dark:bg-slate-900 text-brand-600 dark:text-brand-400 border border-slate-200/80 dark:border-slate-800 uppercase tracking-wide shadow-2xs">
             Start A Project
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-navy-900 dark:text-white">
             Ready to Engineer Your Custom Web Platform?
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Tell us about your web application requirements, business workflows, or website redesign. We will review your technical specifications and provide a structured project blueprint.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <StartProjectButton
               intent="BUILD_SOMETHING"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white text-xs sm:text-sm font-bold rounded-full transition-all shadow-md cursor-pointer group"
             >
               <span>Scope Your Project Online</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </StartProjectButton>
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-lg border border-slate-200 transition-all duration-300 shadow-sm text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold rounded-full border border-slate-300 dark:border-slate-700 transition-all shadow-2xs text-center"
             >
               Contact Engineering Team
             </Link>
           </div>
-          <p className="text-xs text-slate-500 pt-2">
-            Serving businesses across Greater Noida, Noida, Delhi NCR, and international teams. Also explore our <Link href="/ai-automation" className="text-brand-600 hover:underline">AI automation services</Link> and <Link href="/services" className="text-brand-600 hover:underline">full service directory</Link>.
+          <p className="text-xs text-slate-500 dark:text-slate-400 pt-2">
+            Serving businesses across Greater Noida, Noida, Delhi NCR, and international teams. Also explore our <Link href="/ai-automation" className="text-brand-600 dark:text-brand-400 hover:underline">AI automation services</Link> and <Link href="/services" className="text-brand-600 dark:text-brand-400 hover:underline">full service directory</Link>.
           </p>
         </div>
       </section>

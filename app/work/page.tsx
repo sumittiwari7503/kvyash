@@ -1,339 +1,355 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Layers, Cpu, Database, CheckCircle2, ShieldCheck, Terminal } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
 import WorkClient from "@/components/common/WorkClient";
 
 export const metadata = {
- title: {
- absolute: "KVYASH Technologies | Our Work"
- },
- description: "Browse KVYASH Technologies portfolio and case studies. See our custom web systems, SaaS platforms, AI integrations, and automation engineering projects.",
- alternates: {
- canonical: "https://kvyash.com/work",
- },
+  title: {
+    absolute: "KVYASH Technologies | Selected Work & Engineering Blueprints",
+  },
+  description:
+    "Explore KVYASH Technologies portfolio and case studies. Inspect production web applications, SaaS architectures, AI workflows, and custom business systems.",
+  alternates: {
+    canonical: "https://kvyash.com/work",
+  },
 };
 
 export default function WorkPage() {
- return (
- <div className="font-sans text-navy-900 bg-white transition-colors duration-300">
- 
- {/* 1. Hero Section */}
- <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden reveal-on-scroll">
- <div className="absolute inset-0 opacity-5 .03] bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
- <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-5 relative z-10">
- <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-wide">
- SELECTED WORK
- </span>
- <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-navy-900 ">
- What we&apos;re building.
- </h1>
- <p className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
- We showcase real products, internal engineering work, prototypes, and technical systems. Client work is published only when it can be shared publicly.
- </p>
- </div>
- </section>
+  return (
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-white dark:bg-navy-950 transition-colors duration-300">
+      {/* 1. Hero Section */}
+      <section className="bg-slate-50/70 dark:bg-navy-900/50 border-b border-slate-200/80 dark:border-navy-800 pt-36 pb-20 md:pt-40 md:pb-24 relative overflow-hidden reveal-on-scroll">
+        <div className="absolute inset-0 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-5 relative z-10">
+          <div className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 border border-brand-200/60 dark:border-brand-800/60 uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
+            Selected Work & Case Studies
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 dark:text-white">
+            What we build & deploy.
+          </h1>
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            We showcase real software systems, internal engineering builds, validated prototypes, and production architectures. Client systems are published only when permission is cleared.
+          </p>
+        </div>
+      </section>
 
-  {/* 2. Interactive Portfolio & Filters Section */}
-  <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <WorkClient />
+      {/* 2. Interactive Portfolio & Filters Section */}
+      <section className="py-20 md:py-28 bg-white dark:bg-navy-950 border-b border-slate-100 dark:border-navy-800 reveal-on-scroll">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <WorkClient />
+        </div>
+      </section>
+
+      {/* 3. Deep-Dive Case Studies Section */}
+      <section id="case-studies" className="py-20 md:py-28 bg-slate-50/50 dark:bg-navy-900/30 border-b border-slate-200/80 dark:border-navy-800 reveal-on-scroll">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
+          <div className="text-center max-w-3xl mx-auto flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              Architectural Reviews
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
+              Engineering blueprints in action.
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+              Transparent breakdowns of production architectures, state machines, and data pipelines built by KVYASH.
+            </p>
+          </div>
+
+          {/* Case Study 1 */}
+          <article className="bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-2xl p-8 sm:p-10 shadow-sm flex flex-col gap-8">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-slate-100 dark:border-navy-800 pb-6">
+              <div>
+                <span className="text-[11px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest block mb-2">
+                  Web Engineering & Next.js Architecture
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-navy-900 dark:text-white leading-tight">
+                  High-Performance Web Architecture with Dynamic Revalidation
+                </h3>
+              </div>
+              <span className="text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1 rounded-full self-start uppercase tracking-wider whitespace-nowrap">
+                Production Architecture
+              </span>
+            </div>
+
+            <div className="space-y-6 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+              <div>
+                <h4 className="font-bold text-navy-900 dark:text-white text-xs sm:text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-brand-500" />
+                  Project Overview
+                </h4>
+                <p>
+                  A production-ready Next.js application architecture built to deliver pre-rendered static content while maintaining on-demand dynamic updates. By leveraging static generation and Incremental Static Regeneration (ISR), the architecture minimizes origin compute overhead and ensures rapid global delivery via CDN caching.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-navy-900 dark:text-white text-xs sm:text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <Cpu className="w-4 h-4 text-brand-500" />
+                  Technical Objective
+                </h4>
+                <p>
+                  Deliver a resilient, search-engine-optimized platform that serves content rapidly to visitors, handles concurrent traffic spikes cleanly, and updates cached assets when CMS or database records change.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-navy-900 dark:text-white text-xs sm:text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <Database className="w-4 h-4 text-brand-500" />
+                  Engineering Solution
+                </h4>
+                <p>
+                  We engineered a lightweight Next.js client layout that integrates pre-compiled server-rendered routes with dynamic revalidation triggers. Discover more in our dedicated <Link href="/web-development" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">web development services</Link> and our guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">custom web application development</Link>.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200/60 dark:border-navy-800">
+                  <h5 className="font-bold text-navy-900 dark:text-white text-xs uppercase tracking-wider mb-2">
+                    Core Technologies
+                  </h5>
+                  <ul className="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                    <li>• <strong>Next.js & React:</strong> Pre-rendered server components with selective client hydration.</li>
+                    <li>• <strong>TypeScript:</strong> End-to-end strict types preventing runtime schema mismatches.</li>
+                    <li>• <strong>Tailwind CSS:</strong> Dual-theme tokenized design system with zero layout shift.</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200/60 dark:border-navy-800">
+                  <h5 className="font-bold text-navy-900 dark:text-white text-xs uppercase tracking-wider mb-2">
+                    Key Outcomes
+                  </h5>
+                  <ul className="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                    <li>• Immediate SSR paint with zero blank-screen flash.</li>
+                    <li>• Full accessibility and prefers-reduced-motion compatibility.</li>
+                    <li>• Structured JSON-LD graphs for verified search engine discovery.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 dark:border-navy-800 flex items-center justify-between">
+                <StartProjectButton 
+                  intent="BUILD_SOMETHING"
+                  className="inline-flex items-center text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 gap-1.5 transition-colors cursor-pointer group"
+                >
+                  <span>Scope a Web Engineering Project</span>
+                  <ArrowRight className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1" />
+                </StartProjectButton>
+              </div>
+            </div>
+          </article>
+
+          {/* Case Study 2 */}
+          <article className="bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-2xl p-8 sm:p-10 shadow-sm flex flex-col gap-8">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-slate-100 dark:border-navy-800 pb-6">
+              <div>
+                <span className="text-[11px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest block mb-2">
+                  AI & Automation • Data Pipelines
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-navy-900 dark:text-white leading-tight">
+                  Intelligent Document Ingestion & Schema Transformation Pipeline
+                </h3>
+              </div>
+              <span className="text-[11px] font-semibold bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800/60 px-3 py-1 rounded-full self-start uppercase tracking-wider whitespace-nowrap">
+                Production Prototype
+              </span>
+            </div>
+
+            <div className="space-y-6 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+              <div>
+                <h4 className="font-bold text-navy-900 dark:text-white text-xs sm:text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-brand-500" />
+                  Project Overview
+                </h4>
+                <p>
+                  An enterprise document ingestion pipeline engineered to parse unstructured PDF files, invoices, and contracts. It integrates OCR text parsing with token schema mapping to transform raw text into strictly validated JSON schemas synchronized with PostgreSQL databases.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-navy-900 dark:text-white text-xs sm:text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-brand-500" />
+                  Security & Isolation
+                </h4>
+                <p>
+                  Data isolation is maintained via proxy middleware. Documents are stripped of extraneous metadata, processed in temporary execution memory, and never cached on third-party model stores.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-navy-900 dark:text-white text-xs sm:text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <Terminal className="w-4 h-4 text-brand-500" />
+                  Workflow Integration
+                </h4>
+                <p>
+                  Follows our 3-stage pipeline: Secure Ingestion → Token Schema Classification → Relational Database Sync. Read more about our approach in <Link href="/ai-automation" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">AI & Automation</Link> or our guide on <Link href="/resources/ai-automation-for-businesses" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">AI Automation for Businesses</Link>.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200/60 dark:border-navy-800">
+                  <h5 className="font-bold text-navy-900 dark:text-white text-xs uppercase tracking-wider mb-2">
+                    Core Technologies
+                  </h5>
+                  <ul className="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                    <li>• <strong>OCR & Token Parsing:</strong> Extracts layout and key-value fields reliably.</li>
+                    <li>• <strong>Webhook Ingestion:</strong> Authenticated endpoints for external workflow triggers.</li>
+                    <li>• <strong>PostgreSQL Storage:</strong> Typed relational tables with audit history logs.</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200/60 dark:border-navy-800">
+                  <h5 className="font-bold text-navy-900 dark:text-white text-xs uppercase tracking-wider mb-2">
+                    Operational Impact
+                  </h5>
+                  <ul className="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                    <li>• Eliminates repetitive manual data entry routines.</li>
+                    <li>• Flags low-confidence extractions for human verification.</li>
+                    <li>• Structured exports ready for ERP and CRM ingestion.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 dark:border-navy-800 flex items-center justify-between">
+                <StartProjectButton 
+                  intent="AI_AUTOMATION"
+                  className="inline-flex items-center text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 gap-1.5 transition-colors cursor-pointer group"
+                >
+                  <span>Build an Automation Pipeline</span>
+                  <ArrowRight className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1" />
+                </StartProjectButton>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* 4. AI & Automation Capabilities Grid */}
+      <section className="py-20 md:py-28 bg-white dark:bg-navy-950 border-b border-slate-100 dark:border-navy-800 reveal-on-scroll">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+            <div className="lg:col-span-7 flex flex-col gap-4 text-center lg:text-left">
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                AI & Systems Capabilities
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
+                AI systems built around operational reality.
+              </h2>
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+                We build AI-driven tooling directly into core business operations — customer communication, CRM synchronization, lead routing, and document parsing.
+              </p>
+            </div>
+
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <StartProjectButton
+                intent="AI_AUTOMATION"
+                className="inline-flex items-center justify-center px-6 py-3.5 bg-brand-600 hover:bg-brand-500 dark:bg-brand-500 dark:hover:bg-brand-400 text-white text-xs font-bold rounded-lg transition-all shadow-sm text-center"
+              >
+                Explore AI & Automation →
+              </StartProjectButton>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+            {[
+              "AI Customer Assistants",
+              "CRM Intelligence",
+              "WhatsApp Automation",
+              "Email Routing Engines",
+              "Document Parsing",
+              "Business Orchestration",
+            ].map((system) => (
+              <div
+                key={system}
+                className="bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-xl p-5 shadow-sm flex flex-col justify-between items-center transition-all hover:border-brand-500/50"
+              >
+                <div className="space-y-2">
+                  <span className="inline-block text-[9px] font-bold bg-white dark:bg-navy-950 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded border border-slate-200/60 dark:border-navy-800 uppercase">
+                    Capability
+                  </span>
+                  <h4 className="text-navy-900 dark:text-white font-bold text-xs sm:text-sm">{system}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Engineering Standards */}
+      <section className="py-20 md:py-28 bg-slate-50/50 dark:bg-navy-900/30 border-b border-slate-200/80 dark:border-navy-800 reveal-on-scroll">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              Studio Methodology
+            </span>
+            <h2 className="text-3xl font-extrabold text-navy-900 dark:text-white tracking-tight">
+              Our engineering standards.
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              We focus on building resilient software architectures with transparent communication, fixed scopes, and complete code handoff.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-xl p-6 sm:p-8 shadow-sm flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider border-b border-slate-100 dark:border-navy-800 pb-3">
+                <CheckCircle2 className="w-4 h-4 text-brand-500" />
+                1. Fixed-Scope Blueprints
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Before writing any code, we document all system boundaries, data contracts, and deliverables so development stays predictable.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-xl p-6 sm:p-8 shadow-sm flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider border-b border-slate-100 dark:border-navy-800 pb-3">
+                <CheckCircle2 className="w-4 h-4 text-brand-500" />
+                2. Direct Engineering Access
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                You collaborate directly with the software engineers building your product — eliminating account management layers and communication delays.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-xl p-6 sm:p-8 shadow-sm flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider border-b border-slate-100 dark:border-navy-800 pb-3">
+                <CheckCircle2 className="w-4 h-4 text-brand-500" />
+                3. Full Ownership & Handover
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Source code, database structures, repositories, and deployment configurations are transferred directly to your organization.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Editorial CTA Section */}
+      <section className="py-20 md:py-28 bg-white dark:bg-navy-950 reveal-on-scroll">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-50/70 dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-2xl p-8 sm:p-12 shadow-sm text-center flex flex-col gap-6 items-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight">
+              Have a digital system in mind?
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              Tell us what you are looking to build, scale, or automate with custom <Link href="/web-development" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">web development</Link>, <Link href="/ai-automation" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">AI workflows</Link>, or <Link href="/solutions" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">bespoke software solutions</Link>.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+              <StartProjectButton className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-brand-600 hover:bg-brand-500 dark:bg-brand-500 dark:hover:bg-brand-400 text-white font-semibold rounded-lg transition-all shadow-sm text-center">
+                Start a Project
+              </StartProjectButton>
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-slate-300 dark:border-navy-700 bg-white dark:bg-navy-950 text-navy-900 dark:text-slate-100 font-semibold hover:bg-slate-50 dark:hover:bg-navy-900 transition-all text-center"
+              >
+                Talk to KVYASH
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
-
-  {/* Case Studies Section */}
-  <section id="case-studies" className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
-      
-      <div className="text-center max-w-3xl mx-auto mb-4 flex flex-col gap-3">
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Case Studies</span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
-          Engineering blueprints in action.
-        </h2>
-        <p className="text-slate-655 text-sm sm:text-base leading-relaxed">
-          Detailed technical reviews of our architectural builds and data integrations.
-        </p>
-      </div>
-
-      {/* Case Study 1 */}
-      <div className="bg-slate-50 border border-slate-200/60 rounded-2xl p-8 flex flex-col gap-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
-          <div>
-            <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest block mb-1">Web & Software</span>
-            <h3 className="text-2xl font-bold text-navy-900 leading-tight">Static Site Generation with Edge Revalidation</h3>
-          </div>
-          <span className="text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full self-start uppercase tracking-wider">
-            Internal Production Build
-          </span>
-        </div>
-
-        <div className="space-y-6 text-slate-655 text-sm sm:text-base leading-relaxed">
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Project Overview</h4>
-            <p>
-              This is a production-ready Next.js web application architecture designed to export static resources while maintaining dynamic content updates. By utilizing static site generation (SSG) alongside Incremental Static Regeneration (ISR), the platform eliminates origin database compute costs and optimizes pages for sub-second global speeds via content delivery networks (CDNs).
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Project Objective</h4>
-            <p>
-              To build a high-performance, SEO-optimized business platform that serves content instantly to global visitors, runs completely on edge caches, handles high concurrent traffic spikes without server strain, and automatically revalidates cache layers when page data updates.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Solution</h4>
-            <p>
-              We engineered a custom Next.js client layout integrating server-side static path exports connected to dynamic caching policies. The system caches HTML pages on Edge CDN node locations and registers revalidation timers, allowing updates to propagate automatically when new data is compiled. To learn how we design web structures, check out KVYASH&apos;s custom <Link href="/web-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web development services</Link> and our in-depth guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">custom web application development</Link>.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Technology & Architecture</h4>
-            <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Next.js & React:</strong> Renders static page structures and executes hydrated micro-interactions in browsers.</li>
-              <li><strong>TypeScript:</strong> Standardizes clean data definitions, preventing null reference compile issues.</li>
-              <li><strong>Edge Cache:</strong> Caches dynamic HTML payloads at geographical nodes.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Key Features</h4>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Static HTML prerendering for immediate browser paint.</li>
-              <li>Edge caching layers returning hits to 99%+ of visitors.</li>
-              <li>Fully automated route compilation checks.</li>
-              <li>Optimized LCP (Largest Contentful Paint) configurations.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Engineering Approach</h4>
-            <p>
-              We prioritized simple, robust configurations over unnecessary server hosting layers. The layout hydrater caches static paths and renders HTML immediately, while React hooks initialize dynamic visual staggers asynchronously. This setup eliminates empty whitespace during initial load and respects prefers-reduced-motion settings.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Outcome</h4>
-            <p>
-              Delivered a highly responsive, compiled Next.js website with zero build warnings, achieving sub-second Largest Contentful Paint times and direct crawlable canonical setups across all core routes.
-            </p>
-          </div>
-
-          <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-            <StartProjectButton 
-              intent="BUILD_SOMETHING"
-              className="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-500 gap-1.5 transition-colors cursor-pointer group"
-            >
-              <span>Build a Custom Web System</span>
-              <ArrowRight className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1" />
-            </StartProjectButton>
-          </div>
-        </div>
-      </div>
-
-      {/* Case Study 2 */}
-      <div className="bg-slate-50 border border-slate-200/60 rounded-2xl p-8 flex flex-col gap-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
-          <div>
-            <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest block mb-1">AI & Automation</span>
-            <h3 className="text-2xl font-bold text-navy-900 leading-tight">Intelligent PDF Data Ingestion Pipeline</h3>
-          </div>
-          <span className="text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1 rounded-full self-start uppercase tracking-wider">
-            Prototype
-          </span>
-        </div>
-
-        <div className="space-y-6 text-slate-655 text-sm sm:text-base leading-relaxed">
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Project Overview</h4>
-            <p>
-              This is a document-processing pipeline designed to automate data capture from unstructured PDF files. The prototype integrates optical character recognition (OCR) and token schema mapping to parse invoices, receipts, or data logs, structure the records, and sync them directly with PostgreSQL relational databases.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Project Objective</h4>
-            <p>
-              To eliminate manual data entry workloads for operations teams by building a secure, automated document ingestion engine that converts raw files into clean JSON schemas and updates target databases without data leakage.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Solution</h4>
-            <p>
-              We designed an automated workflow logic matching the KVYASH 3-step pipeline: Document Ingestion, LLM Token Mapping, and Database Ingestion. When a file is loaded, a secure validator intercepts the payload, passes content to token parsers to classify values, and writes the structured records to PostgreSQL tables. For more information on our automation setups, explore KVYASH&apos;s <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">AI automation solutions</Link> or get in touch for custom <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">software solutions</Link>.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Technology & Architecture</h4>
-            <ul className="list-disc pl-5 space-y-1">
-              <li><strong>OCR & Token Mapping:</strong> Extracts context and metadata values from unstructured text blocks.</li>
-              <li><strong>API Integrations:</strong> Exposes secure endpoint webhooks to ingest documents from remote folders.</li>
-              <li><strong>Relational Database:</strong> PostgreSQL database with schema rules mapping columns (sub-totals, names, dates).</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Key Features</h4>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Automatic schema classification from uploaded PDF attachments.</li>
-              <li>Structured output mapping (sub-totals, items, tax fields).</li>
-              <li>Secure API endpoints with authorization guards.</li>
-              <li>Event triggers alerting operations teams in case of validation warnings.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Engineering Approach</h4>
-            <p>
-              The system prioritizes logical data isolation by securing the ingestion bridge with proxy validation middleware. This ensures that third-party parsing models cannot store or leak proprietary corporate data. A human-in-the-loop exception dashboard is configured to flag parsing warnings for operator review before database updates are executed.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-extrabold text-navy-900 text-xs sm:text-sm uppercase tracking-wider mb-2">Outcome</h4>
-            <p>
-              Delivered a prototype pipeline demonstrating automated schema validation, parsing error logging, and direct SQL synchronization for unstructured invoicing assets.
-            </p>
-          </div>
-
-          <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-            <StartProjectButton 
-              intent="AI_AUTOMATION"
-              className="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-500 gap-1.5 transition-colors cursor-pointer group"
-            >
-              <span>Build an AI Automation Pipeline</span>
-              <ArrowRight className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1" />
-            </StartProjectButton>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
- {/* 3. AI & Automation Capabilities Section */}
- <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100 reveal-on-scroll">
- <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
- 
- <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
- <div className="lg:col-span-7 flex flex-col gap-4 text-center lg:text-left">
- <span className="text-xs font-bold uppercase tracking-widest text-brand-500">AI & AUTOMATION</span>
- <h2 className="text-3xl font-extrabold text-navy-900 tracking-tight leading-tight">
- AI systems built around real workflows.
- </h2>
- <p className="text-slate-655 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
- We design AI-powered systems around the way a business actually operates — from lead capture and customer communication to CRM updates and workflow automation.
- </p>
- </div>
- 
- <div className="lg:col-span-5 flex justify-center lg:justify-end">
- <StartProjectButton
- intent="AI_AUTOMATION"
- className="inline-flex items-center justify-center px-6 py-3.5 bg-brand-500 text-white hover:bg-brand-600 text-xs font-bold rounded transition-premium cursor-pointer shadow-sm text-center"
- >
- Explore AI & Automation →
- </StartProjectButton>
- </div>
- </div>
-
- {/* Cards Grid */}
- <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
- {[
- "AI Chatbots",
- "AI CRM",
- "WhatsApp CRM",
- "Email Automation",
- "AI Calling Agents",
- "Business Workflow Automation"
- ].map((system) => (
- <div
- key={system}
- className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between items-center relative"
- >
- <div className="space-y-2">
- <span className="inline-block text-[8px] font-bold bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded uppercase">
- Capability
- </span>
- <h4 className="text-navy-900 font-extrabold text-xs sm:text-sm">{system}</h4>
- </div>
- </div>
- ))}
- </div>
-
- </div>
- </section>
-
- {/* 4. How We Approach Projects */}
- <section className="py-20 md:py-28 bg-white border-b border-slate-100 reveal-on-scroll">
- <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
- 
- <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
- <span className="text-xs font-bold uppercase tracking-widest text-brand-500">Methodology</span>
- <h2 className="text-3xl font-extrabold text-navy-900 tracking-tight">
- Our engineering standards.
- </h2>
- <p className="text-slate-655 text-sm leading-relaxed">
- We focus on building practical software solutions that prioritize direct access, clear scope, and documentation.
- </p>
- </div>
-
- <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
- <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
- <h4 className="text-base font-bold text-navy-900 mb-3 border-b border-slate-200 pb-2">1. Fixed Scope Blueprints</h4>
- <p className="text-slate-600 text-xs leading-relaxed">
- Before writing any code, we scope all system boundaries, timelines, and integration parameters. This keeps estimation clean and execution predictable.
- </p>
- </div>
- <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
- <h4 className="text-base font-bold text-navy-900 mb-3 border-b border-slate-200 pb-2">2. Direct Dev Access</h4>
- <p className="text-slate-600 text-xs leading-relaxed">
- You work directly with the developers building your tools. We eliminate complex account management structures, preventing miscommunications and delivery delays.
- </p>
- </div>
- <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-6 shadow-sm">
- <h4 className="text-base font-bold text-navy-900 mb-3 border-b border-slate-200 pb-2">3. Transferable Ownership</h4>
- <p className="text-slate-600 text-xs leading-relaxed">
- All source code, database structures, repository access, and deploy credentials are handed over directly to you upon completion. Your code stays completely yours.
- </p>
- </div>
- </div>
-
- </div>
- </section>
-
- {/* 5. CTA Section */}
- <section className="py-16 md:py-24 bg-slate-50 reveal-on-scroll">
- <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
- <div className="bg-white border border-slate-200 rounded-xl p-8 sm:p-12 shadow-sm text-center flex flex-col gap-6 items-center">
- <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
- Have a system in mind?
- </h2>
- <p className="text-slate-600 text-sm sm:text-base max-w-lg leading-relaxed">
- Tell us what you&apos;re trying to build, improve, <Link href="/ai-automation" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">automate</Link>, or take online with custom <Link href="/services" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">web development</Link> and <Link href="/solutions" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">software solutions</Link>.
- </p>
- 
- <div className="flex flex-col sm:flex-row items-center gap-3">
- <StartProjectButton
- className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded transition-premium cursor-pointer shadow-sm text-center"
- >
- Start a Project
- </StartProjectButton>
- <Link
- href="/contact"
- className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded border border-slate-200 bg-white text-navy-900 font-semibold hover:bg-slate-50 transition-premium text-center cursor-pointer"
- >
- Talk to KVYASH
- </Link>
- </div>
- </div>
- </div>
- </section>
-
- </div>
- );
+  );
 }

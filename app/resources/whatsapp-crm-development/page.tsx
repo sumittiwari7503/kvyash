@@ -5,7 +5,8 @@ import StartProjectButton from "@/components/common/StartProjectButton";
 
 export const metadata = {
   title: "WhatsApp CRM Development: Automating Lead Management | KVYASH",
-  description: "Learn how WhatsApp CRM integration automates lead qualification, CRM synchronization, customer routing, and helps scale support workflows securely.",
+  description:
+    "Learn how WhatsApp CRM integration automates lead qualification, CRM synchronization, customer routing, and helps scale support workflows securely.",
   alternates: {
     canonical: "https://kvyash.com/resources/whatsapp-crm-development",
   },
@@ -14,34 +15,33 @@ export const metadata = {
 const faqs = [
   {
     q: "What is a WhatsApp CRM?",
-    a: "A WhatsApp CRM is a software system that connects your business WhatsApp number(s) to a centralized customer relationship database, allowing teams to track conversations, assign leads, sync records, and automate follow-ups."
+    a: "A WhatsApp CRM is a software system that connects your business WhatsApp number(s) to a centralized customer relationship database, allowing teams to track conversations, assign leads, sync records, and automate follow-ups.",
   },
   {
     q: "How does WhatsApp CRM integration work?",
-    a: "It works by connecting the WhatsApp Business API to your CRM middleware via webhooks. When a message is received, it triggers an event that creates or updates contact records and passes context to your support or sales database."
+    a: "It works by connecting the WhatsApp Business API to your CRM middleware via webhooks. When a message is received, it triggers an event that creates or updates contact records and passes context to your support or sales database.",
   },
   {
     q: "Can WhatsApp leads be automatically added to a CRM?",
-    a: "Yes. Using custom API endpoints, when a new user sends an inquiry on WhatsApp, the system automatically checks for existing records, parses their query, creates a new lead profile if not found, and saves their details."
+    a: "Yes. Using custom API endpoints, when a new user sends an inquiry on WhatsApp, the system automatically checks for existing records, parses their query, creates a new lead profile if not found, and saves their details.",
   },
   {
     q: "Can a WhatsApp CRM assign leads to team members?",
-    a: "Absolutely. You can write custom routing rules (like round-robin or load-balancing logic) that assign new WhatsApp conversations to available sales or support representatives instantly."
+    a: "Absolutely. You can write custom routing rules (like round-robin or load-balancing logic) that assign new WhatsApp conversations to available sales or support representatives instantly.",
   },
   {
     q: "Can WhatsApp CRM automate follow-ups?",
-    a: "Yes. Depending on your business setup, triggers can be set to send automated reminders, shipping updates, or appointment alerts on WhatsApp, based on database changes or user actions in your main CRM."
+    a: "Yes. Depending on your business setup, triggers can be set to send automated reminders, shipping updates, or appointment alerts on WhatsApp, based on database changes or user actions in your main CRM.",
   },
   {
     q: "When does a business need a custom WhatsApp CRM?",
-    a: "A business needs a custom setup when they receive a high volume of daily inquiries, struggle with manual routing errors, require custom API integrations with internal software, or need multi-user collaboration dashboards."
-  }
+    a: "A business needs a custom setup when they receive a high volume of daily inquiries, struggle with manual routing errors, require custom API integrations with internal software, or need multi-user collaboration dashboards.",
+  },
 ];
 
 export default function WhatsAppCRMArticle() {
   return (
-    <div className="font-sans text-navy-900 bg-white min-h-screen">
-      
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-white dark:bg-navy-950 min-h-screen transition-colors duration-300">
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -53,10 +53,11 @@ export default function WhatsAppCRMArticle() {
                 "@type": "Article",
                 "@id": "https://kvyash.com/resources/whatsapp-crm-development/#article",
                 "isPartOf": {
-                  "@id": "https://kvyash.com/#website"
+                  "@id": "https://kvyash.com/#website",
                 },
                 "headline": "WhatsApp CRM Development: Automating Lead Management and Customer Communication",
-                "description": "Discover how custom WhatsApp CRM development organizes chats, qualifies prospects automatically, and syncs data directly with CRM databases.",
+                "description":
+                  "Discover how custom WhatsApp CRM development organizes chats, qualifies prospects automatically, and syncs data directly with CRM databases.",
                 "url": "https://kvyash.com/resources/whatsapp-crm-development",
                 "mainEntityOfPage": "https://kvyash.com/resources/whatsapp-crm-development",
                 "datePublished": "2026-08-28T09:00:00+05:30",
@@ -64,12 +65,12 @@ export default function WhatsAppCRMArticle() {
                 "author": {
                   "@type": "Organization",
                   "name": "KVYASH Technologies",
-                  "url": "https://kvyash.com"
+                  "url": "https://kvyash.com",
                 },
                 "publisher": {
                   "@type": "Organization",
-                  "@id": "https://kvyash.com/#organization"
-                }
+                  "@id": "https://kvyash.com/#organization",
+                },
               },
               {
                 "@type": "BreadcrumbList",
@@ -79,15 +80,15 @@ export default function WhatsAppCRMArticle() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://kvyash.com"
+                    "item": "https://kvyash.com",
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Resources",
-                    "item": "https://kvyash.com/resources/whatsapp-crm-development"
-                  }
-                ]
+                    "item": "https://kvyash.com/resources/whatsapp-crm-development",
+                  },
+                ],
               },
               {
                 "@type": "FAQPage",
@@ -97,26 +98,27 @@ export default function WhatsAppCRMArticle() {
                   "name": faq.q,
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": faq.a
-                  }
-                }))
-              }
-            ]
-          })
+                    "text": faq.a,
+                  },
+                })),
+              },
+            ],
+          }),
         }}
       />
 
       {/* Hero Banner Section */}
-      <section className="bg-slate-50 border-b border-slate-100 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+      <section className="bg-slate-50/70 dark:bg-navy-900/50 border-b border-slate-200/80 dark:border-navy-800 pt-36 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-5 relative z-10">
-          <span className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-500 border border-brand-100 uppercase tracking-wide">
-            Insights & Resources
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-navy-900 leading-tight">
+          <div className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 border border-brand-200/60 dark:border-brand-800/60 uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
+            CRM Integration & Messaging Architecture
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-navy-900 dark:text-white leading-tight">
             WhatsApp CRM Development: Automating Lead Management
           </h1>
-          <p className="text-slate-655 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mt-2">
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mt-2">
             Organizing conversational leads, mapping WhatsApp API data, syncing CRM records, and building multi-user collaboration dashboards for scaling businesses.
           </p>
         </div>
@@ -125,19 +127,18 @@ export default function WhatsAppCRMArticle() {
       {/* Main Long-Form Article Body */}
       <section className="py-16 md:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="prose prose-slate max-w-none text-slate-655 text-sm sm:text-base leading-relaxed space-y-8">
-            
-            <p className="text-lg text-slate-700 leading-relaxed font-normal">
+          <div className="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-8">
+            <p className="text-lg text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
               For many sales and support teams, incoming WhatsApp messages represent a highly active channel for customer communication. However, managing high inquiry volumes manually often leads to missed follow-ups, lost context, and disjointed client files. A WhatsApp CRM integration bridges this operational gap by automatically registering leads, syncing conversation records, and routing inquiries to the correct team members.
             </p>
 
             {/* SECTION 1 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 What Is a WhatsApp CRM?
               </h2>
               <p>
-                A <strong>WhatsApp CRM</strong> is an integrated software system that links customer conversations on WhatsApp to a central sales and support database. Rather than keeping conversations isolated on individual mobile phones, a custom database mapping structure assigns every conversation to a customer record. 
+                A <strong>WhatsApp CRM</strong> is an integrated software system that links customer conversations on WhatsApp to a central sales and support database. Rather than keeping conversations isolated on individual mobile phones, a custom database mapping structure assigns every conversation to a customer record.
               </p>
               <p>
                 This allows you to track lead status, record team ownership, monitor customer response times, and establish automated workflow triggers from a single administrative dashboard.
@@ -145,40 +146,40 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 2 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 How WhatsApp CRM Lead Management Works
               </h2>
               <p>
                 A structured messaging integration follows a step-by-step logic path when a customer initiates contact:
               </p>
-              
-              <div className="my-8 bg-slate-50 border border-slate-200/60 rounded-2xl p-6 md:p-8 flex flex-col gap-4 max-w-xl mx-auto shadow-sm">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest text-center mb-2">
+
+              <div className="my-8 bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-2xl p-6 md:p-8 flex flex-col gap-4 max-w-xl mx-auto shadow-sm">
+                <h4 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center mb-2">
                   Conceptual WhatsApp Flow
                 </h4>
-                
-                <div className="space-y-3">
+
+                <div className="space-y-3 text-slate-700 dark:text-slate-300">
                   <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-full bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">1</div>
+                    <div className="h-7 w-7 rounded-full bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">1</div>
                     <div className="text-xs"><strong>Incoming:</strong> Message is received from a client on WhatsApp.</div>
                   </div>
-                  <div className="h-4 w-0.5 bg-slate-300 ml-3.5"></div>
-                  
+                  <div className="h-4 w-0.5 bg-slate-300 dark:bg-navy-700 ml-3.5" />
+
                   <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-full bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">2</div>
+                    <div className="h-7 w-7 rounded-full bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">2</div>
                     <div className="text-xs"><strong>Identify:</strong> API validates the sender phone number against CRM records.</div>
                   </div>
-                  <div className="h-4 w-0.5 bg-slate-300 ml-3.5"></div>
-                  
+                  <div className="h-4 w-0.5 bg-slate-300 dark:bg-navy-700 ml-3.5" />
+
                   <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-full bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">3</div>
+                    <div className="h-7 w-7 rounded-full bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">3</div>
                     <div className="text-xs"><strong>Qualify:</strong> An automated intent classifier categorizes their inquiry.</div>
                   </div>
-                  <div className="h-4 w-0.5 bg-slate-300 ml-3.5"></div>
-                  
+                  <div className="h-4 w-0.5 bg-slate-300 dark:bg-navy-700 ml-3.5" />
+
                   <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-full bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">4</div>
+                    <div className="h-7 w-7 rounded-full bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">4</div>
                     <div className="text-xs"><strong>Route:</strong> The system assigns the user to the correct rep and triggers follow-up.</div>
                   </div>
                 </div>
@@ -186,8 +187,8 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 3 */}
-            <div className="pt-4 border-t border-slate-100 space-y-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800 space-y-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white">
                 What Can a WhatsApp CRM Automate?
               </h2>
               <p>
@@ -196,7 +197,7 @@ export default function WhatsAppCRMArticle() {
 
               <div className="space-y-6 mt-6">
                 <div>
-                  <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2 mb-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-500 shrink-0" />
                     Lead Capture
                   </h3>
@@ -206,7 +207,7 @@ export default function WhatsAppCRMArticle() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2 mb-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-500 shrink-0" />
                     Lead Qualification
                   </h3>
@@ -216,7 +217,7 @@ export default function WhatsAppCRMArticle() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2 mb-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-500 shrink-0" />
                     Lead Routing and Assignment
                   </h3>
@@ -226,17 +227,17 @@ export default function WhatsAppCRMArticle() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2 mb-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-500 shrink-0" />
                     Follow-Up Workflows
                   </h3>
                   <p className="pl-7">
-                    If a customer halts communication during onboarding, background event triggers can schedule a follow-up reminder to go out 24 hours later. Read our <Link href="/ai-automation" className="font-semibold text-brand-600 hover:underline">AI automation services</Link> to see how we build event-driven pipelines.
+                    If a customer halts communication during onboarding, background event triggers can schedule a follow-up reminder to go out 24 hours later. Read our <Link href="/ai-automation" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">AI automation services</Link> to see how we build event-driven pipelines.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2 mb-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-500 shrink-0" />
                     Database Synchronization
                   </h3>
@@ -248,41 +249,41 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 4 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 WhatsApp CRM vs Traditional CRM
               </h2>
               <p>
                 While traditional CRMs are designed to manage data internally, WhatsApp-connected systems are built for fast-moving customer communication:
               </p>
 
-              <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
-                <table className="min-w-full divide-y divide-slate-200 text-xs sm:text-sm">
-                  <thead className="bg-slate-50">
+              <div className="overflow-x-auto my-6 border border-slate-200 dark:border-navy-800 rounded-xl">
+                <table className="min-w-full divide-y divide-slate-200 dark:divide-navy-800 text-xs sm:text-sm">
+                  <thead className="bg-slate-50 dark:bg-navy-900">
                     <tr>
-                      <th className="px-4 py-3 text-left font-bold text-navy-900 uppercase tracking-wider">Feature</th>
-                      <th className="px-4 py-3 text-left font-bold text-navy-900 uppercase tracking-wider">Traditional CRM</th>
-                      <th className="px-4 py-3 text-left font-bold text-navy-900 uppercase tracking-wider">WhatsApp-Connected CRM</th>
+                      <th className="px-4 py-3 text-left font-bold text-navy-900 dark:text-white uppercase tracking-wider">Feature</th>
+                      <th className="px-4 py-3 text-left font-bold text-navy-900 dark:text-white uppercase tracking-wider">Traditional CRM</th>
+                      <th className="px-4 py-3 text-left font-bold text-navy-900 dark:text-white uppercase tracking-wider">WhatsApp-Connected CRM</th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-slate-150 text-slate-655">
+                  <tbody className="bg-white dark:bg-navy-950 divide-y divide-slate-100 dark:divide-navy-800 text-slate-600 dark:text-slate-300">
                     <tr>
-                      <td className="px-4 py-3 font-semibold text-navy-900">Primary Channel</td>
+                      <td className="px-4 py-3 font-semibold text-navy-900 dark:text-white">Primary Channel</td>
                       <td className="px-4 py-3">Email and manual data entry</td>
                       <td className="px-4 py-3">Direct instant messaging & webhooks</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-3 font-semibold text-navy-900">Lead Capture</td>
+                      <td className="px-4 py-3 font-semibold text-navy-900 dark:text-white">Lead Capture</td>
                       <td className="px-4 py-3">Manual form logging</td>
                       <td className="px-4 py-3">Automatic capturing from incoming text</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-3 font-semibold text-navy-900">Uptime Response</td>
+                      <td className="px-4 py-3 font-semibold text-navy-900 dark:text-white">Uptime Response</td>
                       <td className="px-4 py-3">Dependent on manual follow-ups</td>
                       <td className="px-4 py-3">Automated instant qualification response</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-3 font-semibold text-navy-900">Context Storage</td>
+                      <td className="px-4 py-3 font-semibold text-navy-900 dark:text-white">Context Storage</td>
                       <td className="px-4 py-3">Scattered email threads</td>
                       <td className="px-4 py-3">Centralized chat transcripts linked to contacts</td>
                     </tr>
@@ -292,21 +293,21 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 5 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 How WhatsApp CRM Integrations Work
               </h2>
               <p>
-                Technically, a WhatsApp CRM integration connects the official messaging API (which handles input/output packets) to a secure server middleware. When a client sends a message, a webhook triggers a database query, fetching client records, applying routing rules, and passing coordinates to your support team dashboard. 
+                Technically, a WhatsApp CRM integration connects the official messaging API (which handles input/output packets) to a secure server middleware. When a client sends a message, a webhook triggers a database query, fetching client records, applying routing rules, and passing coordinates to your support team dashboard.
               </p>
               <p>
-                To learn how we design databases and API integrations, explore KVYASH&apos;s <Link href="/services" className="font-semibold text-brand-600 hover:underline">engineering services</Link> and our guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 hover:underline">custom web application development</Link>.
+                To learn how we design databases and API integrations, explore KVYASH&apos;s <Link href="/services" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">engineering services</Link> and our guide on <Link href="/resources/custom-web-application-development" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">custom web application development</Link>.
               </p>
             </div>
 
             {/* SECTION 6 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 WhatsApp CRM Security and Privacy Considerations
               </h2>
               <p>
@@ -315,8 +316,8 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 7 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 When Should a Business Consider a Custom WhatsApp CRM?
               </h2>
               <p>
@@ -331,21 +332,21 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 8 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 How KVYASH Approaches WhatsApp CRM Development
               </h2>
               <p>
                 We build clean, API-first integrations connecting your business workflows directly to secure databases. We do not use proprietary templates that create long-term dependency.
               </p>
               <p>
-                Our engineering team maps your database requirements, secures API webhook credentials, designs custom lead qualification routing logic, and builds multi-user operator dashboards. To review the database structures we have previously deployed, explore our <Link href="/work" className="font-semibold text-brand-600 hover:underline">selected engineering portfolio</Link>.
+                Our engineering team maps your database requirements, secures API webhook credentials, designs custom lead qualification routing logic, and builds multi-user operator dashboards. To review the database structures we have previously deployed, explore our <Link href="/work" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">selected engineering portfolio</Link>.
               </p>
-              
+
               <div className="pt-4 flex justify-center">
                 <StartProjectButton 
                   intent="BUILD_SOMETHING"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded transition-premium cursor-pointer shadow-sm text-center group text-sm"
+                  className="inline-flex items-center justify-center px-6 py-3.5 bg-brand-600 hover:bg-brand-500 dark:bg-brand-500 dark:hover:bg-brand-400 text-white font-semibold rounded-lg transition-all shadow-sm text-center group text-xs sm:text-sm"
                 >
                   <span>Build a Custom WhatsApp CRM</span>
                   <ArrowRight className="ml-2 h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" />
@@ -354,15 +355,15 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* SECTION 9 */}
-            <div className="pt-4 border-t border-slate-100">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-4">
+            <div className="pt-4 border-t border-slate-100 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-4">
                 WhatsApp CRM Implementation Checklist
               </h2>
               <p>
                 Use this checklist to prepare for your custom messaging integration:
               </p>
-              
-              <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-5 md:p-6 space-y-3 max-w-xl mx-auto text-xs sm:text-sm">
+
+              <div className="bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-xl p-5 md:p-6 space-y-3 max-w-xl mx-auto text-xs sm:text-sm">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-brand-500 shrink-0" />
                   <span><strong>WhatsApp Setup:</strong> Official WhatsApp Business API account verified.</span>
@@ -387,41 +388,39 @@ export default function WhatsAppCRMArticle() {
             </div>
 
             {/* FAQ SECTION */}
-            <div className="pt-8 border-t border-slate-200">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 mb-6 flex items-center gap-2">
+            <div className="pt-8 border-t border-slate-200 dark:border-navy-800">
+              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 dark:text-white mb-6 flex items-center gap-2">
                 <HelpCircle className="h-6 w-6 text-brand-500" />
                 Frequently Asked Questions
               </h2>
-              
-              <div className="grid grid-cols-1 gap-6 md:gap-8">
+
+              <div className="grid grid-cols-1 gap-4 sm:gap-6">
                 {faqs.map((faq) => (
-                  <div key={faq.q} className="bg-slate-50 border border-slate-100 rounded-xl p-5 md:p-6">
-                    <h4 className="font-extrabold text-navy-900 text-sm sm:text-base mb-2">{faq.q}</h4>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{faq.a}</p>
+                  <div key={faq.q} className="bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-navy-800 rounded-xl p-5 md:p-6 hover:border-brand-500/40 transition-colors">
+                    <h4 className="font-extrabold text-navy-900 dark:text-white text-sm sm:text-base mb-2">{faq.q}</h4>
+                    <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">{faq.a}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Bottom Conversion Box */}
-            <div className="pt-10 flex flex-col items-center gap-4 text-center border-t border-slate-100">
-              <h3 className="font-bold text-navy-900 text-lg">Ready to organize your WhatsApp leads?</h3>
-              <p className="text-xs sm:text-sm max-w-md text-slate-500">
+            <div className="pt-10 flex flex-col items-center gap-4 text-center border-t border-slate-100 dark:border-navy-800">
+              <h3 className="font-bold text-navy-900 dark:text-white text-lg">Ready to organize your WhatsApp leads?</h3>
+              <p className="text-xs sm:text-sm max-w-md text-slate-500 dark:text-slate-400">
                 Contact KVYASH to review your database schemas and outline custom WhatsApp CRM solutions.
               </p>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-500 gap-1 mt-1 transition-colors"
+                className="inline-flex items-center text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 gap-1 mt-1 transition-colors"
               >
                 <span>Request a Scoping Consultation</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

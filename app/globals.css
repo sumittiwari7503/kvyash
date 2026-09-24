@@ -1,12 +1,18 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-brand-50: #eff6ff;
   --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
   --color-brand-500: #2563eb;
   --color-brand-600: #1d4ed8;
   --color-brand-700: #1e40af;
-  --color-brand-900: #1e3a8a;
+  --color-brand-800: #1e3a8a;
+  --color-brand-900: #172554;
   
   --color-navy-900: #0a0a0c;
   --color-navy-950: #050507;
@@ -21,6 +27,7 @@
   --color-slate-700: #3f3f46;
   --color-slate-800: #27272a;
   --color-slate-900: #18181b;
+  --color-slate-950: #09090b;
 
   --shadow-premium: 0 2px 8px -2px rgba(10, 10, 12, 0.04), 0 12px 24px -6px rgba(10, 10, 12, 0.04);
   --shadow-premium-hover: 0 8px 30px -4px rgba(10, 10, 12, 0.08), 0 4px 12px -2px rgba(10, 10, 12, 0.04);
@@ -31,8 +38,23 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #fafafc;
+  --surface: #ffffff;
+  --surface-subdued: #f4f4f6;
   --foreground: #0a0a0c;
+  --foreground-muted: #52525b;
+  --border-subtle: #e4e4e8;
+  --border-card: rgba(10, 10, 12, 0.06);
+}
+
+.dark {
+  --background: #09090b;
+  --surface: #121216;
+  --surface-subdued: #18181f;
+  --foreground: #fafafc;
+  --foreground-muted: #a1a1aa;
+  --border-subtle: #27272a;
+  --border-card: rgba(255, 255, 255, 0.08);
 }
 
 body {
@@ -43,6 +65,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Restrained transitions */
@@ -52,9 +75,14 @@ body {
   transition-duration: 250ms;
 }
 
-/* Studio Glassmorphism Header */
+/* Studio Glassmorphism */
 .glassmorphism {
   background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.dark .glassmorphism {
+  background-color: rgba(9, 9, 11, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -62,6 +90,10 @@ body {
 /* Subtle Editorial Dot Grid */
 .bg-studio-dots {
   background-image: radial-gradient(rgba(10, 10, 12, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dark .bg-studio-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -101,6 +133,18 @@ html.js-ready .reveal-on-scroll.revealed {
 .studio-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(228, 228, 232, 0.8) 20%, rgba(228, 228, 232, 0.8) 80%, transparent);
+}
+.dark .studio-divider {
+  background: linear-gradient(90deg, transparent, rgba(39, 39, 42, 0.8) 20%, rgba(39, 39, 42, 0.8) 80%, transparent);
+}
+
+/* Subtle pulse animation */
+@keyframes studio-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.animate-studio-pulse {
+  animation: studio-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

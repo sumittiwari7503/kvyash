@@ -27,19 +27,18 @@ export default function FounderCard() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-white border-b border-slate-200/60 overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-white dark:bg-navy-950 border-b border-slate-200/80 dark:border-navy-800 overflow-hidden transition-colors duration-300">
       <div className="max-w-[1100px] mx-auto px-6 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* LEFT Column: Professional portrait */}
           <div className="lg:col-span-5 flex justify-center lg:justify-start w-full founder-image-reveal">
             <div className="relative group w-full max-w-[340px]">
-              
               {/* Blue Ambient Glow Behind */}
-              <div className="absolute -inset-4 bg-brand-500/8 rounded-[28px] blur-xl opacity-60 group-hover:bg-brand-500/15 group-hover:opacity-90 transition-all duration-500 pointer-events-none" />
+              <div className="absolute -inset-4 bg-brand-500/10 dark:bg-brand-500/20 rounded-[28px] blur-xl opacity-60 group-hover:opacity-90 transition-all duration-500 pointer-events-none" />
 
               {/* Portrait Wrapper */}
-              <div className="relative overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-lg transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.015] group-hover:shadow-2xl group-hover:border-slate-300">
+              <div className="relative overflow-hidden rounded-[24px] border border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-900 shadow-lg transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.015] group-hover:shadow-2xl group-hover:border-slate-300 dark:group-hover:border-navy-700">
                 <img
                   src="/sumit.jpg"
                   alt="Sumit Tiwari"
@@ -52,21 +51,21 @@ export default function FounderCard() {
           {/* RIGHT Column: Text Presentation */}
           <div className="lg:col-span-7 flex flex-col gap-6 text-left founder-text-reveal">
             <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-brand-500">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
                 FOUNDER • KVYASH TECHNOLOGIES
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
                 Built with engineering ownership.
               </h2>
             </div>
             
-            <p className="text-slate-655 text-sm sm:text-base leading-relaxed max-w-xl">
-              At KVYASH Technologies, we believe technology should solve real business problems, not add unnecessary complexity. Learn more <Link href="/about" className="font-semibold text-brand-600 hover:text-brand-500 transition-colors">about our engineering philosophy</Link>.
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+              At KVYASH Technologies, we believe technology should solve real business friction, not introduce unnecessary complexity. Learn more <Link href="/about" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">about our engineering philosophy</Link>.
             </p>
 
-            <div className="space-y-1 pt-2 border-t border-slate-100 max-w-xl">
-              <h4 className="font-extrabold text-navy-900 text-base">Sumit Tiwari</h4>
-              <p className="text-slate-500 text-xs font-semibold">Founder & Technology Lead</p>
+            <div className="space-y-1 pt-3 border-t border-slate-100 dark:border-navy-800 max-w-xl">
+              <h4 className="font-extrabold text-navy-900 dark:text-white text-base">Sumit Tiwari</h4>
+              <p className="text-slate-500 dark:text-slate-400 text-xs font-semibold">Founder & Technology Lead</p>
             </div>
 
             <div className="pt-2">
@@ -74,9 +73,9 @@ export default function FounderCard() {
                 href="https://www.linkedin.com/company/kvyash-technologies/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-brand-600 hover:text-brand-500 transition-colors group/link cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors group/link cursor-pointer"
               >
-                <svg className="h-4 w-4 text-brand-600 group-hover/link:scale-110 transition-transform fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="h-4 w-4 fill-current group-hover/link:scale-110 transition-transform" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
                 <span>Connect on LinkedIn</span>

@@ -23,8 +23,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="font-sans text-navy-900 bg-white transition-colors duration-300 min-h-screen flex flex-col justify-between">
-      
+    <div className="font-sans text-navy-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 min-h-screen flex flex-col justify-between">
       {/* 1. Interactive Parallax Hero */}
       <HeroSection />
 
@@ -48,7 +47,6 @@ export default function Home() {
 
       {/* 8. Shifting Gradient Mesh CTA Block */}
       <FinalCTA />
-
     </div>
   );
 }

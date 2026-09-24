@@ -91,19 +91,19 @@ const buildItems: BuildItem[] = [
 
 export default function CapabilitiesSection() {
   return (
-    <section id="what-we-build" className="py-24 md:py-32 bg-slate-50 border-b border-slate-200/80">
+    <section id="what-we-build" className="py-24 md:py-32 bg-slate-100/60 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Editorial Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200/80 dark:border-slate-800/80">
           <div className="max-w-2xl flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               Studio Scope &amp; Deliverables
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white tracking-tight leading-tight">
               What We Build
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
               We engineer custom software systems and digital platforms tailored directly around your operational logic—delivered with clean architecture and complete code ownership.
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function CapabilitiesSection() {
           <div className="shrink-0 flex items-center gap-3">
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 hover:text-brand-600 px-4 py-2.5 rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-xs"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 px-4.5 py-2.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 transition-colors shadow-2xs"
             >
               <span>Explore All Services</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
@@ -127,50 +127,50 @@ export default function CapabilitiesSection() {
             return (
               <div
                 key={item.title}
-                className={`bg-white border border-slate-200/90 rounded-2xl p-7 flex flex-col justify-between studio-card group ${
+                className={`bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-7 lg:p-8 flex flex-col justify-between studio-card group ${
                   idx === 6 ? "md:col-span-2 lg:col-span-1" : ""
                 }`}
               >
                 <div>
                   {/* Top metadata */}
-                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
-                    <span className="text-xs font-mono font-bold text-slate-400">
+                  <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-100 dark:border-slate-800">
+                    <span className="text-xs font-mono font-bold text-slate-400 dark:text-slate-500">
                       {item.number}
                     </span>
-                    <span className="text-[10px] font-bold text-brand-600 bg-brand-50 border border-brand-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    <span className="text-[10px] font-bold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/50 border border-brand-100 dark:border-brand-900/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                       {item.category}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2.5 rounded-xl bg-slate-100 text-navy-900 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                  <div className="flex items-center gap-3 mb-3.5">
+                    <div className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-navy-900 dark:text-slate-100 group-hover:bg-brand-500 group-hover:text-white dark:group-hover:bg-brand-600 transition-colors">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="text-xl font-bold text-navy-900 group-hover:text-brand-600 transition-colors leading-snug">
+                    <h3 className="text-xl font-bold text-navy-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors leading-snug">
                       {item.title}
                     </h3>
                   </div>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
-                  <div className="text-[11px] text-slate-400 font-mono">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+                  <div className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">
                     {item.stack}
                   </div>
                   <div className="flex items-center justify-between pt-1">
                     <Link
                       href={item.link}
-                      className="text-xs font-bold text-slate-700 hover:text-navy-900 transition-colors inline-flex items-center gap-1"
+                      className="text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-navy-900 dark:hover:text-white transition-colors inline-flex items-center gap-1"
                     >
                       <span>Read Overview</span>
                       <ArrowUpRight className="h-3 w-3" />
                     </Link>
                     <StartProjectButton
                       intent={item.intent}
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 cursor-pointer"
+                      className="text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 cursor-pointer"
                     >
                       Scope Project →
                     </StartProjectButton>
