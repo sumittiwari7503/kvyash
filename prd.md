@@ -359,7 +359,7 @@ A standardized hierarchy of CTAs across the site:
 
 ### 32. Non-Functional Requirements
 - **Security (P0):** SSL/TLS certificate configured, forms protected against CSRF and spam (e.g., honeypot fields).
-- **Hosting (P0):** Static hosting via CDN (Vercel, Netlify, or AWS CloudFront) for global speed.
+- **Hosting (P0):** Production hosting via Hostinger with CDN distribution for global performance.
 - **Maintainability (P1):** Component-driven structure in the repository, making it easy to add new services or insights.
 
 ---

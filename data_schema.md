@@ -343,7 +343,7 @@ excerpt: "An engineering deep-dive into configuring Incremental Static Regenerat
 cover_image: "/images/blog/scaling-nextjs.webp"
 author: "KVYASH Engineering"
 category: "Engineering"
-tags: ["Next.js", "Vercel", "Web Performance"]
+tags: ["Next.js", "Web Development", "Web Performance"]
 published_at: "2026-08-09T08:24:51+05:30"
 updated_at: "2026-08-09T08:24:51+05:30"
 seo_metadata:

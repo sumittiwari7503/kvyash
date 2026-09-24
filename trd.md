@@ -87,7 +87,7 @@ The site adopts a hybrid static-server architecture:
 | **Styling** | Tailwind CSS | Utility-first styling, automatic unused CSS elimination, rapid UI prototyping. |
 | **Icons** | Lucide React | Lightweight, tree-shakeable SVG icon collection. |
 | **Validation** | Zod | Runtime type safety and schema validation for contact input. |
-| **Hosting & CDN** | Vercel or Netlify | Global edge network distribution, seamless serverless functions, native Next.js integration. |
+| **Hosting & CDN** | Hostinger | Production hosting infrastructure with Git auto-deployment, SSL, and CDN distribution. |
 
 ---
 
@@ -244,7 +244,7 @@ Next.js filesystem App Router structure:
 
 ### 19. Security
 - **Headers:** Configure security headers in `next.config.js` (Content Security Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy).
-- **SSL:** Enforced via Vercel/Netlify edge deployments by default.
+- **SSL:** Enforced via production hosting and CDN edge certificates by default.
 
 ---
 
@@ -353,12 +353,12 @@ Integration hook for Google Analytics 4 or Plausible:
 
 ### 34. Logging
 - **Client-Side:** Suppressed in production builds to prevent exposing source map or system configuration elements.
-- **Server-Side:** Structured stdout logging formats. Serverless logs are preserved within Vercel/Cloudwatch dashboards.
+- **Server-Side:** Structured stdout logging formats. Logs are preserved within production server and application dashboards.
 
 ---
 
 ### 35. Monitoring
-- Configure Vercel Speed Insights and Web Vitals analytics dashboards to monitor performance in real-time.
+- Configure standard Google Search Console and Web Vitals analytics dashboards to monitor performance in real-time.
 
 ---
 
@@ -371,16 +371,16 @@ Stored in `.env.local` (local development) and configured directly inside the ho
 ---
 
 ### 37. Deployment Architecture
-Deployments route through an Edge-Optimized CDN.
+Deployments route through GitHub to Hostinger production hosting.
 ```
-Developer Commit -> GitHub Repository -> Vercel Build Pipeline -> Global Edge CDN Nodes
+Developer Commit -> GitHub Repository (origin/main) -> Hostinger Auto-Deployment -> Live Website (kvyash.com)
 ```
 
 ---
 
 ### 38. CI/CD Pipeline
 - **Continuous Integration (GitHub Actions):** Runs ESLint, TypeScript compilation checking, and Prettier formatting validations.
-- **Continuous Deployment:** Pull requests automatically build preview URLs. Merges to `main` auto-promote to the live system environment.
+- **Continuous Deployment:** Merges to `main` automatically deploy to the live Hostinger production environment.
 
 ---
 
@@ -420,7 +420,7 @@ Since the website holds no application data or user databases, all backups are m
 ---
 
 ### 45. Scalability
-Vercel Edge network distributes static site pages across multi-region CDNs, mitigating traffic overload without scaling databases.
+Hostinger production infrastructure and CDN caching distribute static site pages efficiently, mitigating traffic spikes without database strain.
 
 ---
 

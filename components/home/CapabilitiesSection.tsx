@@ -52,7 +52,7 @@ const buildItems: BuildItem[] = [
     title: "Customer & Partner Portals",
     category: "Client Software",
     desc: "Authenticated client hubs for automated project intake, secure document exchange, subscription management, and direct communication.",
-    stack: "Auth.js • Edge Storage • Secure APIs",
+    stack: "Auth.js • Cloud Storage • Secure APIs",
     intent: "BUILD_SOMETHING",
     link: "/services",
     icon: Lock

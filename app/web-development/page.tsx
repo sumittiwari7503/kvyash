@@ -172,7 +172,7 @@ const lifecycleSteps = [
   {
     number: "06",
     title: "Cloud Deployment & DNS Setup",
-    desc: "We configure domain routing, SSL/TLS certificates, CDN edge caching rules, and production database environments for smooth launch."
+    desc: "We configure domain routing, SSL/TLS certificates, CDN caching rules, and production database environments for smooth launch."
   },
   {
     number: "07",
@@ -514,7 +514,7 @@ export default function WebDevelopmentPage() {
                 <div className="flex items-start gap-3.5">
                   <Zap className="h-5 w-5 text-brand-500 shrink-0 mt-1" />
                   <div>
-                    <h3 className="text-sm font-bold text-navy-900 dark:text-white">Edge Caching &amp; Core Web Vitals</h3>
+                    <h3 className="text-sm font-bold text-navy-900 dark:text-white">CDN Caching &amp; Core Web Vitals</h3>
                     <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-0.5 leading-relaxed">
                       Static assets and dynamic routes are tuned for rapid paint times, low layout shifts, and responsive interaction latencies across mobile and desktop.
                     </p>
@@ -633,12 +633,12 @@ export default function WebDevelopmentPage() {
                 <span className="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-2">Engineered Solution</span>
                 <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-4">Custom Next.js &amp; React Engineering</h3>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
-                  Essential when your company requires proprietary workflows, unique database logic, granular role permissions, edge caching performance, and full code ownership.
+                  Essential when your company requires proprietary workflows, unique database logic, granular role permissions, optimized caching performance, and full code ownership.
                 </p>
                 <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-brand-500" />
-                    <span>Optimized page rendering via CDN edge caching</span>
+                    <span>Optimized page rendering via CDN caching</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-brand-500" />

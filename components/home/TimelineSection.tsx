@@ -142,7 +142,7 @@ export default function TimelineSection() {
           })}
         </div>
 
-        {/* Studio Methodology Guarantee Banner */}
+        {/* Studio Methodology Callout Banner */}
         <div className="mt-12 bg-navy-900 dark:bg-slate-900 text-white border border-transparent dark:border-slate-800 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 reveal-on-scroll shadow-studio">
           <div className="space-y-2 text-center md:text-left">
             <h4 className="text-xl sm:text-2xl font-bold tracking-tight">

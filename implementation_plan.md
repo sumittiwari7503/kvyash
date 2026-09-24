@@ -202,7 +202,7 @@ graph TD
 - **Tasks:**
   - Replace raster visual elements with modern WebP formatting, applying `<Image>` height/width properties.
   - Setup font swap configuration blocks to prevent layout shifts.
-  - Configure cache headers inside Vercel/CDN deployment profiles.
+  - Configure cache headers inside production CDN deployment profiles.
 - **Dependencies:** Phase 4 completion.
 - **Deliverables:** Audited image files, custom build compilation optimization headers.
 - **Acceptance Criteria:** Desktop PageSpeed Lighthouse performance rating measures above 95.
@@ -246,9 +246,9 @@ graph TD
 ---
 
 #### Phase 10: Production Deployment & Infrastructure
-- **Objective:** Host the website live on an Edge CDN network.
+- **Objective:** Host the website live on Hostinger production architecture.
 - **Tasks:**
-  - Create project on hosting platform (Vercel or Netlify) linked to the repository.
+  - Connect repository on Hostinger deployment pipeline with automatic sync from main branch.
   - Configure custom domains, DNS pointers, and automated SSL setups.
   - Setup environment variable secrets on host dashboard.
 - **Dependencies:** All previous phases.
