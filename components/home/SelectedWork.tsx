@@ -23,7 +23,7 @@ const studioProjects: StudioProject[] = [
     status: "Production Architecture",
     summary: "A production-grade Next.js web application architecture leveraging static site generation (SSG) alongside Incremental Static Regeneration (ISR). Serves pre-rendered HTML via CDN caching for fast page delivery while keeping dynamic content fresh.",
     architecture: ["Next.js App Router", "TypeScript Strict", "CDN Caching", "ISR Timers"],
-    features: ["Optimized Largest Contentful Paint (LCP)", "Reduced origin server strain during traffic spikes", "Automated cache revalidation on data updates"],
+    features: ["Optimized Largest Contentful Paint (LCP)", "Reduced origin server compute overhead during traffic spikes", "Automated cache revalidation on data updates"],
     link: "/work#case-studies",
     intent: "BUILD_SOMETHING"
   },
