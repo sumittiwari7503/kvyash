@@ -139,7 +139,7 @@ const techStack = [
   },
   {
     category: "Cloud & Deployment",
-    items: ["Edge CDN Networks", "Vercel", "Hostinger Cloud", "Docker Containers", "Git Version Control"]
+    items: ["Edge CDN Networks", "Hostinger Cloud", "AWS", "Docker Containers", "Git Version Control"]
   }
 ];
 

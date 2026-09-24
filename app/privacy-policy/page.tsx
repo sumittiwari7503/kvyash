@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
  <li><strong>Organization Details:</strong> Company/Organization name (if supplied).</li>
  <li><strong>Project Details:</strong> Service category, project requirements, timeline, and budget information submitted through the project-scoping flow.</li>
  <li><strong>Feedback Information:</strong> Review submission information, where applicable.</li>
- <li><strong>Technical Data:</strong> Standard technical information that our hosting platform (Vercel) may process to securely serve the website.</li>
+ <li><strong>Technical Data:</strong> Standard technical information that our hosting platform (Hostinger) may process to securely serve the website.</li>
  </ul>
  
  <h3 className="text-lg font-bold text-navy-900 pt-4">2. Contact Forms & Chatbot</h3>

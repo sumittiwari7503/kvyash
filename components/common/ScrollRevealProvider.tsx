@@ -4,40 +4,45 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export default function ScrollRevealProvider() {
- const pathname = usePathname();
+  const pathname = usePathname();
 
- useEffect(() => {
- // Check user accessibility preference
- const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if (prefersReduced) {
- document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
- el.classList.add("revealed");
- });
- return;
- }
+  useEffect(() => {
+    // Add js-ready class on html root to enable client-side progressive enhancement
+    if (typeof document !== "undefined") {
+      document.documentElement.classList.add("js-ready");
+    }
 
- const observerOptions = {
- root: null,
- rootMargin: "0px 0px -50px 0px", // Trigger when element is 50px into the viewport
- threshold: 0.1,
- };
+    // Respect reduced motion preference
+    const prefersReduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+        el.classList.add("revealed");
+      });
+      return;
+    }
 
- const observer = new IntersectionObserver((entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) {
- entry.target.classList.add("revealed");
- observer.unobserve(entry.target);
- }
- });
- }, observerOptions);
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px -40px 0px",
+      threshold: 0.05,
+    };
 
- const elements = document.querySelectorAll(".reveal-on-scroll, .founder-image-reveal, .founder-text-reveal");
- elements.forEach((el) => observer.observe(el));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
 
- return () => {
- observer.disconnect();
- };
- }, [pathname]);
+    const elements = document.querySelectorAll(".reveal-on-scroll, .founder-image-reveal, .founder-text-reveal");
+    elements.forEach((el) => observer.observe(el));
 
- return null;
+    return () => {
+      observer.disconnect();
+    };
+  }, [pathname]);
+
+  return null;
 }

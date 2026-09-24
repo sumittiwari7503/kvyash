@@ -57,7 +57,7 @@ export default function TermsPage() {
 
  <h3 className="text-lg font-bold text-navy-900 pt-4">7. Hosting, Deployment & Maintenance</h3>
  <p>
- We deploy software directly to client-owned hosting environments (Vercel, AWS, or similar) to ensure client control. Following deployment, KVYASH offers a standard 30-day post-launch support period. Ongoing maintenance, updates, or feature additions require a separate retainer agreement.
+ We deploy software directly to client-owned hosting environments (Hostinger, AWS, or similar) to ensure client control. Following deployment, KVYASH offers a standard 30-day post-launch support period. Ongoing maintenance, updates, or feature additions require a separate retainer agreement.
  </p>
 
  <h3 className="text-lg font-bold text-navy-900 pt-4">8. Limitation of Liability</h3>

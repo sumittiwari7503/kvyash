@@ -43,7 +43,7 @@ export default function DisclaimerPage() {
 
  <h3 className="text-lg font-bold text-navy-900 pt-4">5. Third-Party Services</h3>
  <p>
- Our website and the products we build may integrate with third-party services, such as hosting providers (e.g., Vercel), email providers (e.g., Resend), and social platforms (e.g., LinkedIn, Instagram). We have no control over and assume no responsibility for the content, privacy policies, uptime, or practices of any third-party sites or services.
+ Our website and the products we build may integrate with third-party services, such as hosting providers (e.g., Hostinger, cloud providers), email providers (e.g., Resend), and social platforms (e.g., LinkedIn, Instagram). We have no control over and assume no responsibility for the content, privacy policies, uptime, or practices of any third-party sites or services.
  </p>
 
  <h3 className="text-lg font-bold text-navy-900 pt-4">6. External Links</h3>

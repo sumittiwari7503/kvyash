@@ -1,202 +1,189 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { MessageSquare, Cpu, ShieldCheck, Database, Send, Bell } from "lucide-react";
+import React, { useState } from "react";
+import Link from "next/link";
+import { MessageSquare, Cpu, ShieldCheck, Database, Bell, ArrowRight, CheckCircle2, ArrowUpRight } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";
 
+const pipelineSteps = [
+  {
+    step: "01",
+    title: "Inquiry Ingestion",
+    desc: "Captures inbound customer requirements via WhatsApp, web forms, or email listeners.",
+    icon: MessageSquare,
+    badge: "Input Gateway"
+  },
+  {
+    step: "02",
+    title: "AI Intent Classification",
+    desc: "Extracts project scope, service intent, budget parameters, and technical requirements.",
+    icon: Cpu,
+    badge: "LLM Processing"
+  },
+  {
+    step: "03",
+    title: "Constraint Qualification",
+    desc: "Applies business logic to validate timelines, budget fit, and service capability.",
+    icon: ShieldCheck,
+    badge: "Validation Rules"
+  },
+  {
+    step: "04",
+    title: "Database & CRM Sync",
+    desc: "Formats structured JSON and commits directly into PostgreSQL or CRM contact records.",
+    icon: Database,
+    badge: "Persistence Layer"
+  },
+  {
+    step: "05",
+    title: "Team Routing & Follow-up",
+    desc: "Dispatches instant team alerts with structured summaries and schedules next steps.",
+    icon: Bell,
+    badge: "Action Loop"
+  }
+];
+
 export default function AutomationWorkflow() {
-  const [activeStep, setActiveStep] = useState(0);
-
-  useEffect(() => {
-    // Respect reduced motion preference
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    let interval: NodeJS.Timeout | null = null;
-    
-    const startLoop = () => {
-      if (!interval) {
-        interval = setInterval(() => {
-          setActiveStep((prev) => (prev + 1) % 5);
-        }, 3000);
-      }
-    };
-
-    const stopLoop = () => {
-      if (interval) {
-        clearInterval(interval);
-        interval = null;
-      }
-    };
-
-    const handleVisibility = () => {
-      if (document.hidden) {
-        stopLoop();
-      } else {
-        startLoop();
-      }
-    };
-
-    startLoop();
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-      stopLoop();
-      document.removeEventListener("visibilitychange", handleVisibility);
-    };
-  }, []);
-
-  const steps = [
-    {
-      title: "WhatsApp Message",
-      desc: "Incoming lead inquiry via chat",
-      icon: <MessageSquare className="h-5 w-5" />,
-      color: "border-emerald-500 text-emerald-500 bg-emerald-500/10"
-    },
-    {
-      title: "AI Agent Engine",
-      desc: "Instant intent parsing & translation",
-      icon: <Cpu className="h-5 w-5 animate-spin [animation-duration:8s]" />,
-      color: "border-brand-500 text-brand-500 bg-brand-500/10"
-    },
-    {
-      title: "Lead Qualification",
-      desc: "Filters out low-budget or invalid bids",
-      icon: <ShieldCheck className="h-5 w-5" />,
-      color: "border-purple-500 text-purple-500 bg-purple-50/10"
-    },
-    {
-      title: "CRM Sync",
-      desc: "Updates contact cards & logs",
-      icon: <Database className="h-5 w-5" />,
-      color: "border-blue-500 text-blue-500 bg-blue-500/10"
-    },
-    {
-      title: "Team Alert",
-      desc: "Routes hot prospect alert instantly",
-      icon: <Bell className="h-5 w-5" />,
-      color: "border-amber-500 text-amber-500 bg-amber-500/10"
-    }
-  ];
+  const [activeStep, setActiveStep] = useState(1);
 
   return (
-    <section className="py-20 md:py-28 bg-slate-900 border-b border-slate-950 overflow-hidden relative">
- <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
- <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-brand-500/5 rounded-full blur-[100px] pointer-events-none" />
+    <section id="ai-automation" className="py-24 md:py-32 bg-slate-50 border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200">
+          <div className="max-w-2xl flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
+              Intelligent Systems
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
+              AI &amp; Automation in Practice
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              We design custom AI automations that connect customer touchpoints directly to your database, CRM, and internal workflows.
+            </p>
+          </div>
 
- <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
- 
- {/* Header */}
- <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3 reveal-on-scroll">
- <span className="text-xs font-bold uppercase tracking-widest text-brand-400">Core Automation Pipeline</span>
- <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
- AI systems that work with your business.
- </h2>
- <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
- We design custom AI workflows that connect customer-facing channels directly to your backend database and CRM.
- </p>
- </div>
+          <div className="shrink-0 flex items-center gap-3">
+            <Link
+              href="/ai-automation"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 hover:text-brand-600 px-4 py-2.5 rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-xs"
+            >
+              <span>AI Automation Guide</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
 
- {/* Interactive SVG Flowchart Visualization */}
- <div className="w-full max-w-5xl mx-auto bg-slate-950/80 border border-slate-800 rounded-2xl p-6 sm:p-10 mb-16 relative overflow-hidden reveal-on-scroll">
- <div className="absolute inset-0 bg-slate-950/40" />
+        {/* Studio Pipeline Architecture Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-12">
+          {pipelineSteps.map((item, idx) => {
+            const Icon = item.icon;
+            const isCurrent = activeStep === idx;
 
- {/* Diagram Layout */}
- <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
- {steps.map((step, idx) => {
- const isActive = activeStep === idx;
- const isPassed = activeStep > idx;
+            return (
+              <div
+                key={item.title}
+                onClick={() => setActiveStep(idx)}
+                className={`bg-white border rounded-2xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-200 ${
+                  isCurrent
+                    ? "border-brand-500 shadow-md ring-2 ring-brand-500/10 -translate-y-1"
+                    : "border-slate-200/80 hover:border-slate-300 shadow-xs"
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                    <span className="text-xs font-mono font-bold text-slate-400">
+                      STAGE {item.step}
+                    </span>
+                    <span className="text-[9px] font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full uppercase">
+                      {item.badge}
+                    </span>
+                  </div>
 
- return (
- <div key={step.title} className="flex flex-col items-center text-center relative group">
- {/* Glowing connector lines for desktop */}
- {idx < 4 && (
- <div className="hidden lg:block absolute top-[28px] left-[65%] w-[80%] h-0.5 bg-slate-800 z-0">
- <div 
- className={`h-full bg-brand-500 transition-all duration-1000 ${
- isPassed ? "w-full" : "w-0"
- }`}
- />
- {isActive && (
- <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-brand-400 rounded-full animate-ping left-0" />
- )}
- </div>
- )}
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <div className={`p-2 rounded-lg ${isCurrent ? "bg-brand-500 text-white" : "bg-slate-100 text-navy-900"}`}>
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-sm font-bold text-navy-900 leading-snug">
+                      {item.title}
+                    </h3>
+                  </div>
 
- {/* Icon Circle */}
- <div 
- className={`h-14 w-14 rounded-full border-2 flex items-center justify-center relative z-10 transition-all duration-500 ${
- isActive 
- ? `${step.color} border-brand-500 scale-110 shadow-[0_0_15px_rgba(37,99,235,0.4)]`
- : isPassed 
- ? "border-slate-700 text-brand-400 bg-slate-900/60"
- : "border-slate-800 text-slate-500 bg-slate-950/80"
- }`}
- >
- {step.icon}
- </div>
+                  <p className="text-slate-500 text-xs leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
 
- {/* Step Meta */}
- <div className="mt-4 space-y-1">
- <span className="text-[9px] font-mono text-slate-500">STAGE 0{idx + 1}</span>
- <h4 className={`text-xs font-bold transition-colors duration-300 ${
- isActive ? "text-white" : "text-slate-400"
- }`}>
- {step.title}
- </h4>
- <p className="text-[10px] text-slate-500 max-w-[150px] mx-auto leading-relaxed">
- {step.desc}
- </p>
- </div>
- </div>
- );
- })}
- </div>
- </div>
+                <div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                  <span>{isCurrent ? "Active Pipeline Spec" : "Click to view"}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
- {/* Custom Blueprints & Scope Section */}
- <div className="bg-slate-950/40 border border-slate-800 rounded-2xl p-6 sm:p-10 max-w-4xl mx-auto reveal-on-scroll grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
- <div className="flex flex-col gap-3">
- <h3 className="text-base font-bold text-white flex items-center gap-2">
- <Send className="h-4 w-4 text-brand-400" />
- Automations We Engineer:
- </h3>
- <ul className="space-y-2.5 text-xs text-slate-400">
- <li className="flex items-center gap-2">
- <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
- Capture leads from WhatsApp and parse customer requirements instantly.
- </li>
- <li className="flex items-center gap-2">
- <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
- Qualify project constraints dynamically before routing to human experts.
- </li>
- <li className="flex items-center gap-2">
- <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
- Sync client details instantly with target CRM pipelines.
- </li>
- <li className="flex items-center gap-2">
- <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
- Initialize automatic follow-ups and notifications for pending orders.
- </li>
- </ul>
- </div>
+        {/* Practical Automations We Engineer */}
+        <div className="bg-white border border-slate-200/90 rounded-3xl p-8 lg:p-10 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div className="lg:col-span-7 flex flex-col gap-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-600 font-mono">
+                Production Capabilities
+              </span>
+              <h3 className="text-2xl font-bold text-navy-900 tracking-tight">
+                Automations Designed For Business Operations
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Rather than generic AI wrappers, we build custom backend integration bridges connecting messaging APIs, optical character recognition (OCR), and language models to eliminate repetitive manual workflows.
+              </p>
+              
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {[
+                  "WhatsApp CRM Lead Ingestion & Qualification",
+                  "Unstructured PDF & Invoice Parsing to PostgreSQL",
+                  "Automated Email Ticket Categorization & Drafting",
+                  "Stripe & Razorpay Webhook Event Synchronizers"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
- <div className="flex flex-col gap-4 border-t md:border-t-0 md:border-l border-slate-800 pt-6 md:pt-0 pl-0 md:pl-8">
- <h4 className="text-sm font-bold text-white">Get a custom automation blueprint</h4>
- <p className="text-slate-400 text-xs leading-relaxed">
- We audit your manual business steps, create a technical automation route, connect necessary APIs, and deploy maintainable flows.
- </p>
- <StartProjectButton
- intent="AI_AUTOMATION"
- className="px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded text-xs transition-premium cursor-pointer shrink-0 shadow-md shadow-brand-500/10 text-center"
- >
- Start AI Scoping
- </StartProjectButton>
- </div>
- </div>
+            <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col gap-4 justify-between">
+              <div>
+                <h4 className="text-base font-bold text-navy-900 mb-1">
+                  Scope Your Automation Architecture
+                </h4>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  We review your manual data bottlenecks, determine the right API connectors, and provide a clear technical roadmap.
+                </p>
+              </div>
 
- </div>
- </section>
- );
+              <div className="flex flex-col sm:flex-row gap-3">
+                <StartProjectButton
+                  intent="AI_AUTOMATION"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-navy-900 hover:bg-black text-white text-xs font-bold transition-all duration-200 cursor-pointer text-center"
+                >
+                  <span>Start AI Scoping</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </StartProjectButton>
+                <Link
+                  href="/resources/whatsapp-crm-development"
+                  className="inline-flex items-center justify-center px-4 py-3 rounded-full border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-white transition-colors text-center"
+                >
+                  WhatsApp CRM Guide
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
 }

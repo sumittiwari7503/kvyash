@@ -321,7 +321,7 @@ export default function CustomWebApplicationDevelopmentArticle() {
                     </tr>
                     <tr>
                       <td className="p-3 font-semibold">Deployment</td>
-                      <td className="p-3">Edge CDN Hosting (Vercel / AWS Amplify)</td>
+                      <td className="p-3">Edge CDN Hosting (Hostinger Cloud / AWS)</td>
                       <td className="p-3">Multi-region Edge CDN + Isolated Container Infrastructure</td>
                     </tr>
                   </tbody>

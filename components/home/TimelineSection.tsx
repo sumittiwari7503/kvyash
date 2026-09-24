@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MessageSquare, Hammer, Rocket, Cpu, TrendingUp, BarChart2 } from "lucide-react";
+import { MessageSquare, Hammer, Rocket, Cpu, TrendingUp, BarChart2, ArrowRight } from "lucide-react";
+import StartProjectButton from "@/components/common/StartProjectButton";
 
 export default function TimelineSection() {
   const [activeStep, setActiveStep] = useState(0);
@@ -36,144 +37,128 @@ export default function TimelineSection() {
   const steps = [
     {
       step: "01",
-      label: "Consult",
-      desc: "Understand goals, assess existing systems, determine technology selection, and establish exact project scope parameters.",
+      label: "Consult & Scope",
+      tagline: "Architecture discovery before code",
+      desc: "We understand your commercial goals, assess existing systems, select the exact technology stack, and establish fixed-scope sprint deliverables.",
       icon: <MessageSquare className="h-5 w-5" />
     },
     {
       step: "02",
-      label: "Build",
-      desc: "Develop high-performance websites, custom SaaS platforms, multi-tenant databases, or mobile applications with clean architecture.",
+      label: "Build & Model",
+      tagline: "Clean, component-driven engineering",
+      desc: "We develop high-performance web applications, custom SaaS platforms, relational SQL databases, and internal dashboards using TypeScript and Next.js.",
       icon: <Hammer className="h-5 w-5" />
     },
     {
       step: "03",
-      label: "Launch",
-      desc: "Optimize site rendering, register DNS records, configure serverless edge routing, and push the project live safely.",
+      label: "Deploy & Optimize",
+      tagline: "Deployment & performance tuning",
+      desc: "We optimize site rendering, configure DNS routing, set up automated CI/CD deployment pipelines, and launch the platform safely.",
       icon: <Rocket className="h-5 w-5" />
     },
     {
       step: "04",
-      label: "Automate",
-      desc: "Build AI-powered workflows, integrate WhatsApp CRM gateways, connect databases, and eliminate redundant manual business loops.",
+      label: "Automate Workflows",
+      tagline: "Eliminating manual data entry",
+      desc: "We build AI document ingestion pipelines, integrate WhatsApp CRM webhooks, connect databases, and remove operational friction points.",
       icon: <Cpu className="h-5 w-5" />
     },
     {
       step: "05",
-      label: "Market",
-      desc: "Implement advanced technical SEO headers, configure canonical schemas, and orchestrate paid digital client acquisition loops.",
+      label: "Market & Index",
+      tagline: "Technical SEO & search discovery",
+      desc: "We implement crawlable canonical metadata, structured JSON-LD schemas, and conversion funnels to capture high-intent commercial searches.",
       icon: <TrendingUp className="h-5 w-5" />
     },
     {
       step: "06",
-      label: "Grow",
-      desc: "Track user telemetry dashboards, audit conversion funnels, resolve bottlenecks, and deploy continuous operational updates.",
+      label: "Iterate & Scale",
+      tagline: "Direct developer partnership",
+      desc: "We monitor operational performance, resolve bottlenecks, hand over full repository ownership, and deploy continuous product upgrades.",
       icon: <BarChart2 className="h-5 w-5" />
     }
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-slate-50 border-b border-slate-200/60 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-24 md:py-32 bg-white border-b border-slate-200/60 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 flex flex-col gap-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-500">How We Partner</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
-            The Digital Growth Journey
-          </h2>
-          <p className="text-slate-655 text-sm sm:text-base leading-relaxed">
-            A comprehensive, end-to-end engineering roadmap designed to translate early requirements into verified growth.
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-20 gap-8 reveal-on-scroll">
+          <div className="max-w-2xl">
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-600 font-semibold mb-3 block">
+              06 / Studio Methodology
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
+              A disciplined, milestone-driven delivery process.
+            </h2>
+          </div>
+          <p className="text-slate-600 text-sm sm:text-base max-w-md leading-relaxed">
+            From technical discovery to production deployment and direct code transfer—every phase is executed with full transparency.
           </p>
         </div>
 
-        {/* Scroll-Driven Timeline Layout */}
-        <div className="relative">
-          
-          {/* Vertical line running through the center/left */}
-          <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-0.5 bg-slate-200 -translate-x-1/2 z-0" />
+        {/* Studio Grid of 6 Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {steps.map((item, idx) => {
+            const isActive = activeStep === idx;
 
-          {/* Steps Loop */}
-          <div className="space-y-8 md:space-y-12">
-            {steps.map((item, idx) => {
-              const isActive = activeStep === idx;
-              const isEven = idx % 2 === 0;
-
-              return (
-                <div
-                  key={item.label}
-                  ref={(el) => { stepRefs.current[idx] = el; }}
-                  data-step-index={idx}
-                  className={`flex flex-col md:flex-row items-start md:items-center relative z-10 transition-all duration-500 ease-out md:opacity-40 md:scale-[0.98] ${
-                    isActive ? "md:opacity-100 md:scale-100" : ""
-                  }`}
-                >
-                  
-                  {/* Left Column for desktop */}
-                  <div className={`hidden md:block md:w-1/2 md:pr-12 text-right ${
-                    isEven ? "md:opacity-100" : "md:opacity-0 pointer-events-none"
-                  }`}>
-                    {isEven && (
-                      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                        <div className="flex items-center gap-3 justify-end mb-2">
-                          <span className="text-[10px] font-mono text-brand-500 font-extrabold uppercase bg-brand-50 px-2 py-0.5 rounded-full">
-                            Phase {item.step}
-                          </span>
-                        </div>
-                        <h4 className="text-navy-900 font-extrabold text-base mb-2">{item.label}</h4>
-                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Icon Dot in the middle / left */}
-                  <div className="absolute left-6 md:left-1/2 top-3 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 flex items-center justify-center">
-                    <div 
-                      className={`h-10 w-10 md:h-11 md:w-11 rounded-full border-2 bg-white flex items-center justify-center transition-all duration-500 ${
-                        isActive 
-                          ? "border-brand-500 text-brand-500 md:scale-110 shadow-[0_0_12px_rgba(37,99,235,0.3)]" 
-                          : "border-slate-300 text-slate-400"
-                      }`}
-                    >
+            return (
+              <div
+                key={item.label}
+                ref={(el) => { stepRefs.current[idx] = el; }}
+                data-step-index={idx}
+                className={`bg-slate-50 border border-slate-200/80 rounded-3xl p-7 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-500/30 hover:bg-white hover:shadow-studio hover:-translate-y-1 ${
+                  isActive ? "border-brand-500/40 shadow-sm" : ""
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-6">
+                    <span className="text-2xl sm:text-3xl font-mono font-extrabold text-brand-600 tracking-tight">
+                      {item.step}
+                    </span>
+                    <div className="p-2.5 rounded-xl bg-white text-navy-900 border border-slate-200/80 shadow-sm">
                       {item.icon}
                     </div>
                   </div>
 
-                  {/* Right Column for desktop */}
-                  <div className={`hidden md:block md:w-1/2 md:pl-12 text-left ${
-                    !isEven ? "md:opacity-100" : "md:opacity-0 pointer-events-none"
-                  }`}>
-                    {!isEven && (
-                      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                        <div className="flex items-center gap-3 justify-start mb-2">
-                          <span className="text-[10px] font-mono text-brand-500 font-extrabold uppercase bg-brand-50 px-2 py-0.5 rounded-full">
-                            Phase {item.step}
-                          </span>
-                        </div>
-                        <h4 className="text-navy-900 font-extrabold text-base mb-2">{item.label}</h4>
-                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Single Mobile Card (Clean, non-duplicated) */}
-                  <div className="block md:hidden w-full pl-14">
-                    <div className="bg-white border border-slate-200 p-4 sm:p-5 rounded-xl shadow-sm">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="text-[10px] font-mono text-brand-500 font-extrabold uppercase bg-brand-50 px-2 py-0.5 rounded-full">
-                          Phase {item.step}
-                        </span>
-                      </div>
-                      <h4 className="text-navy-900 font-extrabold text-sm mb-1">{item.label}</h4>
-                      <p className="text-slate-600 text-xs leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-
+                  <h3 className="text-xl font-bold text-navy-900 mb-1">
+                    {item.label}
+                  </h3>
+                  <p className="text-xs font-mono font-medium text-brand-600 mb-3 uppercase tracking-wider">
+                    {item.tagline}
+                  </p>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
 
+                <div className="pt-6 mt-6 border-t border-slate-200/60 flex items-center justify-between text-xs font-mono text-slate-400 font-bold">
+                  <span>PHASE {item.step}</span>
+                  <span className="text-brand-600 font-semibold">&bull; ACTIVE STANDARD</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Studio Methodology Guarantee Banner */}
+        <div className="mt-12 bg-navy-900 text-white rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 reveal-on-scroll shadow-studio">
+          <div className="space-y-2 text-center md:text-left">
+            <h4 className="text-xl sm:text-2xl font-bold tracking-tight">
+              Ready to start with a fixed-scope technical blueprint?
+            </h4>
+            <p className="text-slate-300 text-sm max-w-xl">
+              We align with your team on architecture, timelines, and deliverables before a single line of production code is written.
+            </p>
+          </div>
+          <StartProjectButton
+            intent="BUILD_SOMETHING"
+            className="shrink-0 inline-flex items-center justify-center px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full text-xs sm:text-sm transition-all duration-300 shadow-md cursor-pointer"
+          >
+            <span>Request Scoping Call</span>
+            <ArrowRight className="ml-1.5 h-4 w-4" />
+          </StartProjectButton>
         </div>
 
       </div>
