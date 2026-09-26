@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import Chatbot from "@/components/common/Chatbot";
-import CookieBanner from "@/components/common/CookieBanner";
 import ScrollRevealProvider from "@/components/common/ScrollRevealProvider";
 import companyData from "@/config/company.json";
+
+const Chatbot = dynamic(() => import("@/components/common/Chatbot"));
+const CookieBanner = dynamic(() => import("@/components/common/CookieBanner"));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

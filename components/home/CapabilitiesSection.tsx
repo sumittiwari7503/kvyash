@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { Code, Layers, Server, Lock, Globe, Terminal, Zap, ArrowUpRight } from "lucide-react";

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Store, Globe, CreditCard, Users, Zap, ArrowUpRight } from "lucide-react";
 import StartProjectButton from "@/components/common/StartProjectButton";

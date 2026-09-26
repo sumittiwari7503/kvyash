@@ -26,7 +26,7 @@ export default function Logo({ className = "", isFooter = false }: LogoProps) {
         width={813}
         height={233}
         className={`${widthStyle} ${heightStyle} h-auto object-contain dark:hidden`}
-        priority
+        priority={!isFooter}
       />
       {/* Dark Mode Logo */}
       <Image
@@ -35,7 +35,7 @@ export default function Logo({ className = "", isFooter = false }: LogoProps) {
         width={813}
         height={233}
         className={`${widthStyle} ${heightStyle} h-auto object-contain hidden dark:block`}
-        priority
+        priority={!isFooter}
       />
     </Link>
   );
